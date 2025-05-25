@@ -2,22 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:get_x_master/get_x_master.dart';
 import 'package:intl/intl.dart';
 
-class ResumeController extends GetXController {
-  static ResumeController get to => Get.smartFind<ResumeController>();
+class CoursesController extends GetXController {
+  static CoursesController get to => Get.smartFind<CoursesController>();
 
-  late TextEditingController text1, textSecndery, dateTime, text3, description;
-  String gender = "";
-  List<String> genderList = ["Male", "Female", "Other"];
+  late String typeCourse = "Course";
+  late String title = "Ux Research";
+  List<String> titleList = ["Ux Research", "Ux Design", "UI Design"];
+  List<String> typeCourseList = ["Online Course", "Course", "Regular Course"];
 
-  @override
-  void onInit() {
-    text1 = TextEditingController();
-    textSecndery = TextEditingController();
-    dateTime = TextEditingController();
-    text3 = TextEditingController();
-    description = TextEditingController();
-    super.onInit();
-  }
+  late TextEditingController dateTime = TextEditingController();
 
   Future<DateTime> pickerTime(BuildContext context) async {
     DateTime? picker = await showDatePicker(

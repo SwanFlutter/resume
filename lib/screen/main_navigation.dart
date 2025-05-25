@@ -63,7 +63,7 @@ class _MyBottomMenuState extends State<MyBottomMenu> {
   @override
   Widget build(BuildContext context) {
     return AnimatedContainer(
-      duration: Duration(milliseconds: 600),
+      duration: 600.microseconds,
       height: _isExpanded ? 161.0 : 63.0,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(24.0),

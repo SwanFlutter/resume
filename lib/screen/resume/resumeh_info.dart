@@ -168,6 +168,7 @@ class MeiddelB0xInfo extends StatelessWidget {
             ),
             child: SelectableText(
               description,
+              textAlign: TextAlign.justify,
               style: TextStyle(color: Color.fromRGBO(153, 153, 153, 1)),
             ),
           ),

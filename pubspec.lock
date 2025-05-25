@@ -203,10 +203,9 @@ packages:
   get_x_master:
     dependency: "direct main"
     description:
-      name: get_x_master
-      sha256: "2da866b58fc1698fe9e9bfa2a81a72743a51f4a1b5a6a6fdf6e231f827919442"
-      url: "https://pub.dev"
-    source: hosted
+      path: "G:\\Android\\Pakege\\get_x_master"
+      relative: false
+    source: path
     version: "0.0.6"
   get_x_storage:
     dependency: "direct main"
