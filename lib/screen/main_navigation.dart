@@ -29,6 +29,22 @@ class _MyBottomMenuState extends State<MyBottomMenu> {
   bool _isExpanded = false;
   final NavigationController _navigationController = NavigationController.to;
 
+  // Static getter برای دسترسی به وضعیت از سایر صفحات
+  static bool get isExpanded => _instance?._isExpanded ?? false;
+  static _MyBottomMenuState? _instance;
+
+  @override
+  void initState() {
+    super.initState();
+    _instance = this;
+  }
+
+  @override
+  void dispose() {
+    _instance = null;
+    super.dispose();
+  }
+
   void _toggleExpand() {
     setState(() {
       _isExpanded = !_isExpanded;
@@ -63,190 +79,221 @@ class _MyBottomMenuState extends State<MyBottomMenu> {
   @override
   Widget build(BuildContext context) {
     return AnimatedContainer(
-      duration: 600.microseconds,
+      duration: Duration(milliseconds: 600),
+      curve: Curves.easeInOut,
       height: _isExpanded ? 161.0 : 63.0,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(24.0),
-        color: Color(0xFFFEDFE6),
+        gradient: LinearGradient(
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+          // stops: [0.0, 0.3, 0.6, 1.0],
+          colors: [
+            //   Color(0xFFFEDEE6),
+            Color.fromRGBO(254, 222, 230, 0.6),
+            Color.fromRGBO(254, 222, 230, 0.5),
+            Color.fromRGBO(254, 222, 230, 0.4),
+          ],
+        ),
       ),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(24.0),
-        child: _isExpanded
-            ? SingleChildScrollView(
-                physics: NeverScrollableScrollPhysics(),
-                child: SizedBox(
-                  height: 161.0,
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      // Top row with Home and Exit
-                      SizedBox(
-                        height: 40,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            GestureDetector(
-                              onTap: () {
-                                _navigationController.navigateToHome();
-                                setState(() {});
-                              },
-                              child: Row(
-                                children: [
-                                  Icon(
-                                    Icons.home,
-                                    color:
-                                        _navigationController.currentIndex == 0
-                                        ? Colors.pink
-                                        : null,
-                                  ),
-                                  SizedBox(width: 5),
-                                  Text(
-                                    "Home",
-                                    style: TextStyle(
+        child: AnimatedSwitcher(
+          duration: Duration(milliseconds: 300),
+          transitionBuilder: (Widget child, Animation<double> animation) {
+            return SlideTransition(
+              position: Tween<Offset>(begin: Offset(0.0, 0.3), end: Offset.zero)
+                  .animate(
+                    CurvedAnimation(parent: animation, curve: Curves.easeInOut),
+                  ),
+              child: FadeTransition(opacity: animation, child: child),
+            );
+          },
+          child: _isExpanded
+              ? SingleChildScrollView(
+                  key: ValueKey('expanded'),
+                  physics: NeverScrollableScrollPhysics(),
+                  child: SizedBox(
+                    height: 161.0,
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        // Top row with Home and Exit
+                        SizedBox(
+                          height: 40,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              GestureDetector(
+                                onTap: () {
+                                  _navigationController.navigateToHome();
+                                  setState(() {});
+                                },
+                                child: Row(
+                                  children: [
+                                    Icon(
+                                      Icons.home,
                                       color:
                                           _navigationController.currentIndex ==
                                               0
                                           ? Colors.pink
                                           : null,
                                     ),
+                                    SizedBox(width: 5),
+                                    Text(
+                                      "Home",
+                                      style: TextStyle(
+                                        color:
+                                            _navigationController
+                                                    .currentIndex ==
+                                                0
+                                            ? Colors.pink
+                                            : null,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Row(
+                                children: [
+                                  Icon(
+                                    Icons.exit_to_app_outlined,
+                                    color: Color.fromRGBO(4, 7, 14, 1),
+                                  ),
+                                  SizedBox(width: 5),
+                                  Text(
+                                    "Exit",
+                                    style: TextStyle(
+                                      color: Color.fromRGBO(4, 7, 14, 1),
+                                    ),
                                   ),
                                 ],
                               ),
-                            ),
-                            Row(
-                              children: [
-                                Icon(
-                                  Icons.exit_to_app_outlined,
-                                  color: Color.fromRGBO(4, 7, 14, 1),
-                                ),
-                                SizedBox(width: 5),
-                                Text(
-                                  "Exit",
-                                  style: TextStyle(
-                                    color: Color.fromRGBO(4, 7, 14, 1),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ).paddingOnly(left: 18.0, right: 18.0, top: 10.0),
-                      ),
+                            ],
+                          ).paddingOnly(left: 18.0, right: 18.0, top: 10.0),
+                        ),
 
-                      // Second row with Company and Setting
-                      SizedBox(
-                        height: 55,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            SizedBox(width: 18),
-                            GestureDetector(
-                              onTap: () {
-                                _navigationController.navigateToCompany();
-                                setState(() {});
-                              },
-                              child: Column(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  Icon(
-                                    Icons.business,
-                                    color:
-                                        _navigationController.currentIndex == 4
-                                        ? Colors.pink
-                                        : null,
-                                  ),
-                                  Text(
-                                    "Company",
-                                    style: TextStyle(
-                                      fontSize: 12,
+                        // Second row with Company and Setting
+                        SizedBox(
+                          height: 55,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              SizedBox(width: 18),
+                              GestureDetector(
+                                onTap: () {
+                                  _navigationController.navigateToCompany();
+                                  setState(() {});
+                                },
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    Icon(
+                                      Icons.business,
                                       color:
                                           _navigationController.currentIndex ==
                                               4
                                           ? Colors.pink
                                           : null,
                                     ),
-                                  ),
-                                ],
+                                    Text(
+                                      "Company",
+                                      style: TextStyle(
+                                        fontSize: 12,
+                                        color:
+                                            _navigationController
+                                                    .currentIndex ==
+                                                4
+                                            ? Colors.pink
+                                            : null,
+                                      ),
+                                    ),
+                                  ],
+                                ),
                               ),
-                            ),
-                            SizedBox(width: 25),
-                            GestureDetector(
-                              onTap: () {
-                                _navigationController.navigateToSettings();
-                                setState(() {});
-                              },
-                              child: Column(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  Icon(
-                                    Icons.settings,
-                                    color:
-                                        _navigationController.currentIndex == 5
-                                        ? Colors.pink
-                                        : null,
-                                  ),
-                                  Text(
-                                    "Setting",
-                                    style: TextStyle(
-                                      fontSize: 12,
+                              SizedBox(width: 25),
+                              GestureDetector(
+                                onTap: () {
+                                  _navigationController.navigateToSettings();
+                                  setState(() {});
+                                },
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    Icon(
+                                      Icons.settings,
                                       color:
                                           _navigationController.currentIndex ==
                                               5
                                           ? Colors.pink
                                           : null,
                                     ),
-                                  ),
-                                ],
+                                    Text(
+                                      "Setting",
+                                      style: TextStyle(
+                                        fontSize: 12,
+                                        color:
+                                            _navigationController
+                                                    .currentIndex ==
+                                                5
+                                            ? Colors.pink
+                                            : null,
+                                      ),
+                                    ),
+                                  ],
+                                ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
-                      ),
 
-                      // Bottom row with main navigation
-                      SizedBox(
-                        height: 55,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            _buildNavItem(Icons.dashboard, "Dashboard", 0),
-                            _buildNavItem(Icons.description, "Resume", 1),
-                            _buildNavItem(Icons.work, "Jobs", 2),
-                            GestureDetector(
-                              onTap: _toggleExpand,
-                              child: Icon(
-                                Icons.more_horiz,
-                                size: 36,
-                                color: _isExpanded ? Colors.pink : null,
+                        // Bottom row with main navigation
+                        SizedBox(
+                          height: 55,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              _buildNavItem(Icons.dashboard, "Dashboard", 0),
+                              _buildNavItem(Icons.description, "Resume", 1),
+                              _buildNavItem(Icons.work, "Jobs", 2),
+                              GestureDetector(
+                                onTap: _toggleExpand,
+                                child: Icon(
+                                  Icons.more_horiz,
+                                  size: 36,
+                                  color: _isExpanded ? Colors.pink : null,
+                                ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                )
+              : SizedBox(
+                  key: ValueKey('collapsed'),
+                  height: 63.0,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      _buildNavItem(Icons.dashboard, "Dashboard", 0),
+                      _buildNavItem(Icons.description, "Resume", 1),
+                      _buildNavItem(Icons.work, "Jobs", 2),
+                      GestureDetector(
+                        onTap: _toggleExpand,
+                        child: Icon(
+                          Icons.more_horiz_outlined,
+                          size: 45,
+                          color: _isExpanded ? Colors.pink : null,
                         ),
                       ),
                     ],
                   ),
                 ),
-              )
-            : SizedBox(
-                height: 63.0,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    _buildNavItem(Icons.dashboard, "Dashboard", 0),
-                    _buildNavItem(Icons.description, "Resume", 1),
-                    _buildNavItem(Icons.work, "Jobs", 2),
-                    GestureDetector(
-                      onTap: _toggleExpand,
-                      child: Icon(
-                        Icons.more_horiz,
-                        size: 36,
-                        color: _isExpanded ? Colors.pink : null,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
+        ),
       ),
     ).marginOnly(bottom: 20.0, left: 10.0, right: 10.0);
   }

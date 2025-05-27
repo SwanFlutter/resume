@@ -29,7 +29,7 @@ class CardWidget extends StatelessWidget {
           ),
         ],
         borderRadius: BorderRadius.circular(12.0),
-        border: Border.all(color: Color.fromRGBO(255, 105, 180, 1)),
+        border: Border.all(color: Color.fromRGBO(253, 27, 81, 0.2)),
         gradient: LinearGradient(
           begin: begin,
           end: end,

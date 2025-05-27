@@ -8,21 +8,18 @@ class ResumePage extends StatelessWidget {
   const ResumePage({super.key});
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SizedBox(
-        width: context.width,
-        height: context.height,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            LogoWidget(),
-            AppbarWidget(title: "Resume Page", backBottom: false),
-            GridCardWidget(),
-          ],
-        ),
+    return SizedBox(
+      width: context.width,
+      height: context.height,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          LogoWidget(),
+          AppbarWidget(title: "Resume Page", backBottom: false),
+          GridCardWidget(),
+        ],
       ),
-      //  bottomNavigationBar: MyBottomMenu(),
     );
   }
 }

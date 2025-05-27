@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:get_x_master/get_x_master.dart';
 import 'package:resume/widgets/global/appbar_widget.dart';
+import 'package:resume/widgets/global/background_colors.dart';
 import 'package:resume/widgets/global/logo_widget.dart';
 
 class JobsPage extends StatelessWidget {
@@ -8,28 +8,24 @@ class JobsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SizedBox(
-        width: context.width,
-        height: context.height,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            LogoWidget(),
-            AppbarWidget(title: "Jobs"),
-            Expanded(
-              child: ListView.builder(
-                padding: EdgeInsets.all(16),
-                itemCount: _jobs.length,
-                itemBuilder: (context, index) {
-                  final job = _jobs[index];
-                  return _buildJobCard(job);
-                },
-              ),
+    return BackgroundColors(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          LogoWidget(),
+          AppbarWidget(title: "Jobs"),
+          Expanded(
+            child: ListView.builder(
+              padding: EdgeInsets.all(16),
+              itemCount: _jobs.length,
+              itemBuilder: (context, index) {
+                final job = _jobs[index];
+                return _buildJobCard(job);
+              },
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
@@ -50,7 +46,7 @@ class JobsPage extends StatelessWidget {
                   width: 50,
                   height: 50,
                   decoration: BoxDecoration(
-                    color: Colors.pink.withOpacity(0.1),
+                    color: Colors.pink.withValues(alpha: 0.1),
                     borderRadius: BorderRadius.circular(8),
                   ),
                   child: Center(child: Icon(job.icon, color: Colors.pink)),

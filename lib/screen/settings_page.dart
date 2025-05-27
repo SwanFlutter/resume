@@ -18,122 +18,120 @@ class _SettingsPageState extends State<SettingsPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SizedBox(
-        width: context.width,
-        height: context.height,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            LogoWidget(),
-            AppbarWidget(title: "Settings"),
-            Expanded(
-              child: ListView(
-                padding: EdgeInsets.all(16),
-                children: [
-                  _buildSectionTitle("Account"),
-                  _buildSettingItem(
-                    icon: Icons.person,
-                    title: "Profile Information",
-                    subtitle: "Change your personal information",
-                    onTap: () {},
-                  ),
-                  _buildSettingItem(
-                    icon: Icons.lock,
-                    title: "Password",
-                    subtitle: "Change your password",
-                    onTap: () {},
-                  ),
-                  _buildSettingItem(
-                    icon: Icons.email,
-                    title: "Email",
-                    subtitle: "Change your email address",
-                    onTap: () {},
-                  ),
-                  _buildDivider(),
-                  _buildSectionTitle("Preferences"),
-                  _buildSwitchItem(
-                    icon: Icons.notifications,
-                    title: "Notifications",
-                    value: _notificationsEnabled,
-                    onChanged: (value) {
-                      setState(() {
-                        _notificationsEnabled = value;
-                      });
-                    },
-                  ),
-                  _buildSwitchItem(
-                    icon: Icons.dark_mode,
-                    title: "Dark Mode",
-                    value: _darkModeEnabled,
-                    onChanged: (value) {
-                      setState(() {
-                        _darkModeEnabled = value;
-                      });
-                    },
-                  ),
-                  _buildSwitchItem(
-                    icon: Icons.location_on,
-                    title: "Location Services",
-                    value: _locationEnabled,
-                    onChanged: (value) {
-                      setState(() {
-                        _locationEnabled = value;
-                      });
-                    },
-                  ),
-                  _buildSliderItem(
-                    icon: Icons.text_fields,
-                    title: "Text Size",
-                    value: _textSize,
-                    min: 0.8,
-                    max: 1.2,
-                    onChanged: (value) {
-                      setState(() {
-                        _textSize = value;
-                      });
-                    },
-                  ),
-                  _buildDivider(),
-                  _buildSectionTitle("Support"),
-                  _buildSettingItem(
-                    icon: Icons.help,
-                    title: "Help Center",
-                    subtitle: "Get help with the app",
-                    onTap: () {},
-                  ),
-                  _buildSettingItem(
-                    icon: Icons.feedback,
-                    title: "Feedback",
-                    subtitle: "Send feedback to improve the app",
-                    onTap: () {},
-                  ),
-                  _buildSettingItem(
-                    icon: Icons.privacy_tip,
-                    title: "Privacy Policy",
-                    subtitle: "Read our privacy policy",
-                    onTap: () {},
-                  ),
-                  _buildSettingItem(
-                    icon: Icons.description,
-                    title: "Terms of Service",
-                    subtitle: "Read our terms of service",
-                    onTap: () {},
-                  ),
-                  _buildDivider(),
-                  _buildSettingItem(
-                    icon: Icons.logout,
-                    title: "Logout",
-                    subtitle: "Sign out of your account",
-                    onTap: () {},
-                    isDestructive: true,
-                  ),
-                ],
-              ),
+    return SizedBox(
+      width: context.width,
+      height: context.height,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          LogoWidget(),
+          AppbarWidget(title: "Settings"),
+          Expanded(
+            child: ListView(
+              padding: EdgeInsets.all(16),
+              children: [
+                _buildSectionTitle("Account"),
+                _buildSettingItem(
+                  icon: Icons.person,
+                  title: "Profile Information",
+                  subtitle: "Change your personal information",
+                  onTap: () {},
+                ),
+                _buildSettingItem(
+                  icon: Icons.lock,
+                  title: "Password",
+                  subtitle: "Change your password",
+                  onTap: () {},
+                ),
+                _buildSettingItem(
+                  icon: Icons.email,
+                  title: "Email",
+                  subtitle: "Change your email address",
+                  onTap: () {},
+                ),
+                _buildDivider(),
+                _buildSectionTitle("Preferences"),
+                _buildSwitchItem(
+                  icon: Icons.notifications,
+                  title: "Notifications",
+                  value: _notificationsEnabled,
+                  onChanged: (value) {
+                    setState(() {
+                      _notificationsEnabled = value;
+                    });
+                  },
+                ),
+                _buildSwitchItem(
+                  icon: Icons.dark_mode,
+                  title: "Dark Mode",
+                  value: _darkModeEnabled,
+                  onChanged: (value) {
+                    setState(() {
+                      _darkModeEnabled = value;
+                    });
+                  },
+                ),
+                _buildSwitchItem(
+                  icon: Icons.location_on,
+                  title: "Location Services",
+                  value: _locationEnabled,
+                  onChanged: (value) {
+                    setState(() {
+                      _locationEnabled = value;
+                    });
+                  },
+                ),
+                _buildSliderItem(
+                  icon: Icons.text_fields,
+                  title: "Text Size",
+                  value: _textSize,
+                  min: 0.8,
+                  max: 1.2,
+                  onChanged: (value) {
+                    setState(() {
+                      _textSize = value;
+                    });
+                  },
+                ),
+                _buildDivider(),
+                _buildSectionTitle("Support"),
+                _buildSettingItem(
+                  icon: Icons.help,
+                  title: "Help Center",
+                  subtitle: "Get help with the app",
+                  onTap: () {},
+                ),
+                _buildSettingItem(
+                  icon: Icons.feedback,
+                  title: "Feedback",
+                  subtitle: "Send feedback to improve the app",
+                  onTap: () {},
+                ),
+                _buildSettingItem(
+                  icon: Icons.privacy_tip,
+                  title: "Privacy Policy",
+                  subtitle: "Read our privacy policy",
+                  onTap: () {},
+                ),
+                _buildSettingItem(
+                  icon: Icons.description,
+                  title: "Terms of Service",
+                  subtitle: "Read our terms of service",
+                  onTap: () {},
+                ),
+                _buildDivider(),
+                _buildSettingItem(
+                  icon: Icons.logout,
+                  title: "Logout",
+                  subtitle: "Sign out of your account",
+                  onTap: () {},
+                  isDestructive: true,
+                ),
+              ],
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

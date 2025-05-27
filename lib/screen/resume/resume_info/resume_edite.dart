@@ -15,120 +15,139 @@ class ResumeEdite extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            LogoWidget(),
-            AppbarWidget(title: "Resume Edite"),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
+    return SizedBox(
+      width: context.width,
+      height: context.height,
+      child: Stack(
+        children: [
+          // محتوای اصلی صفحه
+          SingleChildScrollView(
+            padding: EdgeInsets.only(bottom: 100), // فضای کافی برای FAB
+            child: Column(
               children: [
-                Avatar.profile(
-                  text: "Sajjad",
-                  radius: 40,
-                  randomColor: false,
-                  randomGradient: true,
-                  backgroundColorCamera: Color.fromRGBO(30, 51, 99, 1),
-                  icon: Icons.camera,
-                  useMaterialColorForGradient: true,
-                  iconColor: Colors.white,
-                ),
-              ],
-            ),
-            SizedBox(height: 10.0),
-            Container(
-              width: 288,
-              height: 289,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(12.0),
-                color: context.theme.colorScheme.onPrimary,
-                boxShadow: [
-                  BoxShadow(
-                    offset: Offset(0, 2),
-                    blurRadius: 3,
-                    spreadRadius: 1,
-                    blurStyle: BlurStyle.outer,
-                    color: Colors.grey.withValues(alpha: 0.5),
-                  ),
-                ],
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    "Personal Information",
-                    style: TextStyle(
-                      fontSize: 14.0,
-                      fontWeight: FontWeight.w400,
+                LogoWidget(),
+                AppbarWidget(title: "Resume Edite"),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Avatar.profile(
+                      text: "Sajjad",
+                      radius: 40,
+                      randomColor: false,
+                      randomGradient: true,
+                      backgroundColorCamera: Color.fromRGBO(30, 51, 99, 1),
+                      icon: Icons.camera,
+                      useMaterialColorForGradient: true,
+                      iconColor: Colors.white,
                     ),
-                  ).paddingOnly(top: 10),
-                  SizedBox(height: 5),
-                  GetBuilder<ResumeController>(
-                    builder: (controller) {
-                      return Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Wrap(
-                            spacing: 5,
-                            runSpacing: 10,
+                  ],
+                ),
+                SizedBox(height: 10.0),
+                Container(
+                  width: 288,
+                  height: 289,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(12.0),
+                    color: context.theme.colorScheme.onPrimary,
+                    boxShadow: [
+                      BoxShadow(
+                        offset: Offset(0, 1),
+                        blurRadius: 3,
+
+                        blurStyle: BlurStyle.normal,
+                        color: Color.fromRGBO(8, 14, 28, 0.2),
+                      ),
+                    ],
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Personal Information",
+                        style: TextStyle(
+                          fontSize: 14.0,
+                          fontWeight: FontWeight.w400,
+                        ),
+                      ).paddingOnly(top: 10),
+                      SizedBox(height: 5),
+                      GetBuilder<ResumeController>(
+                        builder: (controller) {
+                          return Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
+                              Wrap(
+                                spacing: 5,
+                                runSpacing: 10,
                                 children: [
-                                  GenderFeildWidget(
+                                  Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      GenderFeildWidget(
+                                        controller: controller,
+                                        label: 'Gender *',
+                                      ),
+                                    ],
+                                  ),
+                                  RegularTextFieldWidget(
+                                    label: 'MilitaryStatusWidget *',
+                                    controllerInstance: controller.text1,
+                                    hint: 'Describe Text',
+                                  ),
+
+                                  // RegularTextFieldWidget
+                                  DateTextFieldWidget(
                                     controller: controller,
-                                    label: 'Gender *',
+                                    label: 'Date Of Birth *',
+                                  ),
+
+                                  RegularTextFieldWidget(
+                                    label: 'Marital Status *',
+                                    controllerInstance: controller.text3,
+                                    hint: 'Describe Text',
                                   ),
                                 ],
                               ),
-                              RegularTextFieldWidget(
-                                label: 'MilitaryStatusWidget *',
-                                controllerInstance: controller.text1,
-                                hint: 'Describe Text',
-                              ),
-
-                              // RegularTextFieldWidget
-                              DateTextFieldWidget(
+                              SizedBox(height: 4),
+                              Text(
+                                "Descriptions",
+                                style: TextStyle(
+                                  fontSize: 14.0,
+                                  fontWeight: FontWeight.w700,
+                                ),
+                              ).paddingOnly(top: 8.0),
+                              SizedBox(height: 4),
+                              DescriptionsEditeInfoWidget(
                                 controller: controller,
-                                label: 'Date Of Birth *',
-                              ),
-
-                              RegularTextFieldWidget(
-                                label: 'Marital Status *',
-                                controllerInstance: controller.text3,
-                                hint: 'Describe Text',
+                                hint: "Write your description here...",
                               ),
                             ],
-                          ),
-                          SizedBox(height: 4),
-                          Text(
-                            "Descriptions",
-                            style: TextStyle(
-                              fontSize: 14.0,
-                              fontWeight: FontWeight.w700,
-                            ),
-                          ).paddingOnly(top: 8.0),
-                          SizedBox(height: 4),
-                          DescriptionsEditeInfoWidget(
-                            controller: controller,
-                            hint: "Write your description here...",
-                          ),
-                        ],
-                      );
-                    },
-                  ),
-                ],
-              ).paddingOnly(left: 5.0, right: 10.0),
+                          );
+                        },
+                      ),
+                    ],
+                  ).paddingOnly(left: 5.0, right: 10.0),
+                ),
+                SizedBox(height: 20.0), // فضای اضافی در انتها
+              ],
             ),
-          ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        backgroundColor: editeFabColor,
-        shape: StadiumBorder(),
-        child: Image.asset("assets/Vector.png", width: 24.0, height: 24.0),
+          ),
+          // FloatingActionButton شناور در گوشه
+          Positioned(
+            bottom: 100, // فاصله از پایین (بالای bottom navigation)
+            right: 16, // فاصله از راست
+            child: FloatingActionButton(
+              onPressed: () {},
+              backgroundColor: editeFabColor,
+              shape: StadiumBorder(),
+              child: Image.asset(
+                "assets/Vector.png",
+                width: 24.0,
+                height: 24.0,
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

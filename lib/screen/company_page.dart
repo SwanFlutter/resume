@@ -8,28 +8,26 @@ class CompanyPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SizedBox(
-        width: context.width,
-        height: context.height,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            LogoWidget(),
-            AppbarWidget(title: "Companies"),
-            Expanded(
-              child: ListView.builder(
-                padding: EdgeInsets.all(16),
-                itemCount: _companies.length,
-                itemBuilder: (context, index) {
-                  final company = _companies[index];
-                  return _buildCompanyCard(company);
-                },
-              ),
+    return SizedBox(
+      width: context.width,
+      height: context.height,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          LogoWidget(),
+          AppbarWidget(title: "Companies"),
+          Expanded(
+            child: ListView.builder(
+              padding: EdgeInsets.all(16),
+              itemCount: _companies.length,
+              itemBuilder: (context, index) {
+                final company = _companies[index];
+                return _buildCompanyCard(company);
+              },
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

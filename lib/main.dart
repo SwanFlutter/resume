@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get_x_master/get_x_master.dart';
 import 'package:resume/bindings/bindings.dart';
-import 'package:resume/screen/resume/new/new.dart';
+import 'package:resume/screen/main_navigation.dart';
 
 void main() {
   runApp(const MyApp());
@@ -37,7 +37,7 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
-      home: const HardSkillsScreen(),
+      home: const MainNavigation(),
     );
   }
 }

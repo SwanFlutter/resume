@@ -11,38 +11,46 @@ class Courses extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SizedBox(
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              LogoWidget(),
-              AppbarWidget(title: "Courses", icon: Icons.menu_book),
-              SizedBox(
-                height: context.height, // Adjust height as needed
-                child: ListView.builder(
-                  itemCount: 10, // Replace with actual item count
-                  itemBuilder: (context, index) {
-                    return CardCoursesWidget(
-                      title: "Flutter Development",
-                      subtitle: "Online Course",
-                      isOnline: true,
-                      stateSchool: "Online Course",
-                      timeSchool: "Feb 2024",
-                      school: "Nahira.ir",
-                    );
-                  },
+    return SizedBox(
+      width: context.width,
+      height: context.height,
+      child: Column(
+        children: [
+          LogoWidget(),
+          AppbarWidget(title: "Courses", icon: Icons.menu_book),
+          Expanded(
+            child: ListView.builder(
+              itemCount: 10, // Replace with actual item count
+              itemBuilder: (context, index) {
+                return CardCoursesWidget(
+                  title: "Flutter Development",
+                  subtitle: "Online Course",
+                  isOnline: true,
+                  stateSchool: "Online Course",
+                  timeSchool: "Feb 2024",
+                  school: "Nahira.ir",
+                );
+              },
+            ),
+          ),
+          // Add floating action button as a regular widget
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Align(
+              alignment: Alignment.bottomRight,
+              child: FloatingActionButton(
+                backgroundColor: addFabColor,
+                shape: StadiumBorder(),
+                onPressed: () => Get.to(() => CreateCourses()),
+                child: Image.asset(
+                  "assets/isIconOnly.png",
+                  width: 24,
+                  height: 24,
                 ),
               ),
-            ],
+            ),
           ),
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: addFabColor,
-        shape: StadiumBorder(),
-        onPressed: () => Get.to(() => CreateCourses()),
-        child: Image.asset("assets/isIconOnly.png", width: 24, height: 24),
+        ],
       ),
     );
   }

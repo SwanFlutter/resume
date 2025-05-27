@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get_x_master/get_x_master.dart';
+import 'package:resume/controller/navigation_controller.dart';
 
 class AppbarWidget extends StatelessWidget {
   final String title;
@@ -22,11 +23,20 @@ class AppbarWidget extends StatelessWidget {
         children: [
           backBottom
               ? IconButton(
-                onPressed: () {
-                  Get.back();
-                },
-                icon: Icon(Icons.arrow_back_ios, size: 24),
-              )
+                  onPressed: () {
+                    final navigationController = NavigationController.to;
+                    // اگر در صفحات فرعی Resume هستیم، برگرد به Resume Page
+                    if (navigationController.currentIndex >= 6 &&
+                        navigationController.currentIndex <= 11) {
+                      navigationController
+                          .navigateToResume(); // برگشت به Resume Page
+                    } else {
+                      // در غیر این صورت از Get.back استفاده کن
+                      Get.back();
+                    }
+                  },
+                  icon: Icon(Icons.arrow_back_ios, size: 24),
+                )
               : SizedBox.shrink(),
           SizedBox(width: 5.0),
           Icon(icon, size: 22).paddingOnly(top: 5.0),

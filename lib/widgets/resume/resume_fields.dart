@@ -13,7 +13,7 @@ class RegularTextFieldWidget extends StatelessWidget {
     required this.controllerInstance,
     this.hint = '',
     this.width = 134,
-    this.height = 36,
+    this.height = 32,
   });
 
   @override
@@ -34,15 +34,19 @@ class RegularTextFieldWidget extends StatelessWidget {
         ),
 
         Container(
-          alignment: Alignment
-              .center, // Ensures the TextField is centered within the Container
+          alignment: Alignment.center,
           width: width,
           height: height,
           decoration: BoxDecoration(
             gradient: LinearGradient(
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
-              colors: [Colors.white, Color.fromRGBO(254, 222, 230, 1)],
+              colors: [
+                Color.fromRGBO(251, 241, 239, 1),
+                Color.fromRGBO(252, 248, 248, 1),
+                Color.fromRGBO(249, 240, 240, 1),
+                Color.fromRGBO(252, 244, 243, 1),
+              ],
             ),
             borderRadius: BorderRadius.circular(4.0),
           ),

@@ -33,9 +33,14 @@ class GenderFeildWidget extends StatelessWidget {
             gradient: LinearGradient(
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
-              colors: [Colors.white, Color.fromRGBO(254, 222, 230, 1)],
+              colors: [
+                Color.fromRGBO(251, 241, 239, 1),
+                Color.fromRGBO(252, 248, 248, 1),
+                Color.fromRGBO(249, 240, 240, 1),
+                Color.fromRGBO(252, 244, 243, 1),
+              ],
             ),
-            borderRadius: BorderRadius.circular(4.0),
+            borderRadius: BorderRadius.circular(2.0),
           ),
           child: DropdownButton<String>(
             value: controller.gender.value.isEmpty
