@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:get_x_master/get_x_master.dart';
 import 'package:resume/config/constant.dart';
 import 'package:resume/screen/resume/courses/create_courses.dart';
-import 'package:resume/widgets/courses/card_courses_widget.dart';
 import 'package:resume/widgets/global/appbar_widget.dart';
 import 'package:resume/widgets/global/logo_widget.dart';
+import 'package:resume/widgets/resume/courses/card_courses_widget.dart';
 
 class Courses extends StatelessWidget {
   const Courses({super.key});
