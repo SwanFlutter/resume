@@ -37,8 +37,9 @@ dependencies:
   get_x_storage: ^0.0.5
   avatar_better_pro: ^0.0.8
   intl: ^0.20.2
-  get_x_master:
-    path: G:\Android\Pakege\get_x_master
+  percent_indicator: ^4.2.3 # For circular progress indicators
+  flutter_svg: ^2.0.7
+  get_x_master: ^0.0.7
   
 
 dev_dependencies:
