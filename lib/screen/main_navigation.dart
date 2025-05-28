@@ -56,7 +56,7 @@ class _MyBottomMenuState extends State<MyBottomMenu> {
   @override
   Widget build(BuildContext context) {
     return AnimatedContainer(
-      duration: Duration(milliseconds: 600),
+      duration: 1.seconds,
       curve: Curves.easeInOut,
       height: _isExpanded ? 161.0 : 63.0,
       decoration: BoxDecoration(
@@ -76,7 +76,7 @@ class _MyBottomMenuState extends State<MyBottomMenu> {
       child: ClipRRect(
         borderRadius: BorderRadius.circular(24.0),
         child: AnimatedSwitcher(
-          duration: Duration(milliseconds: 600),
+          duration: 1.seconds,
           transitionBuilder: (Widget child, Animation<double> animation) {
             return SlideTransition(
               position: Tween<Offset>(begin: Offset(0.0, 0.3), end: Offset.zero)
@@ -111,7 +111,7 @@ class _MyBottomMenuState extends State<MyBottomMenu> {
                 children: [
                   GestureDetector(
                     onTap: () {
-                      _navigationController.navigateToHome();
+                      _navigationController.navToHome();
                       setState(() {});
                     },
                     child: Row(
@@ -120,7 +120,7 @@ class _MyBottomMenuState extends State<MyBottomMenu> {
                           Icons.home,
                           color: _navigationController.currentIndex == 0
                               ? Colors.pink
-                              : titleFieldTextcolor,
+                              : navColorIcon,
                         ),
                         SizedBox(width: 5),
                         Text(
@@ -128,7 +128,7 @@ class _MyBottomMenuState extends State<MyBottomMenu> {
                           style: TextStyle(
                             color: _navigationController.currentIndex == 0
                                 ? Colors.pink
-                                : titleFieldTextcolor,
+                                : navColorIcon,
                           ),
                         ),
                       ],
@@ -136,15 +136,9 @@ class _MyBottomMenuState extends State<MyBottomMenu> {
                   ),
                   Row(
                     children: [
-                      Icon(
-                        Icons.exit_to_app_outlined,
-                        color: titleFieldTextcolor,
-                      ),
+                      Icon(Icons.exit_to_app_outlined, color: navColorIcon),
                       SizedBox(width: 5),
-                      Text(
-                        "Exit",
-                        style: TextStyle(color: titleFieldTextcolor),
-                      ),
+                      Text("Exit", style: TextStyle(color: navColorIcon)),
                     ],
                   ),
                 ],
@@ -160,7 +154,7 @@ class _MyBottomMenuState extends State<MyBottomMenu> {
                   SizedBox(width: 18),
                   GestureDetector(
                     onTap: () {
-                      _navigationController.navigateToCompany();
+                      _navigationController.navToCompany();
                       setState(() {});
                     },
                     child: Column(
@@ -170,7 +164,7 @@ class _MyBottomMenuState extends State<MyBottomMenu> {
                           Icons.business,
                           color: _navigationController.currentIndex == 4
                               ? Colors.pink
-                              : titleFieldTextcolor,
+                              : navColorIcon,
                         ),
                         Text(
                           "Company",
@@ -178,7 +172,7 @@ class _MyBottomMenuState extends State<MyBottomMenu> {
                             fontSize: 12,
                             color: _navigationController.currentIndex == 4
                                 ? Colors.pink
-                                : titleFieldTextcolor,
+                                : navColorIcon,
                           ),
                         ),
                       ],
@@ -198,7 +192,7 @@ class _MyBottomMenuState extends State<MyBottomMenu> {
                           Icons.settings,
                           color: _navigationController.currentIndex == 5
                               ? Colors.pink
-                              : titleFieldTextcolor,
+                              : navColorIcon,
                         ),
                         Text(
                           "Setting",
@@ -206,7 +200,7 @@ class _MyBottomMenuState extends State<MyBottomMenu> {
                             fontSize: 12,
                             color: _navigationController.currentIndex == 5
                                 ? Colors.pink
-                                : titleFieldTextcolor,
+                                : navColorIcon,
                           ),
                         ),
                       ],

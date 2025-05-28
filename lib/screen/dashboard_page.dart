@@ -17,7 +17,7 @@ class DashboardPage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             LogoWidget(),
-            AppbarWidget(title: "Dashboard"),
+            AppBarWidget(title: "Dashboard"),
             Expanded(
               child: Center(
                 child: Column(

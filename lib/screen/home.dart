@@ -16,7 +16,7 @@ class Home extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           LogoWidget(),
-          AppbarWidget(title: "Home"),
+          AppBarWidget(title: "Home"),
           Expanded(
             child: Center(
               child: Column(
@@ -37,7 +37,7 @@ class Home extends StatelessWidget {
                   ElevatedButton(
                     onPressed: () {
                       final navigationController = NavigationController.to;
-                      navigationController.navigateToTestProgress();
+                      navigationController.navToTestProgress();
                     },
                     child: Text("Test Progress Indicators"),
                   ),

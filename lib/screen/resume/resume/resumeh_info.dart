@@ -3,6 +3,7 @@ import 'package:avatar_better_pro/avatar_better_pro.dart';
 import 'package:flutter/material.dart';
 import 'package:get_x_master/get_x_master.dart';
 import 'package:resume/controller/navigation_controller.dart';
+import 'package:resume/screen/resume_page.dart';
 import 'package:resume/widgets/global/appbar_widget.dart';
 import 'package:resume/widgets/global/logo_widget.dart';
 
@@ -26,7 +27,19 @@ class _ResumehInfoState extends State<ResumehInfo> {
             child: Column(
               children: [
                 LogoWidget(),
-                AppbarWidget(title: "Resume Info"),
+                AppBarWidget(
+                  title: "Resume Info",
+                  onPressed: () {
+                    if (navigationController.currentIndex >= 6 &&
+                        navigationController.currentIndex <= 12) {
+                      navigationController
+                          .navToResume(); // برگشت به Resume Page
+                    } else {
+                      // در غیر این صورت از Get.back استفاده کن
+                      Get.back();
+                    }
+                  },
+                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -39,7 +52,7 @@ class _ResumehInfoState extends State<ResumehInfo> {
                   ],
                 ),
                 SizedBox(height: 10.0),
-                MeiddelB0xInfo(
+                MeiddelBoxInfo(
                   title: "Personal Information",
                   cardInfoViews: [
                     CardInfoView(icon: Icons.person_search, text: 'Female'),
@@ -117,7 +130,7 @@ class _ResumehInfoState extends State<ResumehInfo> {
             child: FloatingActionButton(
               onPressed: () {
                 final navigationController = NavigationController.to;
-                navigationController.navigateToResumeEdite();
+                navigationController.navToResumeEdite();
               },
               backgroundColor: Color.fromRGBO(30, 51, 99, 1),
               shape: CircleBorder(),
@@ -130,12 +143,12 @@ class _ResumehInfoState extends State<ResumehInfo> {
   }
 }
 
-class MeiddelB0xInfo extends StatelessWidget {
+class MeiddelBoxInfo extends StatelessWidget {
   final String title;
   final List<CardInfoView> cardInfoViews;
   final String description;
 
-  const MeiddelB0xInfo({
+  const MeiddelBoxInfo({
     super.key,
     required this.title,
     required this.cardInfoViews,

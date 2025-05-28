@@ -15,7 +15,7 @@ class Achivement extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           LogoWidget(),
-          AppbarWidget(title: "Achievements"),
+          AppBarWidget(title: "Achievements"),
           Expanded(
             child: Center(
               child: Column(

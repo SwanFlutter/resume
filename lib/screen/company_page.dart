@@ -16,7 +16,7 @@ class CompanyPage extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           LogoWidget(),
-          AppbarWidget(title: "Companies"),
+          AppBarWidget(title: "Companies"),
           Expanded(
             child: ListView.builder(
               padding: EdgeInsets.all(16),

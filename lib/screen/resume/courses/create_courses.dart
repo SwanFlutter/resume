@@ -18,7 +18,7 @@ class CreateCourses extends StatelessWidget {
       body: Column(
         children: [
           LogoWidget(),
-          AppbarWidget(title: "Add New Courses", icon: Icons.menu_book),
+          AppBarWidget(title: "Add New Courses", icon: Icons.menu_book),
           Container(
             width: 288,
             height: 215,

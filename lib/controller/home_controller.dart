@@ -4,8 +4,8 @@ import 'package:resume/screen/resume/academic_history.dart';
 import 'package:resume/screen/resume/achivement.dart';
 import 'package:resume/screen/resume/courses.dart';
 import 'package:resume/screen/resume/job_experience.dart';
-import 'package:resume/screen/resume/resumeh_info.dart';
-import 'package:resume/screen/resume/skils.dart';
+import 'package:resume/screen/resume/resume/resumeh_info.dart';
+import 'package:resume/screen/resume/skils/skils.dart';
 
 class HomeController extends GetXController {
   static HomeController get to => Get.smartFind<HomeController>();
