@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get_x_master/get_x_master.dart';
+import 'package:resume/controller/navigation_controller.dart';
 import 'package:resume/widgets/global/appbar_widget.dart';
 import 'package:resume/widgets/global/logo_widget.dart';
 import 'package:resume/widgets/views/home/grid_card_widget.dart';
+
+final NavigationController navigationController = NavigationController.to;
 
 class ResumePage extends StatelessWidget {
   const ResumePage({super.key});
@@ -16,7 +19,7 @@ class ResumePage extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           LogoWidget(),
-          AppbarWidget(title: "Resume Page", backBottom: false),
+          AppBarWidget(title: "Resume Page", backBottom: false),
           GridCardWidget(),
         ],
       ),

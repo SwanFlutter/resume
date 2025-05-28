@@ -14,7 +14,7 @@ class JobExperience extends StatelessWidget {
       child: Column(
         children: [
           LogoWidget(isSearch: true),
-          AppbarWidget(title: "Job Experience", icon: Icons.badge_outlined),
+          AppBarWidget(title: "Job Experience", icon: Icons.badge_outlined),
           Expanded(
             child: ListView.builder(
               itemCount: 10, // Replace with actual item count

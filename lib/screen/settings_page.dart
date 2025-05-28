@@ -26,7 +26,7 @@ class _SettingsPageState extends State<SettingsPage> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           LogoWidget(),
-          AppbarWidget(title: "Settings"),
+          AppBarWidget(title: "Settings"),
           Expanded(
             child: ListView(
               padding: EdgeInsets.all(16),

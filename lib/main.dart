@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get_x_master/get_x_master.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:resume/bindings/bindings.dart';
-import 'package:resume/screen/main_navigation.dart';
+import 'package:resume/screen/resume/skils/add_new_hard_skils_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -19,6 +20,7 @@ class MyApp extends StatelessWidget {
       title: 'Rezomeh',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.pink),
+        textTheme: GoogleFonts.openSansTextTheme(),
         primaryColor: Colors.pink,
         scaffoldBackgroundColor: Colors.white,
         bottomNavigationBarTheme: BottomNavigationBarThemeData(
@@ -37,7 +39,7 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
-      home: MainNavigation(),
+      home: AddNewHardSkillsPage(),
     );
   }
 }

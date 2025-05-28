@@ -14,7 +14,7 @@ class JobsPage extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           LogoWidget(),
-          AppbarWidget(title: "Jobs"),
+          AppBarWidget(title: "Jobs"),
           Expanded(
             child: ListView.builder(
               padding: EdgeInsets.all(16),

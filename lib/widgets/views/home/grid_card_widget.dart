@@ -14,13 +14,12 @@ class GridCardWidget extends StatelessWidget {
 
     // Define navigation functions for each resume section
     final List<VoidCallback> navigationFunctions = [
-      () => navigationController.navigateToResumeInfo(), // Resume Info
-      () => navigationController.navigateToJobExperience(), // Job Experience
-      () =>
-          navigationController.navigateToAcademicHistory(), // Academic History
-      () => navigationController.navigateToSkills(), // Skills
-      () => navigationController.navigateToAchievement(), // Achievement
-      () => navigationController.navigateToCoursesPage(), // Courses
+      () => navigationController.navToResumeInfo(), // Resume Info
+      () => navigationController.navToJobExperience(), // Job Experience
+      () => navigationController.navToAcademicHistory(), // Academic History
+      () => navigationController.navToSkills(), // Skills
+      () => navigationController.navToAchievement(), // Achievement
+      () => navigationController.navToCoursesPage(), // Courses
     ];
 
     return SizedBox(
@@ -33,7 +32,7 @@ class GridCardWidget extends StatelessWidget {
           childAspectRatio: 0.9,
           crossAxisSpacing: 8.0,
           mainAxisSpacing: 16,
-          mainAxisExtent: 76,
+          mainAxisExtent: context.height * 0.12,
         ),
         itemBuilder: (context, index) {
           return InkWell(

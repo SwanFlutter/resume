@@ -8,9 +8,9 @@ import 'package:resume/screen/resume/academic_history.dart';
 import 'package:resume/screen/resume/achivement.dart';
 import 'package:resume/screen/resume/courses.dart';
 import 'package:resume/screen/resume/job_experience.dart';
-import 'package:resume/screen/resume/resume_info/resume_edite.dart';
-import 'package:resume/screen/resume/resumeh_info.dart';
-import 'package:resume/screen/resume/skils.dart';
+import 'package:resume/screen/resume/resume/resume_edite.dart';
+import 'package:resume/screen/resume/resume/resumeh_info.dart';
+import 'package:resume/screen/resume/skils/skils.dart';
 import 'package:resume/screen/resume_page.dart';
 import 'package:resume/screen/settings_page.dart';
 
@@ -43,19 +43,19 @@ class NavigationController extends GetXController {
     _currentIndex.value = index;
   }
 
-  void navigateToDashboard() {
+  void navToDashboard() {
     changePage(1);
   }
 
-  void navigateToResume() {
+  void navToResume() {
     changePage(2);
   }
 
-  void navigateToJobs() {
+  void navToJobs() {
     changePage(3);
   }
 
-  void navigateToCompany() {
+  void navToCompany() {
     changePage(4);
   }
 
@@ -63,40 +63,40 @@ class NavigationController extends GetXController {
     changePage(5);
   }
 
-  void navigateToHome() {
+  void navToHome() {
     changePage(0);
   }
 
   // Resume sub-page navigation methods
-  void navigateToResumeInfo() {
+  void navToResumeInfo() {
     changePage(6);
   }
 
-  void navigateToJobExperience() {
+  void navToJobExperience() {
     changePage(7);
   }
 
-  void navigateToAcademicHistory() {
+  void navToAcademicHistory() {
     changePage(8);
   }
 
-  void navigateToSkills() {
+  void navToSkills() {
     changePage(9);
   }
 
-  void navigateToAchievement() {
+  void navToAchievement() {
     changePage(10);
   }
 
-  void navigateToCoursesPage() {
+  void navToCoursesPage() {
     changePage(11);
   }
 
-  void navigateToResumeEdite() {
+  void navToResumeEdite() {
     changePage(12);
   }
 
-  void navigateToTestProgress() {
+  void navToTestProgress() {
     changePage(13);
   }
 }

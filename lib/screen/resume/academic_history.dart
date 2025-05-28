@@ -15,7 +15,7 @@ class AcademicHistory extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           LogoWidget(),
-          AppbarWidget(title: "Academic History"),
+          AppBarWidget(title: "Academic History"),
           Expanded(
             child: Center(
               child: Column(

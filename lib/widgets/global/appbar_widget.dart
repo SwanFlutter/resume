@@ -1,50 +1,109 @@
+import 'package:anim_search_bar/anim_search_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get_x_master/get_x_master.dart';
-import 'package:resume/controller/navigation_controller.dart';
+import 'package:resume/config/constant.dart';
 
-class AppbarWidget extends StatelessWidget {
+class AppBarWidget extends StatelessWidget {
   final String title;
   final IconData? icon;
   final bool backBottom;
-  const AppbarWidget({
+  final void Function()? onPressed;
+  final String? imageIcon;
+  final bool isSearch;
+  final TextEditingController? textController;
+  const AppBarWidget({
     super.key,
     required this.title,
-    this.icon = Icons.badge_outlined,
+    this.icon,
+    this.onPressed,
     this.backBottom = true,
+    this.imageIcon,
+    this.isSearch = false,
+    this.textController,
   });
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: context.width,
-      height: 30.0,
+      height: 24,
+
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          backBottom
-              ? IconButton(
-                  onPressed: () {
-                    final navigationController = NavigationController.to;
-                    // اگر در صفحات فرعی Resume هستیم، برگرد به Resume Page
-                    if (navigationController.currentIndex >= 6 &&
-                        navigationController.currentIndex <= 11) {
-                      navigationController
-                          .navigateToResume(); // برگشت به Resume Page
-                    } else {
-                      // در غیر این صورت از Get.back استفاده کن
-                      Get.back();
-                    }
-                  },
-                  icon: Icon(Icons.arrow_back_ios, size: 24),
+          if (backBottom)
+            IconButton(
+              onPressed: onPressed,
+              icon: const Icon(
+                Icons.arrow_back_ios,
+                size: 16,
+                color: titleFieldTextcolor,
+              ),
+            ),
+
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              if (imageIcon != null)
+                Image.asset(
+                  imageIcon!,
+                  width: 16.0,
+                  height: 16.0,
+                  alignment: Alignment.bottomCenter,
                 )
-              : SizedBox.shrink(),
-          SizedBox(width: 5.0),
-          Icon(icon, size: 22).paddingOnly(top: 5.0),
-          SizedBox(width: 5.0),
+              else
+                Icon(icon, size: 16, color: titleFieldTextcolor),
+            ],
+          ),
           Text(
             title,
-            style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.w500),
+            style: const TextStyle(
+              fontSize: 14.0,
+              fontWeight: FontWeight.w400,
+              color: titleFieldTextcolor,
+            ),
           ).paddingOnly(top: 8.0),
+          const Spacer(),
+          Stack(
+            children: [
+              if (isSearch)
+                isSearch
+                    ? textController != null
+                          ? Positioned(
+                              right: 16,
+                              top: 82,
+                              child: SizedBox(
+                                height: 24,
+                                child: AnimSearchBar(
+                                  width: context.width,
+                                  textController: textController!,
+                                  onSuffixTap: () {
+                                    // عملکرد مورد نظر برای ضربه زدن روی پسوند
+                                  },
+                                  onSubmitted: (String value) {
+                                    // عملکرد مورد نظر برای ارسال متن
+                                  },
+                                  color: Colors.black,
+                                ).paddingOnly(right: 0),
+                              ),
+                            )
+                          : SizedBox(
+                              height: 24,
+                              child: AnimSearchBar(
+                                width: context.width * 0.80,
+                                textController: TextEditingController(),
+                                onSuffixTap: () {
+                                  // عملکرد مورد نظر برای ضربه زدن روی پسوند
+                                },
+                                onSubmitted: (String value) {
+                                  // عملکرد مورد نظر برای ارسال متن
+                                },
+                                color: Colors.white,
+                              ).paddingOnly(right: 0),
+                            )
+                    : Text(""),
+            ],
+          ),
         ],
       ),
     ).marginOnly(top: 20, left: 16.0, right: 16.0, bottom: 20.0);

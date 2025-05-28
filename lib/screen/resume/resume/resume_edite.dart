@@ -2,6 +2,7 @@ import 'package:avatar_better_pro/avatar_better_pro.dart';
 import 'package:flutter/material.dart';
 import 'package:get_x_master/get_x_master.dart';
 import 'package:resume/config/constant.dart';
+import 'package:resume/controller/navigation_controller.dart';
 import 'package:resume/controller/resume_controller.dart';
 import 'package:resume/widgets/global/appbar_widget.dart';
 import 'package:resume/widgets/global/logo_widget.dart';
@@ -26,7 +27,21 @@ class ResumeEdite extends StatelessWidget {
             child: Column(
               children: [
                 LogoWidget(),
-                AppbarWidget(title: "Resume Edite"),
+                AppBarWidget(
+                  title: "Resume Edite",
+                  onPressed: () {
+                    final navigationController = NavigationController.to;
+                    // اگر در صفحات فرعی Resume هستیم، برگرد به Resume Page
+                    if (navigationController.currentIndex >= 6 &&
+                        navigationController.currentIndex <= 12) {
+                      navigationController
+                          .navToResumeInfo(); // برگشت به Resume Page
+                    } else {
+                      // در غیر این صورت از Get.back استفاده کن
+                      Get.back();
+                    }
+                  },
+                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [

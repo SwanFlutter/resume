@@ -17,7 +17,7 @@ class Courses extends StatelessWidget {
       child: Column(
         children: [
           LogoWidget(),
-          AppbarWidget(title: "Courses", icon: Icons.menu_book),
+          AppBarWidget(title: "Courses", icon: Icons.menu_book),
           Expanded(
             child: ListView.builder(
               itemCount: 10, // Replace with actual item count
