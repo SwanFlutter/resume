@@ -95,4 +95,8 @@ class NavigationController extends GetXController {
   void navigateToResumeEdite() {
     changePage(12);
   }
+
+  void navigateToTestProgress() {
+    changePage(13);
+  }
 }

@@ -134,7 +134,7 @@ class ResumeEdite extends StatelessWidget {
           ),
           // FloatingActionButton شناور در گوشه
           Positioned(
-            bottom: 100, // فاصله از پایین (بالای bottom navigation)
+            bottom: 15, // فاصله از پایین (بالای bottom navigation)
             right: 16, // فاصله از راست
             child: FloatingActionButton(
               onPressed: () {},

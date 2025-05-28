@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get_x_master/get_x_master.dart';
+import 'package:resume/controller/navigation_controller.dart';
 import 'package:resume/widgets/global/appbar_widget.dart';
 import 'package:resume/widgets/global/logo_widget.dart';
 
@@ -31,6 +32,14 @@ class Home extends StatelessWidget {
                   Text(
                     "Welcome to your home",
                     style: TextStyle(fontSize: 16, color: Colors.grey),
+                  ),
+                  SizedBox(height: 30),
+                  ElevatedButton(
+                    onPressed: () {
+                      final navigationController = NavigationController.to;
+                      navigationController.navigateToTestProgress();
+                    },
+                    child: Text("Test Progress Indicators"),
                   ),
                 ],
               ),
