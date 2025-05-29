@@ -78,7 +78,7 @@ class CreateCourses extends StatelessWidget {
                       Text(
                         "I am currently In This Course",
                         style: TextStyle(
-                          color: titleFieldTextcolor,
+                          color: AppThemeColors.titleFieldTextcolor,
                           fontWeight: FontWeight.w400,
                           fontSize: 10.0,
                         ),
@@ -120,7 +120,7 @@ class CreateCourses extends StatelessWidget {
                     Text(
                       "Upload portfolio *",
                       style: TextStyle(
-                        color: titleFieldTextcolor,
+                        color: AppThemeColors.titleFieldTextcolor,
                         fontWeight: FontWeight.w800,
                         fontSize: 10.0,
                       ),
@@ -141,7 +141,7 @@ class CreateCourses extends StatelessWidget {
                     Text(
                       "By Degree",
                       style: TextStyle(
-                        color: titleFieldTextcolor,
+                        color: AppThemeColors.titleFieldTextcolor,
                         fontWeight: FontWeight.w400,
                         fontSize: 10.0,
                       ),
@@ -162,7 +162,7 @@ class CreateCourses extends StatelessWidget {
                     Text(
                       "By Degree",
                       style: TextStyle(
-                        color: titleFieldTextcolor,
+                        color: AppThemeColors.titleFieldTextcolor,
                         fontWeight: FontWeight.w400,
                         fontSize: 10.0,
                       ),
@@ -188,7 +188,7 @@ class CreateCourses extends StatelessWidget {
         onPressed: () {},
         tooltip: "Add New Course",
         shape: StadiumBorder(),
-        backgroundColor: editeFabColor,
+        backgroundColor: AppThemeColors.editeFabColor,
         child: Image.asset("assets/Vector.png", width: 24, height: 24),
       ),
     );

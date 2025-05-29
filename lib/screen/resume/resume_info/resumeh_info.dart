@@ -2,6 +2,7 @@
 import 'package:avatar_better_pro/avatar_better_pro.dart';
 import 'package:flutter/material.dart';
 import 'package:get_x_master/get_x_master.dart';
+import 'package:resume/config/constant.dart';
 import 'package:resume/controller/navigation_controller.dart';
 import 'package:resume/screen/resume_page.dart';
 import 'package:resume/widgets/global/appbar_widget.dart';
@@ -132,7 +133,7 @@ class _ResumehInfoState extends State<ResumehInfo> {
                 final navigationController = NavigationController.to;
                 navigationController.navToResumeEdite();
               },
-              backgroundColor: Color.fromRGBO(30, 51, 99, 1),
+              backgroundColor: AppThemeColors.addFabColor,
               shape: CircleBorder(),
               child: Image.asset("assets/edite.png"),
             ),

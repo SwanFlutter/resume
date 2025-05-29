@@ -1,9 +1,11 @@
-// ignore_for_file: library_private_types_in_public_api
+// ignore_for_file: library_private_types_in_public_api, deprecated_member_use
 
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get_x_master/get_x_master.dart';
 import 'package:resume/config/constant.dart';
 import 'package:resume/controller/navigation_controller.dart';
+import 'package:resume/screen/resume_page.dart';
 
 class MainNavigation extends StatelessWidget {
   const MainNavigation({super.key});
@@ -116,29 +118,43 @@ class _MyBottomMenuState extends State<MyBottomMenu> {
                     },
                     child: Row(
                       children: [
-                        Icon(
-                          Icons.home,
+                        SvgPicture.asset(
+                          navigationController.nav[0],
+                          width: 16.0,
+                          height: 16.0,
                           color: _navigationController.currentIndex == 0
                               ? Colors.pink
-                              : navColorIcon,
+                              : Color(0xFF04070E),
                         ),
                         SizedBox(width: 5),
                         Text(
                           "Home",
-                          style: TextStyle(
-                            color: _navigationController.currentIndex == 0
-                                ? Colors.pink
-                                : navColorIcon,
-                          ),
+                          style: TextStyleHelper.label10RegularOpenSans
+                              .copyWith(
+                                color: _navigationController.currentIndex == 0
+                                    ? Colors.pink
+                                    : AppThemeColors.colorFF0407,
+                                height: 1.60,
+                              ),
                         ),
                       ],
                     ),
                   ),
                   Row(
                     children: [
-                      Icon(Icons.exit_to_app_outlined, color: navColorIcon),
+                      SvgPicture.asset(
+                        navigationController.nav[1],
+                        width: 16.0,
+                        height: 16.0,
+                        color: _navigationController.currentIndex == 0
+                            ? Colors.pink
+                            : AppThemeColors.navColorIcon,
+                      ),
                       SizedBox(width: 5),
-                      Text("Exit", style: TextStyle(color: navColorIcon)),
+                      Text(
+                        "Exit",
+                        style: TextStyle(color: AppThemeColors.navColorIcon),
+                      ),
                     ],
                   ),
                 ],
@@ -160,11 +176,13 @@ class _MyBottomMenuState extends State<MyBottomMenu> {
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        Icon(
-                          Icons.business,
+                        SvgPicture.asset(
+                          navigationController.nav[2],
+                          width: 24.0,
+                          height: 24.0,
                           color: _navigationController.currentIndex == 4
                               ? Colors.pink
-                              : navColorIcon,
+                              : AppThemeColors.navColorIcon,
                         ),
                         Text(
                           "Company",
@@ -172,7 +190,7 @@ class _MyBottomMenuState extends State<MyBottomMenu> {
                             fontSize: 12,
                             color: _navigationController.currentIndex == 4
                                 ? Colors.pink
-                                : navColorIcon,
+                                : AppThemeColors.navColorIcon,
                           ),
                         ),
                       ],
@@ -182,17 +200,18 @@ class _MyBottomMenuState extends State<MyBottomMenu> {
                   GestureDetector(
                     onTap: () {
                       _navigationController.navigateToSettings();
-                      // setState(() {});
-                      _navigationController.update();
+                      setState(() {});
                     },
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        Icon(
-                          Icons.settings,
+                        SvgPicture.asset(
+                          navigationController.nav[3],
+                          width: 24.0,
+                          height: 24.0,
                           color: _navigationController.currentIndex == 5
                               ? Colors.pink
-                              : navColorIcon,
+                              : AppThemeColors.navColorIcon,
                         ),
                         Text(
                           "Setting",
@@ -200,7 +219,7 @@ class _MyBottomMenuState extends State<MyBottomMenu> {
                             fontSize: 12,
                             color: _navigationController.currentIndex == 5
                                 ? Colors.pink
-                                : navColorIcon,
+                                : AppThemeColors.navColorIcon,
                           ),
                         ),
                       ],
@@ -219,15 +238,18 @@ class _MyBottomMenuState extends State<MyBottomMenu> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  _buildNavItem(Icons.dashboard, "Dashboard", 0),
-                  _buildNavItem(Icons.description, "Resume", 1),
-                  _buildNavItem(Icons.work, "Jobs", 2),
+                  _buildNavItem(navigationController.nav[4], "Dashboard", 0),
+                  _buildNavItem(navigationController.nav[5], "Resume", 1),
+                  _buildNavItem(navigationController.nav[6], "Jobs", 2),
                   GestureDetector(
                     onTap: _toggleExpand,
-                    child: Icon(
-                      Icons.more_horiz,
-                      size: 36,
-                      color: _isExpanded ? Colors.pink : null,
+                    child: SvgPicture.asset(
+                      navigationController.nav[7],
+                      width: 24.0,
+                      height: 24.0,
+                      color: _isExpanded
+                          ? Colors.pink
+                          : AppThemeColors.navColorIcon,
                     ),
                   ).paddingOnly(right: 18.0),
                 ],
@@ -247,15 +269,16 @@ class _MyBottomMenuState extends State<MyBottomMenu> {
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          _buildNavItem(Icons.dashboard, "Dashboard", 0),
-          _buildNavItem(Icons.description, "Resume", 1),
-          _buildNavItem(Icons.work, "Jobs", 2),
+          _buildNavItem(navigationController.nav[4], "Dashboard", 0),
+          _buildNavItem(navigationController.nav[5], "Resume", 1),
+          _buildNavItem(navigationController.nav[6], "Jobs", 2),
           GestureDetector(
             onTap: _toggleExpand,
-            child: Icon(
-              Icons.more_horiz_outlined,
-              size: 45,
-              color: _isExpanded ? Colors.pink : titleFieldTextcolor,
+            child: SvgPicture.asset(
+              navigationController.nav[7],
+              width: 24.0,
+              height: 24.0,
+              color: _isExpanded ? Colors.pink : Color(0xFF04070E),
             ),
           ),
         ],
@@ -263,22 +286,24 @@ class _MyBottomMenuState extends State<MyBottomMenu> {
     );
   }
 
-  Widget _buildNavItem(IconData icon, String label, int index) {
+  Widget _buildNavItem(String icon, String label, int index) {
     final isSelected = _navigationController.currentIndex == index + 1;
     return GestureDetector(
       onTap: () => _onItemTapped(index),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Icon(
+          SvgPicture.asset(
             icon,
-            color: isSelected ? Colors.pink : titleFieldTextcolor,
-            size: 24,
+            width: 24.0,
+            height: 24.0,
+            color: isSelected ? Colors.pink : AppThemeColors.navColorIcon,
           ),
+
           Text(
             label,
             style: TextStyle(
-              color: isSelected ? Colors.pink : titleFieldTextcolor,
+              color: isSelected ? Colors.pink : AppThemeColors.navColorIcon,
               fontSize: 12,
             ),
           ),

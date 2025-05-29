@@ -39,7 +39,7 @@ class Courses extends StatelessWidget {
             child: Align(
               alignment: Alignment.bottomRight,
               child: FloatingActionButton(
-                backgroundColor: addFabColor,
+                backgroundColor: AppThemeColors.addFabColor,
                 shape: StadiumBorder(),
                 onPressed: () => Get.to(() => CreateCourses()),
                 child: Image.asset(

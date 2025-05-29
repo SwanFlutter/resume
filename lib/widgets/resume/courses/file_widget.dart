@@ -27,7 +27,7 @@ class FileWidget extends StatelessWidget {
         Text(
           titel,
           style: TextStyle(
-            color: titleFieldTextcolor,
+            color: AppThemeColors.titleFieldTextcolor,
             fontWeight: FontWeight.w400,
             fontSize: 10.0,
           ),

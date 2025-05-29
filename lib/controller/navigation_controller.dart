@@ -8,8 +8,8 @@ import 'package:resume/screen/resume/academic_history.dart';
 import 'package:resume/screen/resume/achivement.dart';
 import 'package:resume/screen/resume/courses.dart';
 import 'package:resume/screen/resume/job_experience.dart';
-import 'package:resume/screen/resume/resume/resume_edite.dart';
-import 'package:resume/screen/resume/resume/resumeh_info.dart';
+import 'package:resume/screen/resume/resume_info/resume_edite.dart';
+import 'package:resume/screen/resume/resume_info/resumeh_info.dart';
 import 'package:resume/screen/resume/skils/skils.dart';
 import 'package:resume/screen/resume_page.dart';
 import 'package:resume/screen/settings_page.dart';
@@ -39,8 +39,20 @@ class NavigationController extends GetXController {
 
   Widget get currentPage => _pages[_currentIndex.value];
 
+  final List<String> nav = [
+    "assets/bottomNavbar/home.svg",
+    "assets/bottomNavbar/logout.svg",
+    "assets/bottomNavbar/buildings.svg",
+    "assets/bottomNavbar/setting-2.svg",
+    "assets/bottomNavbar/element-equal.svg",
+    "assets/bottomNavbar/personalcard.svg",
+    "assets/bottomNavbar/briefcase.svg",
+    "assets/bottomNavbar/more.svg",
+  ];
+
   void changePage(int index) {
     _currentIndex.value = index;
+    update();
   }
 
   void navToDashboard() {

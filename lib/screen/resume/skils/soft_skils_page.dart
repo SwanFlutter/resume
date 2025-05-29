@@ -91,7 +91,7 @@ class SoftSkillsPage extends StatelessWidget {
                                 const Icon(
                                   Icons.assessment_outlined,
                                   size: 14,
-                                  color: titleFieldTextcolor,
+                                  color: AppThemeColors.titleFieldTextcolor,
                                 ),
                                 const SizedBox(width: 8),
                                 Text(
@@ -99,7 +99,7 @@ class SoftSkillsPage extends StatelessWidget {
                                   style: GoogleFonts.openSans(
                                     fontSize: 12,
                                     fontWeight: FontWeight.w400,
-                                    color: titleFieldTextcolor,
+                                    color: AppThemeColors.titleFieldTextcolor,
                                   ),
                                 ),
                               ],
@@ -182,7 +182,7 @@ class SoftSkillsPage extends StatelessWidget {
                       const Icon(
                         Icons.assessment_outlined,
                         size: 14,
-                        color: titleFieldTextcolor,
+                        color: AppThemeColors.titleFieldTextcolor,
                       ),
                       const SizedBox(width: 8),
                       Text(
@@ -190,7 +190,7 @@ class SoftSkillsPage extends StatelessWidget {
                         style: GoogleFonts.openSans(
                           fontSize: 12,
                           fontWeight: FontWeight.w400,
-                          color: titleFieldTextcolor,
+                          color: AppThemeColors.titleFieldTextcolor,
                         ),
                       ),
                     ],
@@ -251,7 +251,7 @@ class SoftSkillsPage extends StatelessWidget {
           style: GoogleFonts.openSans(
             fontSize: 10,
             fontWeight: FontWeight.w400,
-            color: titleFieldTextcolor,
+            color: AppThemeColors.titleFieldTextcolor,
           ),
         ),
       ],

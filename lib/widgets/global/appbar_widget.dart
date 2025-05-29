@@ -26,9 +26,10 @@ class AppBarWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       height: 24,
-
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment:
+            CrossAxisAlignment.center, // اضافه شده برای تراز عمودی
         children: [
           if (backBottom)
             IconButton(
@@ -36,34 +37,31 @@ class AppBarWidget extends StatelessWidget {
               icon: const Icon(
                 Icons.arrow_back_ios,
                 size: 16,
-                color: titleFieldTextcolor,
+                color: AppThemeColors.titleFieldTextcolor,
               ),
             ),
 
-          Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              if (imageIcon != null)
-                Image.asset(
-                  imageIcon!,
-                  width: 16.0,
-                  height: 16.0,
-                  alignment: Alignment.bottomCenter,
-                )
-              else
-                Icon(icon, size: 16, color: titleFieldTextcolor),
-            ],
-          ),
+          // آیکون مستقیماً در Row قرار گرفته (بدون Column)
+          if (imageIcon != null)
+            Image.asset(imageIcon!, width: 16.0, height: 16.0)
+          else
+            Icon(icon, size: 16, color: AppThemeColors.titleFieldTextcolor),
+
+          // فاصله کم بین آیکون و متن
+          const SizedBox(width: 4),
+
+          // متن بدون padding اضافی
           Text(
             title,
             style: const TextStyle(
               fontSize: 14.0,
               fontWeight: FontWeight.w400,
-              color: titleFieldTextcolor,
+              color: AppThemeColors.titleFieldTextcolor,
             ),
-          ).paddingOnly(top: 8.0),
+          ),
+
           const Spacer(),
+
           Stack(
             children: [
               if (isSearch)

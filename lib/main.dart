@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get_x_master/get_x_master.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:resume/bindings/bindings.dart';
-import 'package:resume/screen/resume/skils/add_new_hard_skils_page.dart';
+import 'package:resume/screen/main_navigation.dart';
 
 void main() {
   runApp(const MyApp());
@@ -39,7 +39,7 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
-      home: AddNewHardSkillsPage(),
+      home: MainNavigation(),
     );
   }
 }

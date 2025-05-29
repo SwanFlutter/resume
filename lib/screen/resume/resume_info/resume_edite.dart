@@ -153,7 +153,7 @@ class ResumeEdite extends StatelessWidget {
             right: 16, // فاصله از راست
             child: FloatingActionButton(
               onPressed: () {},
-              backgroundColor: editeFabColor,
+              backgroundColor: AppThemeColors.editeFabColor,
               shape: StadiumBorder(),
               child: Image.asset(
                 "assets/Vector.png",

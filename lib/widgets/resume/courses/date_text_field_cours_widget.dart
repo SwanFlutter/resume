@@ -23,7 +23,7 @@ class DateTextFielCoursdWidget extends StatelessWidget {
           label,
           style: TextStyle(
             fontSize: 10.0,
-            color: titleFieldTextcolor,
+            color: AppThemeColors.titleFieldTextcolor,
             fontWeight: FontWeight.w800,
           ),
         ),

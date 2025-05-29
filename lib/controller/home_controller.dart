@@ -4,19 +4,19 @@ import 'package:resume/screen/resume/academic_history.dart';
 import 'package:resume/screen/resume/achivement.dart';
 import 'package:resume/screen/resume/courses.dart';
 import 'package:resume/screen/resume/job_experience.dart';
-import 'package:resume/screen/resume/resume/resumeh_info.dart';
+import 'package:resume/screen/resume/resume_info/resumeh_info.dart';
 import 'package:resume/screen/resume/skils/skils.dart';
 
 class HomeController extends GetXController {
   static HomeController get to => Get.smartFind<HomeController>();
 
-  final List<IconData> icons = [
-    Icons.badge_outlined,
-    Icons.work_outline_sharp,
-    Icons.school_outlined,
-    Icons.lightbulb_outline,
-    Icons.emoji_events_outlined,
-    Icons.menu_book,
+  final List<String> icons = [
+    "assets/reuomeh/personalcard.svg",
+    "assets/reuomeh/favorite-chart.svg",
+    "assets/reuomeh/user-octagon.svg",
+    "assets/reuomeh/lamp-charge.svg",
+    "assets/reuomeh/cup-star-svgrepo-com 1.svg",
+    "assets/reuomeh/Academy.svg",
   ];
 
   final List<String> texts = [

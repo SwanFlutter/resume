@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:get_x_master/get_x_master.dart';
+import 'package:resume/config/constant.dart';
 
 class CardWidget extends StatelessWidget {
-  final IconData icon;
+  final String icon;
   final String text;
   final Alignment begin;
   final Alignment end;
@@ -18,7 +21,7 @@ class CardWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: 140,
-      height: 76,
+      height: context.height * 0.12,
       decoration: BoxDecoration(
         boxShadow: [
           BoxShadow(
@@ -38,7 +41,15 @@ class CardWidget extends StatelessWidget {
       ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: [Icon(icon), Text(text)],
+        children: [
+          SvgPicture.asset(icon),
+          SizedBox(height: 4),
+          Text(
+            text,
+            textAlign: TextAlign.center,
+            style: TextStyleHelper.body12RegularOpenSans,
+          ),
+        ],
       ),
     );
   }
