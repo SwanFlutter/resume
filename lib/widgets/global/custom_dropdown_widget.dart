@@ -3,13 +3,17 @@ import 'package:get_x_master/get_x_master.dart';
 import 'package:resume/config/constant.dart';
 import 'package:resume/controller/courses_controller.dart';
 
-class StateFeildWidget extends StatelessWidget {
+class CustomDropdownWidget extends StatelessWidget {
   final CoursesController controller;
   final String label;
-  const StateFeildWidget({
+  final double width;
+  final double height;
+  const CustomDropdownWidget({
     super.key,
     required this.controller,
     required this.label,
+    this.width = 134,
+    this.height = 32,
   });
 
   @override
@@ -27,13 +31,13 @@ class StateFeildWidget extends StatelessWidget {
         ),
         SizedBox(height: 4),
         Container(
-          width: 134,
-          height: 32,
+          width: width,
+          height: height,
           decoration: BoxDecoration(
             gradient: LinearGradient(
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
-              colors: [Colors.white, Color.fromRGBO(254, 222, 230, 1)],
+              colors: backgroudColorFeild,
             ),
             borderRadius: BorderRadius.circular(4.0),
           ),

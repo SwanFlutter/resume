@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get_x_master/get_x_master.dart';
+import 'package:resume/config/constant.dart';
 import 'package:resume/widgets/global/appbar_widget.dart';
 import 'package:resume/widgets/global/logo_widget.dart';
 
@@ -25,12 +26,16 @@ class Achivement extends StatelessWidget {
                   SizedBox(height: 20),
                   Text(
                     "Achievements",
-                    style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                    style: TextStyleHelper.title20W400RegularOpenSans.copyWith(
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                   SizedBox(height: 10),
                   Text(
                     "Your accomplishments and awards",
-                    style: TextStyle(fontSize: 16, color: Colors.grey),
+                    style: TextStyleHelper.body14W400RegularOpenSans.copyWith(
+                      color: Colors.grey,
+                    ),
                   ),
                 ],
               ),

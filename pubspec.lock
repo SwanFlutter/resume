@@ -121,6 +121,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.8"
+  date_cupertino_bottom_sheet_picker:
+    dependency: "direct main"
+    description:
+      name: date_cupertino_bottom_sheet_picker
+      sha256: f68042b13700abf6c8a222bac1ab6abd94c7c875561231a940ed728cda1769b1
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.1.0"
   encrypt:
     dependency: transitive
     description:
@@ -129,6 +137,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "5.0.3"
+  fade_animation_delayed:
+    dependency: transitive
+    description:
+      name: fade_animation_delayed
+      sha256: dd61f924aa045a1be1266897201fe39d9074b4f113588fd56b83db3433da3d40
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.0.3"
   fake_async:
     dependency: transitive
     description:
@@ -220,10 +236,10 @@ packages:
     dependency: "direct main"
     description:
       name: get_x_master
-      sha256: "5ecdbfe2071e439e73c646ac9cc63331edc8cdad16a1ed3f34c38e28b120950e"
+      sha256: "7e5556c79ef5b53f8d3bd719aefdbc8704a6121b62783427cd8aaff9d456c390"
       url: "https://pub.dev"
     source: hosted
-    version: "0.0.7"
+    version: "0.0.8"
   get_x_storage:
     dependency: "direct main"
     description:

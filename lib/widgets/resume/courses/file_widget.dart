@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get_x_master/get_x_master.dart';
 import 'package:resume/config/constant.dart';
 import 'package:resume/config/extentions/extension_on_flutter.dart';
 
@@ -34,13 +35,13 @@ class FileWidget extends StatelessWidget {
         ),
         SizedBox(height: 5.0),
         Container(
-          width: 260,
+          width: context.width,
           height: 32,
           decoration: BoxDecoration(
             gradient: LinearGradient(
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
-              colors: [Colors.white, Color.fromRGBO(254, 222, 230, 1)],
+              colors: backgroudColorFeild,
             ),
           ),
           child: Row(

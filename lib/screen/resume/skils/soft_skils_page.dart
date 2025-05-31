@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get_x_master/get_x_master.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:resume/config/constant.dart';
 import 'package:resume/widgets/custom/custom_progress_indicator.dart';
 import 'package:resume/widgets/global/appbar_widget.dart';
@@ -96,11 +95,12 @@ class SoftSkillsPage extends StatelessWidget {
                                 const SizedBox(width: 8),
                                 Text(
                                   skill['name'],
-                                  style: GoogleFonts.openSans(
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.w400,
-                                    color: AppThemeColors.titleFieldTextcolor,
-                                  ),
+                                  style: TextStyleHelper
+                                      .body12W400RegularOpenSans
+                                      .copyWith(
+                                        color:
+                                            AppThemeColors.titleFieldTextcolor,
+                                      ),
                                 ),
                               ],
                             ),
@@ -187,11 +187,10 @@ class SoftSkillsPage extends StatelessWidget {
                       const SizedBox(width: 8),
                       Text(
                         skill['name'],
-                        style: GoogleFonts.openSans(
-                          fontSize: 12,
-                          fontWeight: FontWeight.w400,
-                          color: AppThemeColors.titleFieldTextcolor,
-                        ),
+                        style: TextStyleHelper.body12W400RegularOpenSans
+                            .copyWith(
+                              color: AppThemeColors.titleFieldTextcolor,
+                            ),
                       ),
                     ],
                   ),
@@ -239,18 +238,14 @@ class SoftSkillsPage extends StatelessWidget {
       children: [
         Text(
           label,
-          style: GoogleFonts.openSans(
-            fontSize: 10,
+          style: TextStyleHelper.label10W400RegularOpenSans.copyWith(
             color: Color.fromRGBO(136, 136, 136, 1),
-            fontWeight: FontWeight.w400,
           ),
         ),
         const SizedBox(width: 4),
         Text(
           value,
-          style: GoogleFonts.openSans(
-            fontSize: 10,
-            fontWeight: FontWeight.w400,
+          style: TextStyleHelper.label10W400RegularOpenSans.copyWith(
             color: AppThemeColors.titleFieldTextcolor,
           ),
         ),

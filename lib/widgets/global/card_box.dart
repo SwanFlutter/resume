@@ -5,8 +5,21 @@ class CardBox extends StatelessWidget {
   final double? height;
   final double? width;
   final Widget? child;
-
-  const CardBox({super.key, this.height, this.width, this.child});
+  final List<BoxShadow>? boxShadow;
+  const CardBox({
+    super.key,
+    this.height,
+    this.width,
+    this.child,
+    this.boxShadow = const [
+      BoxShadow(
+        color: Color.fromRGBO(8, 14, 28, 0.3),
+        spreadRadius: 0,
+        blurRadius: 3,
+        offset: Offset(0, 1),
+      ),
+    ],
+  });
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -15,14 +28,7 @@ class CardBox extends StatelessWidget {
       decoration: BoxDecoration(
         color: Color.fromRGBO(255, 255, 255, 1),
         borderRadius: BorderRadius.circular(8.0),
-        boxShadow: [
-          BoxShadow(
-            color: Color.fromRGBO(8, 14, 28, 0.3),
-            spreadRadius: 0,
-            blurRadius: 3,
-            offset: const Offset(0, 1),
-          ),
-        ],
+        boxShadow: boxShadow,
       ),
       child: child,
     );

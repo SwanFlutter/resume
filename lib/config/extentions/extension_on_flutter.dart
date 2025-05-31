@@ -2,6 +2,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:get_x_master/get_x_master.dart';
 import 'package:intl/intl.dart';
 
 extension PaddingExtension on Widget {
@@ -81,7 +82,9 @@ extension BorderExtension on Widget {
   // Adds a border to the widget with customizable color and width.
   Widget withBorder({Color color = Colors.black, double width = 1.0}) {
     return Container(
-      decoration: BoxDecoration(border: Border.all(color: color, width: width)),
+      decoration: BoxDecoration(
+        border: Border.all(color: color, width: width),
+      ),
       child: this,
     );
   }
@@ -211,3 +214,69 @@ extension ResponsiveTextExtension on BuildContext {
 
 // Enum for device types
 enum DeviceType { mobile, tablet, desktop }
+
+class ResponsiveHelpers {
+  // ارتفاع و عرض استاندارد (معمولاً iPhone 11 Pro)
+  static final double _baseWidth = Get.width;
+  static final double _baseHeight = Get.height;
+
+  // روش اول: ساده و مستقیم (پیشنهادی)
+  static double h({required double pixels}) {
+    var re = (pixels / _baseHeight) * 100 * 7.96;
+    debugPrint("pixels:$pixels");
+    debugPrint("baseHeight:$_baseHeight");
+    debugPrint("re:$re");
+    return re;
+  }
+
+  static double w(double pixels) {
+    return (Get.width * pixels) / _baseWidth;
+  }
+
+  // روش دوم: با roundToDouble (اگه می‌خوای عدد صحیح باشه)
+  static double hRounded(double pixels) {
+    return ((Get.height * pixels) / _baseHeight).roundToDouble();
+  }
+
+  static double wRounded(double pixels) {
+    return ((Get.width * pixels) / _baseWidth).roundToDouble();
+  }
+
+  // روش سوم: با حداقل و حداکثر محدودیت
+  static double hSafe(double pixels, {double? minHeight, double? maxHeight}) {
+    double result = (Get.height * pixels) / _baseHeight;
+
+    if (minHeight != null && result < minHeight) {
+      return minHeight;
+    }
+    if (maxHeight != null && result > maxHeight) {
+      return maxHeight;
+    }
+
+    return result;
+  }
+
+  // روش چهارم: بر اساس تراکم پیکسل
+  static double hWithDensity(double pixels) {
+    double pixelRatio = Get.pixelRatio;
+    double baseRatio = (Get.height * pixels) / _baseHeight;
+
+    // تنظیم بر اساس تراکم پیکسل
+    return baseRatio / (pixelRatio > 2.0 ? 1.2 : 1.0);
+  }
+}
+
+// Extension برای استفاده راحت‌تر
+extension ResponsiveInt on int {
+  double get h => ResponsiveHelpers.h(pixels: toDouble());
+  double get w => ResponsiveHelpers.w(toDouble());
+  double get hr => ResponsiveHelpers.hRounded(toDouble());
+  double get wr => ResponsiveHelpers.wRounded(toDouble());
+}
+
+extension ResponsiveDouble on double {
+  double get h => ResponsiveHelpers.h(pixels: this);
+  double get w => ResponsiveHelpers.w(this);
+  double get hr => ResponsiveHelpers.hRounded(this);
+  double get wr => ResponsiveHelpers.wRounded(this);
+}

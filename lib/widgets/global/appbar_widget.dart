@@ -1,5 +1,6 @@
 import 'package:anim_search_bar/anim_search_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get_x_master/get_x_master.dart';
 import 'package:resume/config/constant.dart';
 
@@ -28,13 +29,12 @@ class AppBarWidget extends StatelessWidget {
       height: 24,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment:
-            CrossAxisAlignment.center, // اضافه شده برای تراز عمودی
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           if (backBottom)
-            IconButton(
-              onPressed: onPressed,
-              icon: const Icon(
+            InkWell(
+              onTap: onPressed,
+              child: const Icon(
                 Icons.arrow_back_ios,
                 size: 16,
                 color: AppThemeColors.titleFieldTextcolor,
@@ -43,22 +43,16 @@ class AppBarWidget extends StatelessWidget {
 
           // آیکون مستقیماً در Row قرار گرفته (بدون Column)
           if (imageIcon != null)
-            Image.asset(imageIcon!, width: 16.0, height: 16.0)
+            imageIcon!.endsWith('.svg')
+                ? SvgPicture.asset(imageIcon!, width: 16.0, height: 16.0)
+                : Image.asset(imageIcon!, width: 16.0, height: 16.0)
           else
             Icon(icon, size: 16, color: AppThemeColors.titleFieldTextcolor),
 
           // فاصله کم بین آیکون و متن
-          const SizedBox(width: 4),
-
+          SizedBox(width: 4),
           // متن بدون padding اضافی
-          Text(
-            title,
-            style: const TextStyle(
-              fontSize: 14.0,
-              fontWeight: FontWeight.w400,
-              color: AppThemeColors.titleFieldTextcolor,
-            ),
-          ),
+          Text(title, style: TextStyleHelper.title14W400RegularOpenSans),
 
           const Spacer(),
 

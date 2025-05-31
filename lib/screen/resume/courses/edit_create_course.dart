@@ -3,12 +3,12 @@ import 'package:get_x_master/get_x_master.dart';
 import 'package:resume/config/constant.dart';
 import 'package:resume/controller/courses_controller.dart';
 import 'package:resume/widgets/global/appbar_widget.dart';
+import 'package:resume/widgets/global/custom_dropdown_widget.dart';
+import 'package:resume/widgets/global/custom_fields_widget.dart';
 import 'package:resume/widgets/global/logo_widget.dart';
 import 'package:resume/widgets/resume/courses/date_text_field_cours_widget.dart';
 import 'package:resume/widgets/resume/courses/file_widget.dart';
-import 'package:resume/widgets/resume/courses/state_dropdown_widget.dart';
 import 'package:resume/widgets/resume/courses/type_dropdown_widget.dart';
-import 'package:resume/widgets/resume/resume_fields.dart';
 
 class CreateCourses extends StatelessWidget {
   const CreateCourses({super.key});
@@ -41,13 +41,16 @@ class CreateCourses extends StatelessWidget {
                 runSpacing: 5,
                 spacing: 3,
                 children: [
-                  RegularTextFieldWidget(
+                  CustomFieldsWidget(
                     label: "Type *",
                     controllerInstance: TextEditingController(),
                     hint: "Designer",
                   ),
-                  StateFeildWidget(controller: controller, label: "State *"),
-                  RegularTextFieldWidget(
+                  CustomDropdownWidget(
+                    controller: controller,
+                    label: "State *",
+                  ),
+                  CustomFieldsWidget(
                     width: context.width,
                     label: "School *",
                     controllerInstance: TextEditingController(),
@@ -174,7 +177,7 @@ class CreateCourses extends StatelessWidget {
                   titel: "",
                 ),
                 SizedBox(height: 8.0),
-                RegularTextFieldWidget(
+                CustomFieldsWidget(
                   controllerInstance: TextEditingController(),
                   label: 'Description *',
                   width: context.width,

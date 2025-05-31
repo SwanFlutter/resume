@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:resume/config/constant.dart';
 import 'package:resume/config/extentions/extension_on_flutter.dart';
 
 class CardCoursesWidget extends StatelessWidget {
@@ -23,20 +24,20 @@ class CardCoursesWidget extends StatelessWidget {
       child: Column(
         children: [
           Row(
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              Offstage(
-                offstage: !isOnline,
-                child: Container(
-                  width: 8.0,
-                  height: 8.0,
-                  margin: const EdgeInsets.only(left: 0.0, right: 10.0),
-                  decoration: BoxDecoration(
-                    color: Color.fromRGBO(19, 98, 52, 1),
-                    shape: BoxShape.circle,
-                  ),
-                ),
-              ),
-              SizedBox(width: 0.0),
+              isOnline
+                  ? Container(
+                      width: 8.0,
+                      height: 8.0,
+
+                      decoration: BoxDecoration(
+                        color: Color.fromRGBO(19, 98, 52, 1),
+                        shape: BoxShape.circle,
+                      ),
+                    )
+                  : SizedBox.shrink(),
+
               Icon(Icons.school, size: 16.0),
               SizedBox(width: 3.0),
               Text(
@@ -50,11 +51,7 @@ class CardCoursesWidget extends StatelessWidget {
               Spacer(),
               Text(
                 subtitle,
-                style: TextStyle(
-                  fontSize: 10.0,
-                  fontWeight: FontWeight.w600,
-                  color: Color.fromRGBO(4, 7, 14, 1),
-                ),
+                style: TextStyleHelper.label10W600SemiBoldOpenSans,
               ),
             ],
           ),
@@ -93,7 +90,7 @@ class CardCoursesWidget extends StatelessWidget {
               ),
               Spacer(),
               Text(
-                school,
+                school.toUpperCase(),
                 style: TextStyle(
                   fontSize: 10.0,
                   fontWeight: FontWeight.w600,

@@ -6,7 +6,8 @@ import 'package:resume/screen/home.dart';
 import 'package:resume/screen/jobs_page.dart';
 import 'package:resume/screen/resume/academic_history.dart';
 import 'package:resume/screen/resume/achivement.dart';
-import 'package:resume/screen/resume/courses.dart';
+import 'package:resume/screen/resume/courses/courses.dart';
+import 'package:resume/screen/resume/courses/create_courses.dart';
 import 'package:resume/screen/resume/job_experience.dart';
 import 'package:resume/screen/resume/resume_info/resume_edite.dart';
 import 'package:resume/screen/resume/resume_info/resumeh_info.dart';
@@ -35,6 +36,7 @@ class NavigationController extends GetXController {
     const Achivement(), // 10
     const Courses(), // 11
     const ResumeEdite(), // 12
+    const CreateCourses(), // 13
   ];
 
   Widget get currentPage => _pages[_currentIndex.value];
@@ -108,7 +110,11 @@ class NavigationController extends GetXController {
     changePage(12);
   }
 
-  void navToTestProgress() {
+  void navToCreateCourses() {
     changePage(13);
   }
+
+  /* void navToTestProgress() {
+    changePage(13);
+  }*/
 }

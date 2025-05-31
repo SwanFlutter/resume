@@ -47,7 +47,7 @@ class CardWidget extends StatelessWidget {
           Text(
             text,
             textAlign: TextAlign.center,
-            style: TextStyleHelper.body12RegularOpenSans,
+            style: TextStyleHelper.body12W400RegularOpenSans,
           ),
         ],
       ),

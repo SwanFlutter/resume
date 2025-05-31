@@ -1,6 +1,10 @@
+// ignore_for_file: unused_import
+
 import 'package:anim_search_bar/anim_search_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get_x_master/get_x_master.dart';
+import 'package:resume/config/extentions/extension_on_flutter.dart';
+//import 'package:get_x_master/get_x_master.dart';
 
 class LogoWidget extends StatelessWidget {
   final TextEditingController? textController;
@@ -12,8 +16,8 @@ class LogoWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       alignment: Alignment.center,
-      width: Get.width, // استفاده از Get.width برای دسترسی به عرض صفحه
-      height: 56,
+      width: context.width,
+      height: context.height * 0.074,
       decoration: BoxDecoration(
         gradient: LinearGradient(
           begin: Alignment.topRight,

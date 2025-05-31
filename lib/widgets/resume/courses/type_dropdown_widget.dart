@@ -6,10 +6,14 @@ import 'package:resume/controller/courses_controller.dart';
 class TypeDropdownWidget extends StatelessWidget {
   final CoursesController controller;
   final String label;
+  final double width;
+  final double height;
   const TypeDropdownWidget({
     super.key,
     required this.controller,
     required this.label,
+    this.width = 134,
+    this.height = 32,
   });
 
   @override
@@ -27,13 +31,13 @@ class TypeDropdownWidget extends StatelessWidget {
         ),
         SizedBox(height: 4),
         Container(
-          width: 134,
-          height: 32,
+          width: width,
+          height: height,
           decoration: BoxDecoration(
             gradient: LinearGradient(
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
-              colors: [Colors.white, Color.fromRGBO(254, 222, 230, 1)],
+              colors: backgroudColorFeild,
             ),
             borderRadius: BorderRadius.circular(4.0),
           ),

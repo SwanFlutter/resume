@@ -24,7 +24,7 @@ class _ResumehInfoState extends State<ResumehInfo> {
         children: [
           // محتوای اصلی صفحه
           SingleChildScrollView(
-            padding: EdgeInsets.only(bottom: 100), // فضای کافی برای FAB
+            padding: EdgeInsets.only(bottom: 100),
             child: Column(
               children: [
                 LogoWidget(),
@@ -66,7 +66,7 @@ class _ResumehInfoState extends State<ResumehInfo> {
                   ],
                   description:
                       "I Dedicated and disciplined martial artist with 12 years of experience in Kung Fu. achieving a deep understanding of martial arts techniques and philosophies. As a top national and provincial referee, I ensure fair play and uphold the integrity of the sport during competitions. Additionally, I serve as a coach, where I guide and mentor athletes.",
-                ),
+                ).paddingSymmetric(horizontal: 16.0),
                 SizedBox(height: 10.0),
                 Container(
                   width: 288,
@@ -90,10 +90,7 @@ class _ResumehInfoState extends State<ResumehInfo> {
                     children: [
                       Text(
                         "Contact Information",
-                        style: TextStyle(
-                          fontSize: 14.0,
-                          fontWeight: FontWeight.w500,
-                        ),
+                        style: TextStyleHelper.body14W500MediumOpenSans,
                       ).paddingOnly(top: 8.0),
                       SizedBox(height: 5.0),
                       Wrap(
@@ -159,7 +156,7 @@ class MeiddelBoxInfo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 288,
+      width: context.width,
       height: 229,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(12.0),
@@ -180,13 +177,13 @@ class MeiddelBoxInfo extends StatelessWidget {
         children: [
           Text(
             title,
-            style: TextStyle(fontSize: 14.0, fontWeight: FontWeight.w400),
+            style: TextStyleHelper.title14W400RegularOpenSans,
           ).paddingOnly(top: 10),
           SizedBox(height: 5),
           Wrap(spacing: 5, runSpacing: 5, children: cardInfoViews),
           Text(
             "Descriptions",
-            style: TextStyle(fontSize: 14.0, fontWeight: FontWeight.w700),
+            style: TextStyleHelper.body14W500MediumOpenSans,
           ).paddingOnly(top: 8.0),
           Container(
             width: 292,
@@ -205,7 +202,9 @@ class MeiddelBoxInfo extends StatelessWidget {
             child: SelectableText(
               description,
               textAlign: TextAlign.justify,
-              style: TextStyle(color: Color.fromRGBO(153, 153, 153, 1)),
+              style: TextStyleHelper.body12W400RegularOpenSans.copyWith(
+                color: Color.fromRGBO(153, 153, 153, 1),
+              ),
             ),
           ),
         ],
@@ -242,6 +241,151 @@ class CardInfoView extends StatelessWidget {
             text,
             style: TextStyle(fontSize: 12.0, fontWeight: FontWeight.w600),
           ).paddingOnly(left: 5.0),
+        ],
+      ),
+    );
+  }
+}
+
+class ResumeInfoPage extends StatelessWidget {
+  const ResumeInfoPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Resume Info'),
+        backgroundColor: Colors.blue[100],
+        actions: [
+          Padding(
+            padding: EdgeInsets.all(8.0),
+            child: Image.network(
+              'https://via.placeholder.com/50', // Replace with your logo URL
+              height: 30,
+            ),
+          ),
+        ],
+      ),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Container(
+              padding: EdgeInsets.all(16.0),
+              decoration: BoxDecoration(
+                color: Colors.blue[50],
+                borderRadius: BorderRadius.circular(10.0),
+              ),
+              child: Column(
+                children: [
+                  CircleAvatar(
+                    radius: 40,
+                    backgroundImage: NetworkImage(
+                      'https://via.placeholder.com/150',
+                    ), // Replace with your image URL
+                  ),
+                  SizedBox(height: 16),
+                  Card(
+                    child: Padding(
+                      padding: EdgeInsets.all(16.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Personal Information',
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          SizedBox(height: 8),
+                          Row(
+                            children: [
+                              Icon(Icons.female),
+                              SizedBox(width: 8),
+                              Text('Female'),
+                            ],
+                          ),
+                          Row(
+                            children: [
+                              Icon(Icons.calendar_today),
+                              SizedBox(width: 8),
+                              Text('2000/19/10'),
+                            ],
+                          ),
+                          Row(
+                            children: [
+                              Icon(Icons.favorite),
+                              SizedBox(width: 8),
+                              Text('Single'),
+                            ],
+                          ),
+                          SizedBox(height: 16),
+                          Text(
+                            'Descriptions',
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          SizedBox(height: 8),
+                          Text(
+                            'I dedicated and disciplined martial artist with 12 years of experience in Kung Fu, achieving a deep understanding of martial arts techniques and philosophies. As a top national and provincial referee, I ensure fair play and uphold the integrity of the sport during competitions. Additionally, I serve as a coach, where I guide and mentor athletes.',
+                            textAlign: TextAlign.justify,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: 16),
+                  Card(
+                    child: Padding(
+                      padding: EdgeInsets.all(16.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Contact Information',
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          SizedBox(height: 8),
+                          Row(
+                            children: [
+                              Icon(Icons.phone),
+                              SizedBox(width: 8),
+                              Text('+4311469391'),
+                            ],
+                          ),
+                          Row(
+                            children: [
+                              Icon(Icons.flag),
+                              SizedBox(width: 8),
+                              Text('Iranian'),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        items: [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.dashboard),
+            label: 'Dashboard',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.description, color: Colors.red),
+            label: 'Resume',
+          ),
+          BottomNavigationBarItem(icon: Icon(Icons.work), label: 'Jobs'),
         ],
       ),
     );

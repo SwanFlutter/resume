@@ -4,8 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get_x_master/get_x_master.dart';
 import 'package:resume/config/constant.dart';
+import 'package:resume/controller/bottom_navigation_controller.dart';
 import 'package:resume/controller/navigation_controller.dart';
 import 'package:resume/screen/resume_page.dart';
+import 'package:resume/widgets/global/background_colors.dart';
 
 class MainNavigation extends StatelessWidget {
   const MainNavigation({super.key});
@@ -15,7 +17,8 @@ class MainNavigation extends StatelessWidget {
     final controller = NavigationController.to;
 
     return Scaffold(
-      body: Obx(() => controller.currentPage),
+      extendBody: true,
+      body: BackgroundColors(child: Obx(() => controller.currentPage)),
       bottomNavigationBar: MyBottomMenu(),
     );
   }
@@ -29,8 +32,9 @@ class MyBottomMenu extends StatefulWidget {
 }
 
 class _MyBottomMenuState extends State<MyBottomMenu> {
-  bool _isExpanded = false;
   final NavigationController _navigationController = NavigationController.to;
+  final BottomNavigationController _bottomNavController =
+      BottomNavigationController.to;
 
   // Static getter برای دسترسی به وضعیت از سایر صفحات
 
@@ -45,9 +49,8 @@ class _MyBottomMenuState extends State<MyBottomMenu> {
   }
 
   void _toggleExpand() {
-    setState(() {
-      _isExpanded = !_isExpanded;
-    });
+    _bottomNavController.toggleExpand();
+    setState(() {});
   }
 
   void _onItemTapped(int index) {
@@ -58,20 +61,18 @@ class _MyBottomMenuState extends State<MyBottomMenu> {
   @override
   Widget build(BuildContext context) {
     return AnimatedContainer(
+      margin: EdgeInsets.all(12.0),
       duration: 1.seconds,
       curve: Curves.easeInOut,
-      height: _isExpanded ? 161.0 : 63.0,
+      height: _bottomNavController.isExpanded ? 161.0 : 63.0,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(24.0),
         gradient: LinearGradient(
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
-          // stops: [0.0, 0.3, 0.6, 1.0],
           colors: [
-            //   Color(0xFFFEDEE6),
-            Color.fromRGBO(254, 222, 230, 0.6),
-            Color.fromRGBO(254, 222, 230, 0.5),
-            Color.fromRGBO(254, 222, 230, 0.4),
+            Color.fromRGBO(253, 222, 230, 1),
+            Color.fromRGBO(255, 255, 255, 1),
           ],
         ),
       ),
@@ -88,12 +89,12 @@ class _MyBottomMenuState extends State<MyBottomMenu> {
               child: FadeTransition(opacity: animation, child: child),
             );
           },
-          child: _isExpanded
+          child: _bottomNavController.isExpanded
               ? fullBottomNavigationBar()
               : miniBottomNavigationBar(),
         ),
       ),
-    ).marginOnly(bottom: 20.0, left: 10.0, right: 10.0);
+    );
   }
 
   Widget fullBottomNavigationBar() {
@@ -129,7 +130,7 @@ class _MyBottomMenuState extends State<MyBottomMenu> {
                         SizedBox(width: 5),
                         Text(
                           "Home",
-                          style: TextStyleHelper.label10RegularOpenSans
+                          style: TextStyleHelper.label10W400RegularOpenSans
                               .copyWith(
                                 color: _navigationController.currentIndex == 0
                                     ? Colors.pink
@@ -153,7 +154,8 @@ class _MyBottomMenuState extends State<MyBottomMenu> {
                       SizedBox(width: 5),
                       Text(
                         "Exit",
-                        style: TextStyle(color: AppThemeColors.navColorIcon),
+                        style: TextStyleHelper.label10W400RegularOpenSans
+                            .copyWith(color: AppThemeColors.navColorIcon),
                       ),
                     ],
                   ),
@@ -186,12 +188,12 @@ class _MyBottomMenuState extends State<MyBottomMenu> {
                         ),
                         Text(
                           "Company",
-                          style: TextStyle(
-                            fontSize: 12,
-                            color: _navigationController.currentIndex == 4
-                                ? Colors.pink
-                                : AppThemeColors.navColorIcon,
-                          ),
+                          style: TextStyleHelper.body12W400RegularOpenSans
+                              .copyWith(
+                                color: _navigationController.currentIndex == 4
+                                    ? Colors.pink
+                                    : AppThemeColors.navColorIcon,
+                              ),
                         ),
                       ],
                     ).paddingOnly(left: 0.0),
@@ -215,12 +217,12 @@ class _MyBottomMenuState extends State<MyBottomMenu> {
                         ),
                         Text(
                           "Setting",
-                          style: TextStyle(
-                            fontSize: 12,
-                            color: _navigationController.currentIndex == 5
-                                ? Colors.pink
-                                : AppThemeColors.navColorIcon,
-                          ),
+                          style: TextStyleHelper.body12W400RegularOpenSans
+                              .copyWith(
+                                color: _navigationController.currentIndex == 5
+                                    ? Colors.pink
+                                    : AppThemeColors.navColorIcon,
+                              ),
                         ),
                       ],
                     ).paddingOnly(left: 18.0),
@@ -247,7 +249,7 @@ class _MyBottomMenuState extends State<MyBottomMenu> {
                       navigationController.nav[7],
                       width: 24.0,
                       height: 24.0,
-                      color: _isExpanded
+                      color: _bottomNavController.isExpanded
                           ? Colors.pink
                           : AppThemeColors.navColorIcon,
                     ),
@@ -278,7 +280,9 @@ class _MyBottomMenuState extends State<MyBottomMenu> {
               navigationController.nav[7],
               width: 24.0,
               height: 24.0,
-              color: _isExpanded ? Colors.pink : Color(0xFF04070E),
+              color: _bottomNavController.isExpanded
+                  ? Colors.pink
+                  : Color(0xFF04070E),
             ),
           ),
         ],
@@ -302,9 +306,8 @@ class _MyBottomMenuState extends State<MyBottomMenu> {
 
           Text(
             label,
-            style: TextStyle(
+            style: TextStyleHelper.body12W400RegularOpenSans.copyWith(
               color: isSelected ? Colors.pink : AppThemeColors.navColorIcon,
-              fontSize: 12,
             ),
           ),
         ],

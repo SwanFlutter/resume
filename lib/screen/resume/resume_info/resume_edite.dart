@@ -5,11 +5,11 @@ import 'package:resume/config/constant.dart';
 import 'package:resume/controller/navigation_controller.dart';
 import 'package:resume/controller/resume_controller.dart';
 import 'package:resume/widgets/global/appbar_widget.dart';
+import 'package:resume/widgets/global/custom_fields_widget.dart';
 import 'package:resume/widgets/global/logo_widget.dart';
 import 'package:resume/widgets/resume/date_text_field_widget.dart';
 import 'package:resume/widgets/resume/descriptions_edite_info_widget.dart';
 import 'package:resume/widgets/resume/gender_feild_widget.dart';
-import 'package:resume/widgets/resume/resume_fields.dart';
 
 class ResumeEdite extends StatelessWidget {
   const ResumeEdite({super.key});
@@ -104,7 +104,7 @@ class ResumeEdite extends StatelessWidget {
                                       ),
                                     ],
                                   ),
-                                  RegularTextFieldWidget(
+                                  CustomFieldsWidget(
                                     label: 'MilitaryStatusWidget *',
                                     controllerInstance: controller.text1,
                                     hint: 'Describe Text',
@@ -116,7 +116,7 @@ class ResumeEdite extends StatelessWidget {
                                     label: 'Date Of Birth *',
                                   ),
 
-                                  RegularTextFieldWidget(
+                                  CustomFieldsWidget(
                                     label: 'Marital Status *',
                                     controllerInstance: controller.text3,
                                     hint: 'Describe Text',
@@ -126,10 +126,8 @@ class ResumeEdite extends StatelessWidget {
                               SizedBox(height: 4),
                               Text(
                                 "Descriptions",
-                                style: TextStyle(
-                                  fontSize: 14.0,
-                                  fontWeight: FontWeight.w700,
-                                ),
+                                style:
+                                    TextStyleHelper.title10W700RegularOpenSans,
                               ).paddingOnly(top: 8.0),
                               SizedBox(height: 4),
                               DescriptionsEditeInfoWidget(

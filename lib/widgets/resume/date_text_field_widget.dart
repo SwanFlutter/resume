@@ -21,10 +21,8 @@ class DateTextFieldWidget extends StatelessWidget {
       children: [
         Text(
           label,
-          style: TextStyle(
-            fontSize: 10.0,
+          style: TextStyleHelper.label10W700BoldOpenSans.copyWith(
             color: AppThemeColors.titleFieldTextcolor,
-            fontWeight: FontWeight.w800,
           ),
         ),
         SizedBox(height: 4),
@@ -61,10 +59,8 @@ class DateTextFieldWidget extends StatelessWidget {
                       controller.dateTime.text.isEmpty
                           ? 'Select Date'
                           : controller.dateTime.text,
-                      style: TextStyle(
-                        fontSize: 10.0,
-                        color: Color.fromRGBO(107, 114, 128, 1),
-                      ),
+                      style: TextStyleHelper.label10W400RegularOpenSans
+                          .copyWith(color: Color.fromRGBO(107, 114, 128, 1)),
                     ),
                   ),
                   Icon(

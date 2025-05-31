@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get_x_master/get_x_master.dart';
+import 'package:resume/config/constant.dart';
 
 class MiddelBoxInfoWidget extends StatelessWidget {
   final String title;
@@ -37,14 +38,14 @@ class MiddelBoxInfoWidget extends StatelessWidget {
         children: [
           Text(
             title,
-            style: TextStyle(fontSize: 14.0, fontWeight: FontWeight.w400),
+            style: TextStyleHelper.title14W400RegularOpenSans,
           ).paddingOnly(top: 10),
           SizedBox(height: 5),
 
           Wrap(spacing: 5, runSpacing: 5, children: []),
           Text(
             "Descriptions",
-            style: TextStyle(fontSize: 14.0, fontWeight: FontWeight.w700),
+            style: TextStyleHelper.body14W500MediumOpenSans,
           ).paddingOnly(top: 8.0),
           Container(
             width: 292,
@@ -62,7 +63,9 @@ class MiddelBoxInfoWidget extends StatelessWidget {
             ),
             child: SelectableText(
               description,
-              style: TextStyle(color: Color.fromRGBO(153, 153, 153, 1)),
+              style: TextStyleHelper.body12W400RegularOpenSans.copyWith(
+                color: Color.fromRGBO(153, 153, 153, 1),
+              ),
             ),
           ),
         ],

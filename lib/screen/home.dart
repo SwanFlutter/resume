@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get_x_master/get_x_master.dart';
-import 'package:resume/controller/navigation_controller.dart';
 import 'package:resume/widgets/global/appbar_widget.dart';
 import 'package:resume/widgets/global/logo_widget.dart';
 
@@ -36,8 +35,8 @@ class Home extends StatelessWidget {
                   SizedBox(height: 30),
                   ElevatedButton(
                     onPressed: () {
-                      final navigationController = NavigationController.to;
-                      navigationController.navToTestProgress();
+                      //    final navigationController = NavigationController.to;
+                      //    navigationController.navToTestProgress()
                     },
                     child: Text("Test Progress Indicators"),
                   ),
