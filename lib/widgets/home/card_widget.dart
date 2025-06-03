@@ -19,9 +19,12 @@ class CardWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final double cardWidth = context.width * 0.4; // عرض کارت 40% عرض صفحه
+    final double cardHeight =
+        context.height * 0.12; // ارتفاع کارت 12% ارتفاع صفحه
     return Container(
-      width: 140,
-      height: context.height * 0.12,
+      width: cardWidth,
+      height: cardHeight,
       decoration: BoxDecoration(
         boxShadow: [
           BoxShadow(
@@ -42,7 +45,7 @@ class CardWidget extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          SvgPicture.asset(icon),
+          SvgPicture.asset(icon, width: 24, height: 24),
           SizedBox(height: 4),
           Text(
             text,

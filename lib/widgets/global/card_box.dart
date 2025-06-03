@@ -6,6 +6,7 @@ class CardBox extends StatelessWidget {
   final double? width;
   final Widget? child;
   final List<BoxShadow>? boxShadow;
+
   const CardBox({
     super.key,
     this.height,
@@ -20,13 +21,14 @@ class CardBox extends StatelessWidget {
       ),
     ],
   });
+
   @override
   Widget build(BuildContext context) {
     return Container(
       height: height,
-      width: width,
+      width: width ?? double.infinity,
       decoration: BoxDecoration(
-        color: Color.fromRGBO(255, 255, 255, 1),
+        color: const Color.fromRGBO(255, 255, 255, 1),
         borderRadius: BorderRadius.circular(8.0),
         boxShadow: boxShadow,
       ),

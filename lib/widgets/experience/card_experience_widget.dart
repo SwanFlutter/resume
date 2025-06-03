@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:resume/config/extentions/extension_on_flutter.dart';
+import 'package:get_x_master/get_x_master.dart';
+import 'package:resume/config/constant.dart';
+import 'package:resume/widgets/global/card_box.dart';
 
 class CardExperienceWidget extends StatelessWidget {
   final String title;
@@ -21,7 +23,7 @@ class CardExperienceWidget extends StatelessWidget {
   });
   @override
   Widget build(BuildContext context) {
-    return Card.outlined(
+    return CardBox(
       child: Column(
         children: [
           Row(
@@ -64,14 +66,24 @@ class CardExperienceWidget extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              Text(
-                typeState,
-                style: TextStyle(
-                  fontSize: 10.0,
-                  fontWeight: FontWeight.w600,
-                  color: isOnline
-                      ? Color.fromRGBO(19, 98, 52, 1)
-                      : Color.fromRGBO(4, 7, 14, 1),
+              Container(
+                padding: EdgeInsets.all(
+                  5,
+                ), // این مقدار فاصله داخلی را تنظیم می‌کند
+                decoration: BoxDecoration(
+                  color: index != null
+                      ? changeColor(index!)
+                      : Colors.transparent, // رنگ پس‌زمینه
+
+                  borderRadius: BorderRadius.circular(4),
+                ),
+                child: Text(
+                  typeState,
+                  style: TextStyle(
+                    fontSize: 10.0,
+                    fontWeight: FontWeight.w600,
+                    color: AppThemeColors.colorFF0000,
+                  ),
                 ),
               ),
 
@@ -95,7 +107,7 @@ class CardExperienceWidget extends StatelessWidget {
               ),
               Spacer(),
               Text(
-                school,
+                school.toUpperCase(),
                 style: TextStyle(
                   fontSize: 10.0,
                   fontWeight: FontWeight.w600,
@@ -105,27 +117,28 @@ class CardExperienceWidget extends StatelessWidget {
             ],
           ),
         ],
-      ).padAll(15.0),
+      ).paddingAll(16.0),
     );
   }
 
   Color changeColor(int index) {
-    Color? color;
+    Color color = Colors.transparent; // Default color
     switch (index) {
       case 0:
-        color = Colors.transparent;
+        color = Color.fromRGBO(222, 225, 232, 0.4);
         break;
       case 1:
         color = Color.fromRGBO(23, 201, 100, 0.2);
         break;
-        case 2:
+      case 2:
         color = Color.fromRGBO(253, 27, 100, 0.2);
         break;
-        case 3:
+      case 3:
         color = Color.fromRGBO(23, 201, 100, 0.2);
         break;
       default:
+        color = Colors.transparent; // Assign a default color
     }
-    return color!;
+    return color;
   }
 }

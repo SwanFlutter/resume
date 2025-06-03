@@ -64,17 +64,31 @@ class _MyBottomMenuState extends State<MyBottomMenu> {
       margin: EdgeInsets.all(12.0),
       duration: 1.seconds,
       curve: Curves.easeInOut,
+
       height: _bottomNavController.isExpanded ? 161.0 : 63.0,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(24.0),
+        borderRadius: BorderRadius.circular(8.0),
         gradient: LinearGradient(
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
+          begin: Alignment.centerLeft,
+          end: Alignment.centerRight,
           colors: [
-            Color.fromRGBO(253, 222, 230, 1),
+            /*  Color.fromRGBO(253, 222, 230, 1),
+            Color.fromRGBO(253, 222, 230, 0.7),*/
+            /* Color.fromRGBO(254, 222, 230, 1),
             Color.fromRGBO(255, 255, 255, 1),
+            Color.fromRGBO(255, 255, 255, 0.6),*/
+            Color(0xFFFFF3F6),
+            Color(0xFFFFF3F6),
           ],
         ),
+        boxShadow: [
+          BoxShadow(
+            color: Color(0x4C080E1C),
+            blurRadius: 3,
+            offset: Offset(0, 1),
+            spreadRadius: 0,
+          ),
+        ],
       ),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(24.0),
@@ -102,7 +116,7 @@ class _MyBottomMenuState extends State<MyBottomMenu> {
       key: ValueKey('expanded'),
       physics: NeverScrollableScrollPhysics(),
       child: SizedBox(
-        height: 161.0,
+        height: context.height * 0.20,
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
@@ -165,7 +179,7 @@ class _MyBottomMenuState extends State<MyBottomMenu> {
 
             // Second row with Company and Setting
             SizedBox(
-              height: 55,
+              height: context.height * 0.06,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
@@ -188,8 +202,9 @@ class _MyBottomMenuState extends State<MyBottomMenu> {
                         ),
                         Text(
                           "Company",
-                          style: TextStyleHelper.body12W400RegularOpenSans
+                          style: TextStyleHelper.label8W400RegularOpenSans
                               .copyWith(
+                                fontSize: 8.0,
                                 color: _navigationController.currentIndex == 4
                                     ? Colors.pink
                                     : AppThemeColors.navColorIcon,
@@ -217,8 +232,9 @@ class _MyBottomMenuState extends State<MyBottomMenu> {
                         ),
                         Text(
                           "Setting",
-                          style: TextStyleHelper.body12W400RegularOpenSans
+                          style: TextStyleHelper.label8W400RegularOpenSans
                               .copyWith(
+                                fontSize: 8.0,
                                 color: _navigationController.currentIndex == 5
                                     ? Colors.pink
                                     : AppThemeColors.navColorIcon,

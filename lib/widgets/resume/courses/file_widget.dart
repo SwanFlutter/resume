@@ -1,7 +1,9 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get_x_master/get_x_master.dart';
 import 'package:resume/config/constant.dart';
-import 'package:resume/config/extentions/extension_on_flutter.dart';
 
 class FileWidget extends StatelessWidget {
   final String label;
@@ -38,6 +40,7 @@ class FileWidget extends StatelessWidget {
           width: context.width,
           height: 32,
           decoration: BoxDecoration(
+            //  border: Border.all(color: AppThemeColors.colorFF0000),
             gradient: LinearGradient(
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
@@ -47,16 +50,18 @@ class FileWidget extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
-                label,
-                style: TextStyle(color: Color.fromRGBO(153, 153, 153, 1)),
-              ).padOnly(left: 5.0),
-              IconButton(
-                onPressed: onPressed,
-                icon: Icon(Icons.attach_file, size: 14.0),
+              Text(label, style: TextStyleHelper.label10W400RegularOpenSans),
+              InkResponse(
+                onTap: () {},
+                child: SvgPicture.asset(
+                  "assets/paperclip-2.svg",
+                  width: 14.0,
+                  height: 14.0,
+                  color: AppThemeColors.colorFF9999,
+                ),
               ),
             ],
-          ),
+          ).paddingSymmetric(horizontal: 8.0),
         ),
       ],
     );

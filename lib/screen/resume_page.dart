@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get_x_master/get_x_master.dart';
 import 'package:resume/controller/navigation_controller.dart';
 import 'package:resume/widgets/global/appbar_widget.dart';
 import 'package:resume/widgets/global/logo_widget.dart';
@@ -10,19 +11,31 @@ class ResumePage extends StatelessWidget {
   const ResumePage({super.key});
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.start,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        LogoWidget(),
-        AppBarWidget(
-          title: "Resume Page",
-          backBottom: true,
-          imageIcon: "assets/reuomeh/personalcard.svg",
-        ),
+    return SafeArea(
+      child: Stack(
+        children: [
+          SingleChildScrollView(
+            child: SizedBox(
+              width: context.width,
+              height: context.height,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  LogoWidget(),
+                  AppBarWidget(
+                    title: "Resume Page",
+                    backBottom: true,
+                    imageIcon: "assets/reuomeh/personalcard.svg",
+                  ),
 
-        GridCardWidget(),
-      ],
+                  GridCardWidget(),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

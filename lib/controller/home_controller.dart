@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get_x_master/get_x_master.dart';
-import 'package:resume/screen/resume/academic_history.dart';
-import 'package:resume/screen/resume/achivement.dart';
+import 'package:resume/screen/resume/academic/academic_history.dart';
+import 'package:resume/screen/resume/achivement/achivement.dart';
 import 'package:resume/screen/resume/courses/courses.dart';
-import 'package:resume/screen/resume/job_experience.dart';
+import 'package:resume/screen/resume/experience/job_experience.dart';
 import 'package:resume/screen/resume/resume_info/resumeh_info.dart';
 import 'package:resume/screen/resume/skils/skils.dart';
 
@@ -32,7 +32,7 @@ class HomeController extends GetXController {
     ResumehInfo(),
     JobExperience(),
     AcademicHistory(),
-    Skils(),
+    Skills(),
     Achivement(),
     Courses(),
   ];

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get_x_master/get_x_master.dart';
 import 'package:resume/config/constant.dart';
-import 'package:resume/config/extentions/extension_on_flutter.dart';
 
 class CardCoursesWidget extends StatelessWidget {
   final String title;
@@ -21,6 +21,9 @@ class CardCoursesWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card.outlined(
+      clipBehavior: Clip.antiAlias,
+      elevation: 2,
+      color: Colors.white,
       child: Column(
         children: [
           Row(
@@ -100,7 +103,7 @@ class CardCoursesWidget extends StatelessWidget {
             ],
           ),
         ],
-      ).padAll(15.0),
+      ).paddingAll(15.0),
     );
   }
 }

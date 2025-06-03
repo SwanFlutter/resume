@@ -7,8 +7,14 @@ class CoursesController extends GetXController {
 
   late String typeCourse = "Course";
   late String title = "Ux Research";
+  late String courseLevel = "Hard";
+
+  // Map to store values for different dropdown instances
+  Map<String, String?> dropdownValues = {};
+
   List<String> titleList = ["Ux Research", "Ux Design", "UI Design"];
   List<String> typeCourseList = ["Online Course", "Course", "Regular Course"];
+  List<String> typeCourseLevel = ["Hard", "2", "3"];
 
   late TextEditingController dateTime = TextEditingController();
 
@@ -27,5 +33,21 @@ class CoursesController extends GetXController {
     }
 
     return picker ?? DateTime.now();
+  }
+
+  void updateTitle(String newTitle) {
+    title = newTitle;
+    update(); // Notify listeners of the change
+  }
+
+  // New method to update specific dropdown values
+  void updateDropdownValue(String dropdownId, String value) {
+    dropdownValues[dropdownId] = value;
+    update(); // Notify listeners of the change
+  }
+
+  // Get value for specific dropdown
+  String? getDropdownValue(String dropdownId) {
+    return dropdownValues[dropdownId];
   }
 }

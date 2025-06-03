@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get_x_master/get_x_master.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:resume/bindings/bindings.dart';
 import 'package:resume/screen/main_navigation.dart';
 
@@ -20,8 +19,9 @@ class MyApp extends StatelessWidget {
       title: 'Rezomeh',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.pink),
-        textTheme: GoogleFonts.openSansTextTheme(),
         primaryColor: Colors.pink,
+        fontFamily: 'OpenSans',
+
         scaffoldBackgroundColor: Colors.white,
         bottomNavigationBarTheme: BottomNavigationBarThemeData(
           backgroundColor: Colors.blueAccent,
@@ -31,12 +31,6 @@ class MyApp extends StatelessWidget {
           backgroundColor: Colors.white,
           elevation: 0,
           iconTheme: IconThemeData(color: Colors.black),
-
-          titleTextStyle: TextStyle(
-            color: Colors.black,
-            fontSize: 20,
-            fontWeight: FontWeight.bold,
-          ),
         ),
       ),
       home: MainNavigation(),

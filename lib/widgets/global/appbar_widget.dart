@@ -52,7 +52,7 @@ class AppBarWidget extends StatelessWidget {
           // فاصله کم بین آیکون و متن
           SizedBox(width: 4),
           // متن بدون padding اضافی
-          Text(title, style: TextStyleHelper.title14W400RegularOpenSans),
+          Text(title, style: TextStyleHelper.title14W500RegularOpenSans),
 
           const Spacer(),
 

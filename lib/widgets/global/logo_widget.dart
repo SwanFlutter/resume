@@ -17,7 +17,7 @@ class LogoWidget extends StatelessWidget {
     return Container(
       alignment: Alignment.center,
       width: context.width,
-      height: context.height * 0.074,
+      height: context.height * 0.08,
       decoration: BoxDecoration(
         gradient: LinearGradient(
           begin: Alignment.topRight,

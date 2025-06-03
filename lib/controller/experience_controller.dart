@@ -4,7 +4,13 @@ class ExperienceController extends GetXController {
   static ExperienceController get to => Get.smartFind<ExperienceController>();
 
   late String typeStat = "Course";
-  late String title = "Ux Research";
-  List<String> titleList = ["Ux Research", "Ux Design", "UI Design"];
-  List<String> state = ["FullTime", "Contarct", "Apprenticeship", "Part-Time"];
+  late String title = "Full-Time";
+  List<String> jobTypeList = [
+    "Full-Time",
+    "Contract",
+    "Apprenticeship",
+    "Part-Time",
+  ];
+  List<String> chooseList = ["choose", "Course", "Job Experience"];
+  late String chooseType = "choose";
 }

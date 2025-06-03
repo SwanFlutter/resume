@@ -4,14 +4,19 @@ import 'package:resume/screen/company_page.dart';
 import 'package:resume/screen/dashboard_page.dart';
 import 'package:resume/screen/home.dart';
 import 'package:resume/screen/jobs_page.dart';
-import 'package:resume/screen/resume/academic_history.dart';
-import 'package:resume/screen/resume/achivement.dart';
+import 'package:resume/screen/resume/academic/academic_history.dart';
+import 'package:resume/screen/resume/achivement/achivement.dart';
+import 'package:resume/screen/resume/achivement/add_new_achivement.dart';
 import 'package:resume/screen/resume/courses/courses.dart';
 import 'package:resume/screen/resume/courses/create_courses.dart';
-import 'package:resume/screen/resume/job_experience.dart';
+import 'package:resume/screen/resume/courses/edit_create_course.dart';
+import 'package:resume/screen/resume/experience/add_job_experience.dart';
+import 'package:resume/screen/resume/experience/job_experience.dart';
 import 'package:resume/screen/resume/resume_info/resume_edite.dart';
 import 'package:resume/screen/resume/resume_info/resumeh_info.dart';
+import 'package:resume/screen/resume/skils/add_new_hard_skils_page.dart';
 import 'package:resume/screen/resume/skils/skils.dart';
+import 'package:resume/screen/resume/skils/soft_skils_page.dart';
 import 'package:resume/screen/resume_page.dart';
 import 'package:resume/screen/settings_page.dart';
 
@@ -32,11 +37,20 @@ class NavigationController extends GetXController {
     const ResumehInfo(), // 6
     const JobExperience(), // 7
     const AcademicHistory(), // 8
-    const Skils(), // 9
+    const Skills(), // 9
     const Achivement(), // 10
+    // Cousrses
     const Courses(), // 11
     const ResumeEdite(), // 12
     const CreateCourses(), // 13
+    const EditCreateCourse(), // 14
+    // Skils
+    SoftSkillsPage(), // 15
+    AddNewHardSkillsPage(), // 16
+    // job experience
+    AddJobExperience(), // 17
+    // achivement
+    AddNewAchivement(), // 18
   ];
 
   Widget get currentPage => _pages[_currentIndex.value];
@@ -112,6 +126,28 @@ class NavigationController extends GetXController {
 
   void navToCreateCourses() {
     changePage(13);
+  }
+
+  void navToEditCreateCourses() {
+    changePage(14);
+  }
+
+  // Skils
+
+  void navToSoftSkillsPage() {
+    changePage(15);
+  }
+
+  void navToAddNewHardSkillsPage() {
+    changePage(16);
+  }
+
+  void navToAddJobExperience() {
+    changePage(17);
+  }
+
+  void navToAddNewAchivement() {
+    changePage(18);
   }
 
   /* void navToTestProgress() {

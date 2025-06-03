@@ -5,53 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get_x_master/get_x_master.dart';
 import 'package:intl/intl.dart';
 
-extension PaddingExtension on Widget {
-  // Adds uniform padding around the widget.
-  Widget padAll(double value) {
-    return Padding(padding: EdgeInsets.all(value), child: this);
-  }
-
-  // Adds symmetric vertical and horizontal padding to the widget.
-  Widget padSymmetric({double vertical = 8.0, double horizontal = 0.0}) {
-    return Padding(
-      padding: EdgeInsets.symmetric(vertical: vertical, horizontal: horizontal),
-      child: this,
-    );
-  }
-
-  Widget padOnly({
-    double left = 0.0,
-    double top = 0.0,
-    double right = 0.0,
-    double bottom = 0.0,
-  }) {
-    return Padding(
-      padding: EdgeInsets.only(
-        left: left,
-        top: top,
-        right: right,
-        bottom: bottom,
-      ),
-      child: this,
-    );
-  }
-}
-
 // Extensions for Margin
-extension MarginExtension on Widget {
-  // Adds uniform margin around the widget.
-  Widget marginAll(double value) {
-    return Container(margin: EdgeInsets.all(value), child: this);
-  }
-
-  // Adds symmetric vertical and horizontal margins to the widget.
-  Widget marginSymmetric({double vertical = 0.0, double horizontal = 0.0}) {
-    return Container(
-      margin: EdgeInsets.symmetric(vertical: vertical, horizontal: horizontal),
-      child: this,
-    );
-  }
-}
 
 // Extension for Visibility
 extension VisibilityExtension on Widget {
@@ -146,6 +100,15 @@ extension ContextExtensions on Widget {
   }
 }
 
+/// Extension on the `Widget` class to provide number formatting functionality.
+/// This extension adds a method to format an integer into a string with comma separators.
+///
+/// Example usage:
+/// ```dart
+/// final myWidget = MyWidget();
+/// String formattedNumber = myWidget.toNumberFormatting(1234567);
+/// print(formattedNumber); // Output: "1,234,567"
+/// ```
 extension ConvertFormating on Widget {
   String toNumberFormatting(int number) {
     final formatter = NumberFormat('#,###');
@@ -153,16 +116,57 @@ extension ConvertFormating on Widget {
   }
 }
 
+/// Extension on the `String` class to provide string to number formatting functionality.
+/// This extension attempts to parse the string as an integer and then formats it with comma separators.
+/// If parsing fails, it returns the original string.
+///
+/// Example usage:
+/// ```dart
+/// String numberString = "1234567";
+/// String formattedString = numberString.toStringFormatting();
+/// print(formattedString); // Output: "1,234,567"
+///
+/// String invalidNumberString = "abc123";
+/// String result = invalidNumberString.toStringFormatting();
+/// print(result); // Output: "abc123"
+/// ```
 extension StringFormatting on String {
   String toStringFormatting() {
     try {
-      // تبدیل String به int یا double
+      // Attempt to convert String to int
       final number = int.parse(this);
       final formatter = NumberFormat('#,###');
       return formatter.format(number);
     } catch (e) {
+      // Return the original string if conversion fails
       return this;
     }
+  }
+}
+
+extension StringNumberFormatting on String {
+  /// Formats the number within the string.
+  /// This method assumes the string contains a number prefixed with a dollar sign.
+  ///
+  /// Example usage:
+  /// ```dart
+  /// Text("\\$20000".toNumberFormat())
+  /// ```
+  /// This will return a string with the formatted number: "\$20,000".
+  String toNumberFormat() {
+    // Extract the numeric part from the string
+    final numberRegex = RegExp(r'\d+');
+    final match = numberRegex.firstMatch(this);
+    if (match != null) {
+      final number = int.parse(match.group(0)!);
+      final formatter = NumberFormat('#,###');
+      final formattedNumber = formatter.format(number);
+
+      // Replace the numeric part with the formatted number
+      return replaceAll(match.group(0)!, formattedNumber);
+    }
+    // Return the original string if no number is found
+    return this;
   }
 }
 
@@ -223,9 +227,6 @@ class ResponsiveHelpers {
   // روش اول: ساده و مستقیم (پیشنهادی)
   static double h({required double pixels}) {
     var re = (pixels / _baseHeight) * 100 * 7.96;
-    debugPrint("pixels:$pixels");
-    debugPrint("baseHeight:$_baseHeight");
-    debugPrint("re:$re");
     return re;
   }
 

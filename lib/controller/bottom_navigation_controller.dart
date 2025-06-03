@@ -16,4 +16,5 @@ class BottomNavigationController extends GetXController {
 
   // محاسبه موقعیت FAB (فاصله از پایین)
   double get fabBottomPosition => navigationHeight + 20.0;
+  // Removed duplicate method fabBottomPosition to avoid naming conflict with getter.
 }
