@@ -6,6 +6,7 @@ const Color resumeCardColorBoederDark = Color.fromRGBO(253, 27, 81, 0.2);
 
 const Color iconColors = Colors.black;
 const Color iconColorsDark = Colors.white;
+const Color iconColorsDark1 = Colors.white;
 
 const BoxShadow resumeBoxShadow = BoxShadow(
   color: Color.fromRGBO(8, 14, 28, 0.25),
