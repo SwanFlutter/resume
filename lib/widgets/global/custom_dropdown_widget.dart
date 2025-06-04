@@ -102,7 +102,7 @@ class CustomDropdownWidget<T extends GetXController> extends StatelessWidget {
                   }
                 },
                 hint: Text(
-                  'Select an option',
+                  title!,
                   style: TextStyle(
                     fontSize: 10.0,
                     color: Color.fromRGBO(107, 114, 128, 1),

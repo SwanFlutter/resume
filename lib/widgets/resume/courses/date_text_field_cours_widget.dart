@@ -1,5 +1,6 @@
 import 'package:date_cupertino_bottom_sheet_picker/date_cupertino_bottom_sheet_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:get_x_master/get_x_master.dart';
 import 'package:intl/intl.dart';
 import 'package:resume/config/constant.dart';
 import 'package:resume/controller/courses_controller.dart';
@@ -100,16 +101,17 @@ class CupertioDateField extends StatelessWidget {
         ),
         const SizedBox(height: 4),
         DateCupertinoBottomSheetPicker(
-          minWidth: 0.40,
-          height: 32,
+          minWidth: 1.0,
+          height: context.height * 0.045,
           firstDate: DateTime(1990),
           lastDate: DateTime.now(),
           selectedDate: DateTime(1990),
           minAge: 18,
+
           textFieldDecoration: TextFieldDecoration(
-            // Container properties - همه کار می‌کنند ✅
-            containerPadding: const EdgeInsets.only(top: 3.0),
-            containerHeight: 32.0,
+            hintText: hint ?? "Select Date",
+            containerPadding: const EdgeInsets.only(top: 0.0),
+            containerHeight: context.height * 0.045,
             containerDecoration: BoxDecoration(
               gradient: const LinearGradient(
                 begin: Alignment.topCenter,
@@ -130,7 +132,6 @@ class CupertioDateField extends StatelessWidget {
             filled: true,
 
             // Text properties - همه کار می‌کنند ✅
-            hintText: "Select your birth date",
             style: const TextStyle(
               color: Color.fromRGBO(153, 153, 153, 1),
               fontSize: 10,

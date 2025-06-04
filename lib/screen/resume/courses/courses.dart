@@ -17,56 +17,59 @@ class Courses extends StatelessWidget {
     return SafeArea(
       child: Stack(
         children: [
-          Column(
-            children: [
-              LogoWidget(),
-              AppBarWidget(
-                title: "Courses",
-                imageIcon: "assets/reuomeh/Academy.svg",
-                onPressed: () {
-                  if (navigationController.currentIndex >= 6 &&
-                      navigationController.currentIndex <= 12) {
-                    navigationController.navToResume(); // برگشت به Resume Page
-                  } else {
-                    // در غیر این صورت از Get.back استفاده کن
-                    Get.back();
-                  }
-                },
-              ),
-              Expanded(
-                child: ListView.builder(
-                  itemCount: 10, // Replace with actual item count
-                  itemBuilder: (context, index) {
-                    return CardCoursesWidget(
-                      title: "Flutter Development",
-                      subtitle: "Online Course",
-                      isOnline: true,
-                      stateSchool: "Online Course",
-                      timeSchool: "Feb 2024",
-                      school: "Nahira.ir",
-                    );
+          SizedBox(
+            width: context.width,
+            height: context.height,
+            child: Column(
+              children: [
+                LogoWidget(),
+                AppBarWidget(
+                  title: "Courses",
+                  imageIcon: "assets/reuomeh/Academy.svg",
+                  onPressed: () {
+                    if (navigationController.currentIndex >= 6 &&
+                        navigationController.currentIndex <= 12) {
+                      navigationController
+                          .navToResume(); // برگشت به Resume Page
+                    } else {
+                      // در غیر این صورت از Get.back استفاده کن
+                      Get.back();
+                    }
                   },
                 ),
-              ),
-            ],
-          ),
-          Obx(
-            () => AnimatedPositioned(
-              duration: Duration(seconds: 1),
-              curve: Curves.ease,
-              bottom: bottomNavController.fabBottomPosition,
-              right: 16.0,
-              child: FloatingActionButton(
-                backgroundColor: AppThemeColors.addFabColor,
-                shape: StadiumBorder(),
-                onPressed: () {
-                  navigationController.navToCreateCourses();
-                },
-                child: Image.asset(
-                  "assets/isIconOnly.png",
-                  width: 24,
-                  height: 24,
+                Expanded(
+                  child: ListView.builder(
+                    itemCount: 10, // Replace with actual item count
+                    itemBuilder: (context, index) {
+                      return CardCoursesWidget(
+                        title: "Flutter Development",
+                        subtitle: "Online Course",
+                        isOnline: true,
+                        stateSchool: "Online Course",
+                        timeSchool: "Feb 2024",
+                        school: "Nahira.ir",
+                      );
+                    },
+                  ),
                 ),
+              ],
+            ),
+          ),
+          AnimatedPositioned(
+            duration: Duration(seconds: 1),
+            curve: Curves.ease,
+            bottom: bottomNavController.fabBottomPosition,
+            right: 16.0,
+            child: FloatingActionButton(
+              backgroundColor: AppThemeColors.addFabColor,
+              shape: StadiumBorder(),
+              onPressed: () {
+                navigationController.navToCreateCourses();
+              },
+              child: Image.asset(
+                "assets/isIconOnly.png",
+                width: 24,
+                height: 24,
               ),
             ),
           ),

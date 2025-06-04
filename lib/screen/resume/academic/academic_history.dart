@@ -4,6 +4,7 @@ import 'package:resume/config/constant.dart';
 import 'package:resume/screen/resume_page.dart';
 import 'package:resume/widgets/global/appbar_widget.dart';
 import 'package:resume/widgets/global/logo_widget.dart';
+import 'package:resume/widgets/resume/acadmic/card_acadmic_widget.dart';
 
 class AcademicHistory extends StatelessWidget {
   const AcademicHistory({super.key});
@@ -12,52 +13,44 @@ class AcademicHistory extends StatelessWidget {
     return SafeArea(
       child: Stack(
         children: [
-          SingleChildScrollView(
-            child: SizedBox(
-              width: context.width,
-              height: context.height,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  LogoWidget(),
-                  AppBarWidget(
-                    title: "Academic History",
-                    onPressed: () {
-                      if (navigationController.currentIndex >= 6 &&
-                          navigationController.currentIndex <= 12) {
-                        navigationController
-                            .navToResume(); // Return to Resume Page
-                      } else {
-                        Get.back(); // Return to the previous page
-                      }
+          SizedBox(
+            width: context.width,
+            height: context.height,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                LogoWidget(),
+                AppBarWidget(
+                  title: "Academic History",
+                  imageIcon: "assets/reuomeh/personalcard.svg",
+                  onPressed: () {
+                    if (navigationController.currentIndex >= 6 &&
+                        navigationController.currentIndex <= 12) {
+                      navigationController
+                          .navToResume(); // Return to Resume Page
+                    } else {
+                      Get.back(); // Return to the previous page
+                    }
+                  },
+                ),
+                Expanded(
+                  child: ListView.builder(
+                    itemCount: 10, // Replace with actual item count
+                    itemBuilder: (context, index) {
+                      return CardAcadmicWidget(
+                        title: "Software Developer",
+                        subtitle: "Bachelor",
+                        isOnline: true,
+                        stateSchool: "Bachelor",
+                        school: "Tehran University",
+                        width: context.width,
+                        height: context.height * 0.12,
+                      );
                     },
                   ),
-                  Expanded(
-                    child: Center(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(Icons.school, size: 80, color: Colors.pink),
-                          SizedBox(height: 20),
-                          Text(
-                            "Academic History",
-                            style: TextStyle(
-                              fontSize: 24,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          SizedBox(height: 10),
-                          Text(
-                            "Your educational background",
-                            style: TextStyle(fontSize: 16, color: Colors.grey),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
           AnimatedPositioned(
@@ -70,7 +63,7 @@ class AcademicHistory extends StatelessWidget {
               backgroundColor: AppThemeColors.addFabColor,
               shape: StadiumBorder(),
               onPressed: () {
-                navigationController.navToAddJobExperience();
+                navigationController.navToAcademicHistoryAdd();
               },
               child: Image.asset(
                 "assets/isIconOnly.png",

@@ -26,20 +26,13 @@ class CardWidget extends StatelessWidget {
       width: cardWidth,
       height: cardHeight,
       decoration: BoxDecoration(
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey.withValues(alpha: 0.5), // رنگ سایه
-            spreadRadius: 1,
-            blurRadius: 3,
-            offset: Offset(0, 2),
-          ),
-        ],
+        boxShadow: [resumeBoxShadow],
         borderRadius: BorderRadius.circular(12.0),
-        border: Border.all(color: Color.fromRGBO(253, 27, 81, 0.2)),
+        border: Border.all(color: resumeCardColorBoeder),
         gradient: LinearGradient(
           begin: begin,
           end: end,
-          colors: [Colors.white, Color.fromRGBO(254, 222, 230, 1)],
+          colors: resumeCardColor,
         ),
       ),
       child: Column(

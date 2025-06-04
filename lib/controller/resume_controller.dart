@@ -6,7 +6,7 @@ class ResumeController extends GetXController {
   static ResumeController get to => Get.smartFind<ResumeController>();
 
   late TextEditingController text1, textSecndery, dateTime, text3, description;
-  String gender = "";
+  String gender = "Edit Gender";
   List<String> genderList = ["Male", "Female", "Other"];
 
   @override

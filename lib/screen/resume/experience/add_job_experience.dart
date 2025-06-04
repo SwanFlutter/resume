@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get_x_master/get_x_master.dart';
 import 'package:resume/config/constant.dart';
-import 'package:resume/controller/experience_controller.dart';
+import 'package:resume/controller/academic_controller.dart';
 import 'package:resume/screen/resume_page.dart';
 import 'package:resume/widgets/global/appbar_widget.dart';
 import 'package:resume/widgets/global/card_box.dart';
@@ -17,244 +17,227 @@ class AddJobExperience extends StatelessWidget {
     return SafeArea(
       child: Stack(
         children: [
-          SingleChildScrollView(
-            child: SizedBox(
-              child: Column(
-                children: [
-                  LogoWidget(),
-                  AppBarWidget(
-                    title: "Add Job Exprience",
-                    imageIcon: "assets/reuomeh/favorite-chart.svg",
-                    onPressed: () {
-                      if (navigationController.currentIndex >= 6 &&
-                          navigationController.currentIndex <= 17) {
-                        navigationController.navToJobExperience();
-                      } else {
-                        Get.back();
-                      }
-                    },
-                  ),
-                  CardBox(
-                    width: context.width,
-
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
+          SizedBox(
+            width: context.width,
+            height: context.height,
+            child: Column(
+              children: [
+                // بخش ثابت بالا
+                LogoWidget(),
+                AppBarWidget(
+                  title: "Add New Academic History",
+                  imageIcon: "assets/reuomeh/personalcard.svg",
+                  onPressed: () {
+                    if (navigationController.currentIndex >= 6 &&
+                        navigationController.currentIndex <= 19) {
+                      navigationController.navToAcademicHistory();
+                    } else {
+                      Get.back();
+                    }
+                  },
+                ),
+                // بخش اسکرولی پایین
+                Expanded(
+                  child: ListView(
+                    padding: EdgeInsets.only(bottom: 100),
+                    children: [
+                      CardBox(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisSize: MainAxisSize.min,
                           children: [
-                            Text(
-                              "general Information",
-                              style: TextStyleHelper.title14W600RegularOpenSans,
-                            ),
-                          ],
-                        ),
-                        SizedBox(height: 8.0),
-                        Row(
-                          children: [
-                            Expanded(
-                              child: CustomFieldsWidget(
-                                width: context.width,
-                                label: 'Job Title *',
-                                hint: 'Designer',
-                                controllerInstance: TextEditingController(),
-                              ),
-                            ),
-                            SizedBox(width: 8.0),
-                            Expanded(
-                              child: CustomFieldsWidget(
-                                width: context.width,
-                                label: 'Company Name *',
-                                hint: 'Apple',
-                                controllerInstance: TextEditingController(),
-                              ),
-                            ),
-                          ],
-                        ),
-                        SizedBox(height: 8.0),
-                        GetBuilder<ExperienceController>(
-                          builder: (controller) {
-                            return CustomDropdownWidget(
-                              controller: Get.find<ExperienceController>(),
-                              width: context.width,
-                              label: 'Job Type',
-                              dropdownId: 'JobType',
-                              title: controller.title,
-                              titleList: controller.jobTypeList,
-                            );
-                          },
-                        ),
-                        SizedBox(height: 8.0),
-                        Row(
-                          children: [
-                            Expanded(
-                              child: CustomFieldsWidget(
-                                width: context.width,
-                                label: 'Start Date *',
-                                hint: 'YYYY/MM/DD',
-                                controllerInstance: TextEditingController(),
-                                prefixIcon: true,
-                              ),
-                            ),
-                            SizedBox(width: 8.0),
-                            Expanded(
-                              child: CustomFieldsWidget(
-                                width: context.width,
-                                label: 'Quit Date *',
-                                hint: 'YYYY/MM/DD',
-                                controllerInstance: TextEditingController(),
-                                prefixIcon: true,
-                              ),
-                            ),
-                          ],
-                        ),
-                        SizedBox(height: 16.0),
-                        Row(
-                          children: [
-                            SizedBox(
-                              width: 10,
-                              height: 10,
-                              child: Checkbox.adaptive(
-                                checkColor: AppThemeColors.colorFF9999,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(4.0),
+                            SizedBox(height: context.height * 0.01),
+                            Row(
+                              children: [
+                                Text(
+                                  "general Information",
+                                  style: TextStyleHelper
+                                      .title14W600RegularOpenSans,
                                 ),
-                                side: WidgetStateBorderSide.resolveWith(
-                                  (states) => BorderSide(
-                                    width: 1.0,
-                                    color: Colors.grey,
+                              ],
+                            ),
+                            SizedBox(height: context.height * 0.01),
+                            Row(
+                              children: [
+                                Expanded(
+                                  child: CustomFieldsWidget(
+                                    width: context.width,
+                                    label: "Degree *",
+                                    hint: "Designer",
+                                    controllerInstance: TextEditingController(),
                                   ),
                                 ),
-                                value: false,
-                                onChanged: (value) {},
-                              ),
-                            ),
-                            SizedBox(width: 8.0),
-                            Flexible(
-                              child: Text(
-                                "I am currently In This Course",
-                                style: TextStyleHelper
-                                    .title14W400RegularOpenSans
-                                    .copyWith(fontSize: 10),
-                              ),
-                            ),
-                          ],
-                        ).paddingOnly(left: 5.0),
-                      ],
-                    ).paddingSymmetric(horizontal: 8.0, vertical: 12.0),
-                  ).marginOnly(top: 21.0, left: 16.0, right: 16.0, bottom: 8.0),
-                  SizedBox(height: 8.0),
-                  CardBox(
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Text(
-                              "Detail Information",
-                              style: TextStyleHelper.title14W600RegularOpenSans,
-                            ),
-                          ],
-                        ),
-                        SizedBox(height: 8.0),
-                        Row(
-                          children: [
-                            Expanded(
-                              child: CustomFieldsWidget(
-                                width: context.width,
-                                label: 'Upload Portfolio *',
-                                hint: 'Describe Text',
-                                controllerInstance: TextEditingController(),
-                              ),
-                            ),
-                            SizedBox(width: 8.0),
-                            Expanded(
-                              child: CustomFieldsWidget(
-                                width: context.width,
-                                label: 'City *',
-                                hint: 'Describe Text',
-                                controllerInstance: TextEditingController(),
-                              ),
-                            ),
-                          ],
-                        ),
-                        SizedBox(height: 8.0),
-                        Row(
-                          children: [
-                            Expanded(
-                              child: CustomFieldsWidget(
-                                width: context.width,
-                                label: 'Salary Receive *',
-                                hint: 'Describe Text',
-                                controllerInstance: TextEditingController(),
-                              ),
-                            ),
-                            SizedBox(width: 8.0),
-                            Expanded(
-                              child: GetBuilder(
-                                builder: (ExperienceController controller) {
-                                  return CustomDropdownWidget(
-                                    controller: controller,
+                                SizedBox(width: context.width * 0.01),
+                                Expanded(
+                                  child: CustomFieldsWidget(
                                     width: context.width,
-                                    label: 'Salary Type',
-                                    dropdownId: 'SalaryType',
-                                    title: controller.chooseType,
-                                    titleList: controller.chooseList,
-                                  );
-                                },
-                              ),
+                                    label: "Place of Study *",
+                                    hint: "Apple, Google, etc.",
+                                    controllerInstance: TextEditingController(),
+                                  ),
+                                ),
+                              ],
                             ),
+                            SizedBox(height: context.height * 0.01),
+                            Row(
+                              children: [
+                                Expanded(
+                                  child: CustomFieldsWidget(
+                                    label: "start Date*",
+                                    controllerInstance: TextEditingController(),
+                                    hint: "YYYY/MM/DD",
+                                    width: context.width,
+                                    prefixIcon: true,
+                                  ),
+                                ),
+                                SizedBox(width: 8),
+                                Expanded(
+                                  child: CustomFieldsWidget(
+                                    label: "Quit Date",
+                                    controllerInstance: TextEditingController(),
+                                    hint: "YYYY/MM/DD",
+                                    width: context.width,
+                                    prefixIcon: true,
+                                  ),
+                                ),
+                              ],
+                            ),
+                            SizedBox(height: context.height * 0.02),
+                            Row(
+                              children: [
+                                SizedBox(
+                                  width: 14,
+                                  height: 14,
+                                  child: Checkbox.adaptive(
+                                    checkColor: AppThemeColors.colorFF9999,
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(4.0),
+                                    ),
+                                    side: WidgetStateBorderSide.resolveWith(
+                                      (states) => BorderSide(
+                                        width: 1.0,
+                                        color: Colors.grey,
+                                      ),
+                                    ),
+                                    value: false,
+                                    onChanged: (value) {},
+                                  ),
+                                ),
+                                SizedBox(width: 8.0),
+                                Flexible(
+                                  child: Text(
+                                    "I am currently In This Course",
+                                    style: TextStyleHelper
+                                        .title14W400RegularOpenSans
+                                        .copyWith(fontSize: 10),
+                                  ),
+                                ),
+                              ],
+                            ).paddingOnly(left: 5.0, bottom: 8.0),
                           ],
-                        ),
-                        SizedBox(height: 8.0),
-                        Row(
+                        ).paddingAll(8.0),
+                      ).paddingSymmetric(horizontal: 16.0),
+                      SizedBox(height: context.height * 0.01),
+                      CardBox(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisSize: MainAxisSize.min,
                           children: [
-                            Expanded(
-                              child: CustomFieldsWidget(
-                                width: context.width,
-                                label: 'Address *',
-                                hint: 'Describe Text',
-                                controllerInstance: TextEditingController(),
-                              ),
+                            SizedBox(height: context.height * 0.01),
+                            Row(
+                              children: [
+                                Text(
+                                  "Detail Information",
+                                  style: TextStyleHelper
+                                      .title14W600RegularOpenSans,
+                                ),
+                              ],
                             ),
-                            SizedBox(width: 8.0),
-                            Expanded(
-                              child: CustomFieldsWidget(
-                                width: context.width,
-                                label: 'Occupational group *',
-                                hint: 'Describe Text',
-                                controllerInstance: TextEditingController(),
-                              ),
+                            SizedBox(height: context.height * 0.01),
+                            Row(
+                              children: [
+                                Expanded(
+                                  child: CustomFieldsWidget(
+                                    width: context.width,
+                                    label: "Thesis title *",
+                                    hint: "Describe Text",
+                                    controllerInstance: TextEditingController(),
+                                  ),
+                                ),
+                                SizedBox(width: context.width * 0.01),
+                                Expanded(
+                                  child: GetBuilder<AcademicController>(
+                                    builder: (controller) {
+                                      return CustomDropdownWidget(
+                                        width: context.width,
+                                        controller: controller,
+                                        label: 'Field of Study',
+                                        dropdownId: 'Field of Study',
+                                        title: controller.title,
+                                        titleList: controller.academicLevels,
+                                      );
+                                    },
+                                  ),
+                                ),
+                              ],
                             ),
+                            SizedBox(height: context.height * 0.01),
+                            Row(
+                              children: [
+                                Expanded(
+                                  child: CustomFieldsWidget(
+                                    width: context.width,
+                                    label: "GPA *",
+                                    hint: "Describe Text",
+                                    controllerInstance: TextEditingController(),
+                                  ),
+                                ),
+                                SizedBox(width: context.width * 0.01),
+                                Expanded(
+                                  child: GetBuilder<AcademicController>(
+                                    builder: (controller) {
+                                      return CustomDropdownWidget(
+                                        width: context.width,
+                                        controller: controller,
+                                        label: 'University Type *',
+                                        dropdownId: 'University Type',
+                                        title: controller.titleUniversity,
+                                        titleList: controller.universityList,
+                                      );
+                                    },
+                                  ),
+                                ),
+                              ],
+                            ),
+                            SizedBox(height: context.height * 0.01),
+                            CustomFieldsWidget(
+                              width: context.width,
+                              label: "City *",
+                              hint: "Qazvin, Tehran, etc.",
+                              controllerInstance: TextEditingController(),
+                            ),
+                            SizedBox(height: context.height * 0.01),
+                            CustomFieldsWidget(
+                              controllerInstance: TextEditingController(),
+                              vertical: 8.0,
+                              label: 'Description *',
+                              hint: "Description",
+                              width: context.width,
+                              height: context.height * 0.10,
+                              maxLines: 6,
+                            ),
+                            SizedBox(height: context.height * 0.01),
                           ],
-                        ),
-                        SizedBox(height: 8.0),
-                        CustomFieldsWidget(
-                          width: context.width,
-                          label: 'Description and Achievements *',
-                          hint: 'Not Perfer To Say',
-                          controllerInstance: TextEditingController(),
-                        ),
-                        SizedBox(height: 8.0),
-                        CustomFieldsWidget(
-                          controllerInstance: TextEditingController(),
-                          label: 'Description *',
-                          hint: 'Describe Text',
-                          width: context.width,
-                          maxLines: 2,
-                          height: 64.0,
-                        ),
-                      ],
-                    ).paddingSymmetric(horizontal: 8.0, vertical: 12.0),
-                  ).marginOnly(left: 16.0, right: 16.0, bottom: 8),
-                ],
-              ),
+                        ).paddingAll(8.0),
+                      ).paddingSymmetric(horizontal: 16.0),
+                    ],
+                  ),
+                ),
+              ],
             ),
           ),
-          AnimatedPositioned(
-            duration: Duration(milliseconds: 1200),
-            curve: Curves.ease,
+          // Floating Action Button ثابت
+          Positioned(
             bottom: 0.0,
             right: 16.0,
             child: FloatingActionButton(
@@ -262,7 +245,7 @@ class AddJobExperience extends StatelessWidget {
               backgroundColor: AppThemeColors.editeFabColor,
               shape: StadiumBorder(),
               onPressed: () {
-                navigationController.navToJobExperience();
+                navigationController.navToAchievement();
               },
               child: Image.asset("assets/Vector.png", width: 24, height: 24),
             ),

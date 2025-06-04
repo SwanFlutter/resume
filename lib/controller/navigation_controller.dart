@@ -5,6 +5,7 @@ import 'package:resume/screen/dashboard_page.dart';
 import 'package:resume/screen/home.dart';
 import 'package:resume/screen/jobs_page.dart';
 import 'package:resume/screen/resume/academic/academic_history.dart';
+import 'package:resume/screen/resume/academic/academic_history_add.dart';
 import 'package:resume/screen/resume/achivement/achivement.dart';
 import 'package:resume/screen/resume/achivement/add_new_achivement.dart';
 import 'package:resume/screen/resume/courses/courses.dart';
@@ -51,6 +52,8 @@ class NavigationController extends GetXController {
     AddJobExperience(), // 17
     // achivement
     AddNewAchivement(), // 18
+    // academic history
+    AcademicHistoryAdd(), // 19
   ];
 
   Widget get currentPage => _pages[_currentIndex.value];
@@ -148,6 +151,10 @@ class NavigationController extends GetXController {
 
   void navToAddNewAchivement() {
     changePage(18);
+  }
+
+  void navToAcademicHistoryAdd() {
+    changePage(19);
   }
 
   /* void navToTestProgress() {

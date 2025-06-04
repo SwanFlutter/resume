@@ -3,6 +3,7 @@
 import 'package:anim_search_bar/anim_search_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get_x_master/get_x_master.dart';
+import 'package:resume/config/constant.dart';
 import 'package:resume/config/extentions/extension_on_flutter.dart';
 //import 'package:get_x_master/get_x_master.dart';
 
@@ -22,10 +23,7 @@ class LogoWidget extends StatelessWidget {
         gradient: LinearGradient(
           begin: Alignment.topRight,
           end: Alignment.bottomLeft,
-          colors: [
-            Color.fromRGBO(254, 222, 230, 0.8),
-            Color.fromRGBO(220, 240, 249, 0.8),
-          ],
+          colors: logoWidgetColor,
           stops: [0.2883, 0.8557],
         ),
       ),

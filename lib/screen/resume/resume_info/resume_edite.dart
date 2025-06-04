@@ -5,162 +5,328 @@ import 'package:resume/config/constant.dart';
 import 'package:resume/controller/navigation_controller.dart';
 import 'package:resume/controller/resume_controller.dart';
 import 'package:resume/widgets/global/appbar_widget.dart';
+import 'package:resume/widgets/global/card_box.dart';
+import 'package:resume/widgets/global/custom_dropdown_widget.dart';
 import 'package:resume/widgets/global/custom_fields_widget.dart';
 import 'package:resume/widgets/global/logo_widget.dart';
-import 'package:resume/widgets/resume/date_text_field_widget.dart';
-import 'package:resume/widgets/resume/descriptions_edite_info_widget.dart';
-import 'package:resume/widgets/resume/gender_feild_widget.dart';
+import 'package:resume/widgets/resume/courses/date_text_field_cours_widget.dart';
 
 class ResumeEdite extends StatelessWidget {
   const ResumeEdite({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: context.width,
-      height: context.height,
-      child: Stack(
+    return Scaffold(
+      body: Column(
         children: [
-          // محتوای اصلی صفحه
-          SingleChildScrollView(
-            padding: EdgeInsets.only(bottom: 100), // فضای کافی برای FAB
-            child: Column(
-              children: [
-                LogoWidget(),
-                AppBarWidget(
-                  title: "Resume Edite",
-                  onPressed: () {
-                    final navigationController = NavigationController.to;
-                    // اگر در صفحات فرعی Resume هستیم، برگرد به Resume Page
-                    if (navigationController.currentIndex >= 6 &&
-                        navigationController.currentIndex <= 12) {
-                      navigationController
-                          .navToResumeInfo(); // برگشت به Resume Page
-                    } else {
-                      // در غیر این صورت از Get.back استفاده کن
-                      Get.back();
-                    }
-                  },
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Avatar.profile(
-                      text: "Sajjad",
-                      radius: 40,
-                      randomColor: false,
-                      randomGradient: true,
-                      backgroundColorCamera: Color.fromRGBO(30, 51, 99, 1),
-                      icon: Icons.camera,
-                      useMaterialColorForGradient: true,
-                      iconColor: Colors.white,
-                    ),
-                  ],
-                ),
-                SizedBox(height: 10.0),
-                Container(
-                  width: 288,
-                  height: 289,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(12.0),
-                    color: context.theme.colorScheme.onPrimary,
-                    boxShadow: [
-                      BoxShadow(
-                        offset: Offset(0, 1),
-                        blurRadius: 3,
+          // Non-scrollable content
+          const LogoWidget(),
+          AppBarWidget(
+            title: "Resume Edit",
+            onPressed: () {
+              final navigationController = NavigationController.to;
+              if (navigationController.currentIndex >= 6 &&
+                  navigationController.currentIndex <= 12) {
+                navigationController.navToResumeInfo();
+              } else {
+                Get.back();
+              }
+            },
+          ),
 
-                        blurStyle: BlurStyle.normal,
-                        color: Color.fromRGBO(8, 14, 28, 0.2),
-                      ),
-                    ],
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "Personal Information",
-                        style: TextStyle(
-                          fontSize: 14.0,
-                          fontWeight: FontWeight.w400,
+          // Scrollable content
+          Expanded(
+            child: SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                child: Column(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Avatar.profile(
+                          text: "Sajjad",
+                          radius: MediaQuery.of(context).size.height * 0.07,
+                          randomColor: false,
+                          randomGradient: true,
+                          backgroundColorCamera: const Color.fromRGBO(
+                            30,
+                            51,
+                            99,
+                            1,
+                          ),
+                          icon: Icons.camera,
+                          useMaterialColorForGradient: true,
+                          iconColor: Colors.white,
                         ),
-                      ).paddingOnly(top: 10),
-                      SizedBox(height: 5),
-                      GetBuilder<ResumeController>(
-                        builder: (controller) {
-                          return Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Wrap(
-                                spacing: 5,
-                                runSpacing: 10,
+                      ],
+                    ),
+                    SizedBox(height: context.height * 0.01),
+                    // box Personal Information
+                    CardBox(
+                      width: context.width,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Text(
+                            "Personal Information",
+                            style: TextStyleHelper.title14W600RegularOpenSans,
+                          ),
+                          const SizedBox(height: 10),
+                          GetBuilder<ResumeController>(
+                            builder: (controller) {
+                              return Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
+                                  Row(
                                     children: [
-                                      GenderFeildWidget(
-                                        controller: controller,
-                                        label: 'Gender *',
+                                      Expanded(
+                                        child: CustomDropdownWidget(
+                                          width: context.width,
+                                          controller: controller,
+                                          label: "Gender *",
+                                          dropdownId: 'Gender',
+                                          title: controller.gender,
+                                          titleList: controller.genderList,
+                                          height: context.height * 0.045,
+                                        ),
+                                      ),
+                                      const SizedBox(width: 10),
+                                      Expanded(
+                                        child: CustomFieldsWidget(
+                                          width: context.width,
+                                          label: 'Military Status *',
+                                          hint: 'Describe Text',
+                                          controllerInstance: controller.text1,
+                                        ),
                                       ),
                                     ],
                                   ),
-                                  CustomFieldsWidget(
-                                    label: 'MilitaryStatusWidget *',
-                                    controllerInstance: controller.text1,
-                                    hint: 'Describe Text',
+                                  const SizedBox(height: 10),
+                                  Row(
+                                    children: [
+                                      Expanded(
+                                        child: CupertioDateField(
+                                          hint: "Edit Date",
+                                          label: 'Date of Birth *',
+                                        ),
+                                      ),
+                                      const SizedBox(width: 10),
+                                      Expanded(
+                                        child: CustomFieldsWidget(
+                                          width: context.width,
+                                          label: 'Marital Status *',
+                                          hint: 'Describe Text',
+                                          controllerInstance: controller.text1,
+                                        ),
+                                      ),
+                                    ],
                                   ),
-
-                                  // RegularTextFieldWidget
-                                  DateTextFieldWidget(
-                                    controller: controller,
-                                    label: 'Date Of Birth *',
-                                  ),
-
+                                  const SizedBox(height: 10),
                                   CustomFieldsWidget(
-                                    label: 'Marital Status *',
-                                    controllerInstance: controller.text3,
-                                    hint: 'Describe Text',
+                                    label: "Descriptions",
+                                    controllerInstance: controller.description,
+                                    width: context.width,
+                                    hint: "Write your description here...",
+                                    height: context.height * 0.1,
+                                    maxLines: 5,
                                   ),
                                 ],
-                              ),
-                              SizedBox(height: 4),
-                              Text(
-                                "Descriptions",
-                                style:
-                                    TextStyleHelper.title10W700RegularOpenSans,
-                              ).paddingOnly(top: 8.0),
-                              SizedBox(height: 4),
-                              DescriptionsEditeInfoWidget(
-                                controller: controller,
-                                hint: "Write your description here...",
-                              ),
-                            ],
-                          );
-                        },
-                      ),
-                    ],
-                  ).paddingOnly(left: 5.0, right: 10.0),
+                              );
+                            },
+                          ),
+                        ],
+                      ).paddingAll(8.0),
+                    ),
+                    SizedBox(height: context.height * 0.01),
+
+                    // box Contact Information
+                    CardBox(
+                      width: context.width,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Text(
+                            "Contact Information",
+                            style: TextStyleHelper.title14W600RegularOpenSans,
+                          ),
+                          const SizedBox(height: 10),
+                          GetBuilder<ResumeController>(
+                            builder: (controller) {
+                              return Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Row(
+                                    children: [
+                                      Expanded(
+                                        child: CustomFieldsWidget(
+                                          width: context.width,
+                                          label: 'First Name *',
+                                          hint: 'Eva',
+                                          controllerInstance: controller.text1,
+                                        ),
+                                      ),
+                                      const SizedBox(width: 10),
+                                      Expanded(
+                                        child: CustomFieldsWidget(
+                                          width: context.width,
+                                          label: 'Last Name *',
+                                          hint: 'Robbins',
+                                          controllerInstance: controller.text1,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  const SizedBox(height: 10),
+                                  Row(
+                                    children: [
+                                      Expanded(
+                                        child: CustomFieldsWidget(
+                                          width: context.width,
+                                          label: 'National Code *',
+                                          hint: '32563212565',
+                                          controllerInstance: controller.text1,
+                                        ),
+                                      ),
+                                      const SizedBox(width: 10),
+                                      Expanded(
+                                        child: CustomFieldsWidget(
+                                          width: context.width,
+                                          label: 'Nationality *',
+                                          hint: 'Iranian',
+                                          controllerInstance: controller.text1,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              );
+                            },
+                          ),
+                        ],
+                      ).paddingAll(8.0),
+                    ),
+                    SizedBox(height: context.height * 0.01),
+                    // box Job Preferences
+                    CardBox(
+                      width: context.width,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Text(
+                            "Job Preferences",
+                            style: TextStyleHelper.title14W600RegularOpenSans,
+                          ),
+                          const SizedBox(height: 10),
+                          GetBuilder<ResumeController>(
+                            builder: (controller) {
+                              return Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Row(
+                                    children: [
+                                      Expanded(
+                                        child: CustomFieldsWidget(
+                                          width: context.width,
+                                          label: 'Working Category *',
+                                          hint: 'Manager',
+                                          controllerInstance: controller.text1,
+                                        ),
+                                      ),
+                                      const SizedBox(width: 10),
+                                      Expanded(
+                                        child: CustomFieldsWidget(
+                                          width: context.width,
+                                          label: 'Minimal Salary *',
+                                          hint: '5000000',
+                                          controllerInstance: controller.text1,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  const SizedBox(height: 10),
+                                  CustomFieldsWidget(
+                                    width: context.width,
+                                    label: 'Orgianizatiolonal *',
+                                    hint: 'Category',
+                                    controllerInstance: controller.text1,
+                                  ),
+                                ],
+                              );
+                            },
+                          ),
+                        ],
+                      ).paddingAll(8.0),
+                    ),
+                    // box addreses
+                    CardBox(
+                      width: context.width,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Text(
+                            "Addreses",
+                            style: TextStyleHelper.title14W600RegularOpenSans,
+                          ),
+                          const SizedBox(height: 10),
+                          GetBuilder<ResumeController>(
+                            builder: (controller) {
+                              return Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Row(
+                                    children: [
+                                      Expanded(
+                                        child: CustomFieldsWidget(
+                                          width: context.width,
+                                          label: 'Country *',
+                                          hint: 'Iran',
+                                          controllerInstance: controller.text1,
+                                        ),
+                                      ),
+                                      const SizedBox(width: 10),
+                                      Expanded(
+                                        child: CustomFieldsWidget(
+                                          width: context.width,
+                                          label: 'City *',
+                                          hint: 'Qazvin',
+                                          controllerInstance: controller.text1,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  const SizedBox(height: 10),
+                                  CustomFieldsWidget(
+                                    width: context.width,
+                                    label: 'Addreses *',
+                                    hint: 'Address',
+                                    controllerInstance: controller.text1,
+                                    height: context.height * 0.045,
+                                  ),
+                                ],
+                              );
+                            },
+                          ),
+                        ],
+                      ).paddingAll(8.0),
+                    ),
+                    SizedBox(height: context.height * 0.2),
+                  ],
                 ),
-                SizedBox(height: 20.0), // فضای اضافی در انتها
-              ],
-            ),
-          ),
-          // FloatingActionButton شناور در گوشه
-          Positioned(
-            bottom: 15, // فاصله از پایین (بالای bottom navigation)
-            right: 16, // فاصله از راست
-            child: FloatingActionButton(
-              onPressed: () {},
-              backgroundColor: AppThemeColors.editeFabColor,
-              shape: StadiumBorder(),
-              child: Image.asset(
-                "assets/Vector.png",
-                width: 24.0,
-                height: 24.0,
               ),
             ),
           ),
         ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        backgroundColor: AppThemeColors.editeFabColor,
+        shape: const StadiumBorder(),
+        child: Image.asset("assets/Vector.png", width: 24.0, height: 24.0),
       ),
     );
   }

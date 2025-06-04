@@ -14,7 +14,7 @@ class CustomFieldsWidget extends StatelessWidget {
   final IconData? customPrefixIcon;
   final Color? prefixIconColor;
   final double? prefixIconSize;
-
+  final double vertical;
   const CustomFieldsWidget({
     super.key,
     required this.label,
@@ -24,6 +24,7 @@ class CustomFieldsWidget extends StatelessWidget {
     this.height,
     this.maxLines = 3,
     this.prefixIcon = false,
+    this.vertical = 0.0,
     this.customPrefixIcon,
     this.prefixIconColor,
     this.prefixIconSize,
@@ -53,6 +54,10 @@ class CustomFieldsWidget extends StatelessWidget {
               colors: backgroudColorFeild,
             ),
             borderRadius: BorderRadius.circular(4.0),
+            border: Border.all(
+              color: Color.fromRGBO(220, 240, 249, 0.4),
+              width: 1.0,
+            ),
           ),
           child: TextField(
             maxLines: maxLines,
@@ -65,7 +70,7 @@ class CustomFieldsWidget extends StatelessWidget {
             decoration: InputDecoration(
               contentPadding: EdgeInsets.symmetric(
                 horizontal: 8.0,
-                vertical: 0.0,
+                vertical: vertical,
               ),
               hintText: hint,
               hintStyle: TextStyleHelper.label10W400RegularOpenSans.copyWith(

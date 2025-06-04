@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get_x_master/get_x_master.dart';
 import 'package:resume/controller/home_controller.dart';
 import 'package:resume/controller/navigation_controller.dart';
-import 'package:resume/widgets/home/card_widget.dart';
+import 'package:resume/widgets/resume/resume/card_widget.dart';
 
 class GridCardWidget extends StatelessWidget {
   const GridCardWidget({super.key});

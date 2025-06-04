@@ -299,3 +299,79 @@ class _HardSkillsScreenState extends State<HardSkillsScreen> {
     );
   }
 }
+
+class SkillsPage extends StatelessWidget {
+  const SkillsPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text('HR Link - Hard Skills')),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SectionTitle(title: 'Skills'),
+            TagRow(tags: ['Languages', 'Office', 'Natural resource jobs']),
+
+            SectionTitle(title: 'Industrial'),
+            TagRow(tags: ['Software', 'Technology', 'Office']),
+
+            SectionTitle(title: 'Field'),
+            TagRow(tags: ['Technology', 'Software', 'Office']),
+
+            Spacer(),
+            Align(
+              alignment: Alignment.bottomRight,
+              child: FloatingActionButton(
+                backgroundColor: Colors.red,
+                onPressed: () {},
+                child: Icon(Icons.check),
+              ),
+            ),
+          ],
+        ),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        items: [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.dashboard),
+            label: 'Dashboard',
+          ),
+          BottomNavigationBarItem(icon: Icon(Icons.article), label: 'Resume'),
+          BottomNavigationBarItem(icon: Icon(Icons.work), label: 'Jobs'),
+        ],
+      ),
+    );
+  }
+}
+
+class SectionTitle extends StatelessWidget {
+  final String title;
+  const SectionTitle({super.key, required this.title});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 8.0),
+      child: Text(
+        title,
+        style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+      ),
+    );
+  }
+}
+
+class TagRow extends StatelessWidget {
+  final List<String> tags;
+  const TagRow({super.key, required this.tags});
+
+  @override
+  Widget build(BuildContext context) {
+    return Wrap(
+      spacing: 8.0,
+      children: tags.map((tag) => Chip(label: Text(tag))).toList(),
+    );
+  }
+}

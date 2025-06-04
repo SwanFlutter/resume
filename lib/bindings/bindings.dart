@@ -1,4 +1,5 @@
 import 'package:get_x_master/get_x_master.dart';
+import 'package:resume/controller/academic_controller.dart';
 import 'package:resume/controller/bottom_navigation_controller.dart';
 import 'package:resume/controller/courses_controller.dart';
 import 'package:resume/controller/experience_controller.dart';
@@ -15,5 +16,6 @@ class MyBindings implements Bindings {
     Get.smartLazyPut(() => ResumeController());
     Get.smartLazyPut(() => CoursesController());
     Get.smartLazyPut(() => ExperienceController());
+    Get.smartLazyPut(() => AcademicController());
   }
 }

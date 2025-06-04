@@ -1,12 +1,64 @@
 import 'package:flutter/material.dart';
 import 'package:get_x_master/get_x_master.dart';
 
+const Color resumeCardColorBoeder = Color.fromRGBO(253, 27, 81, 0.2);
+const Color resumeCardColorBoederDark = Color.fromRGBO(253, 27, 81, 0.2);
+
+const Color iconColors = Colors.black;
+const Color iconColorsDark = Colors.white;
+
+const BoxShadow resumeBoxShadow = BoxShadow(
+  color: Color.fromRGBO(8, 14, 28, 0.25),
+  spreadRadius: 1,
+  blurRadius: 4,
+  offset: Offset(0, 1.25),
+);
+
+const BoxShadow resumeBoxShadowDark = BoxShadow(
+  color: Color.fromRGBO(21, 36, 70, 0.5),
+  spreadRadius: 1,
+  blurRadius: 4,
+  offset: Offset(0, 1.25),
+);
+
+const List<Color> logoWidgetColor = [
+  Color.fromRGBO(254, 222, 230, 0.8),
+  Color.fromRGBO(220, 240, 249, 0.8),
+];
+
+const List<Color> logoWidgetColorDark = [
+  Color.fromRGBO(36, 3, 1, 1),
+  Color.fromRGBO(1, 22, 30, 1),
+];
+
+const List<Color> resumeCardColor = [
+  Colors.white,
+  Color.fromRGBO(254, 222, 230, 1),
+];
+
+const List<Color> resumehCardColorDark = [
+  Color.fromRGBO(36, 3, 1, 1),
+  Color.fromRGBO(3, 49, 52, 1),
+];
+
 const List<Color> backgroundColors = [
   Color(0xFFFEDEE6),
   Color.fromRGBO(255, 255, 255, 0.6),
 ];
 
+const List<Color> backgroundColorsDark = [
+  Color.fromRGBO(36, 3, 1, 1),
+  Color.fromRGBO(1, 22, 30, 1),
+];
+
 const List<Color> backgroudColorFeild = [
+  Color.fromRGBO(251, 241, 239, 1),
+  Color.fromRGBO(252, 248, 248, 1),
+  Color.fromRGBO(249, 240, 240, 1),
+  Color.fromRGBO(252, 244, 243, 1),
+];
+
+const List<Color> backgroudColorFeildDark = [
   Color.fromRGBO(251, 241, 239, 1),
   Color.fromRGBO(252, 248, 248, 1),
   Color.fromRGBO(249, 240, 240, 1),
