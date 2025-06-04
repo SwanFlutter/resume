@@ -19,7 +19,7 @@ class CardWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final double cardWidth = context.width * 0.4; // عرض کارت 40% عرض صفحه
+    final double cardWidth = context.width * 0.4; 
     final double cardHeight =
         context.height * 0.12; // ارتفاع کارت 12% ارتفاع صفحه
     return Container(
