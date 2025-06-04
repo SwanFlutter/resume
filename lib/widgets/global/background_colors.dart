@@ -18,7 +18,11 @@ class BackgroundColors extends StatelessWidget {
           colors: backgroundColors,
         ),
       ),
-      child: child,
+      child: Stack(
+        children: [
+          Container(color: Color.fromRGBO(255, 255, 255, 10.6), child: child),
+        ],
+      ),
     );
   }
 }

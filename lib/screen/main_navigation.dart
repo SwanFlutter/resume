@@ -64,7 +64,6 @@ class _MyBottomMenuState extends State<MyBottomMenu> {
       margin: EdgeInsets.all(12.0),
       duration: 1.seconds,
       curve: Curves.easeInOut,
-
       height: _bottomNavController.isExpanded ? 161.0 : 63.0,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8.0),
@@ -91,7 +90,7 @@ class _MyBottomMenuState extends State<MyBottomMenu> {
         ],
       ),
       child: ClipRRect(
-        borderRadius: BorderRadius.circular(24.0),
+        borderRadius: BorderRadius.circular(12.0),
         child: AnimatedSwitcher(
           duration: 1.seconds,
           transitionBuilder: (Widget child, Animation<double> animation) {
@@ -116,13 +115,13 @@ class _MyBottomMenuState extends State<MyBottomMenu> {
       key: ValueKey('expanded'),
       physics: NeverScrollableScrollPhysics(),
       child: SizedBox(
-        height: context.height * 0.20,
+        height: context.height * 0.21,
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
             // Top row with Home and Exit
             SizedBox(
-              height: 40,
+              height: 32,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -181,9 +180,9 @@ class _MyBottomMenuState extends State<MyBottomMenu> {
             SizedBox(
               height: context.height * 0.06,
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  SizedBox(width: 18),
                   GestureDetector(
                     onTap: () {
                       _navigationController.navToCompany();
@@ -213,7 +212,7 @@ class _MyBottomMenuState extends State<MyBottomMenu> {
                       ],
                     ).paddingOnly(left: 0.0),
                   ),
-                  SizedBox(width: 25),
+                  //    SizedBox(width: 25),
                   GestureDetector(
                     onTap: () {
                       _navigationController.navigateToSettings();
@@ -241,10 +240,10 @@ class _MyBottomMenuState extends State<MyBottomMenu> {
                               ),
                         ),
                       ],
-                    ).paddingOnly(left: 18.0),
+                    ).paddingOnly(left: 0.0),
                   ),
-                  Text(""),
-                  Text(""),
+                  GestureDetector(child: Column(children: [Text("")])),
+                  GestureDetector(child: Column(children: [Text("")])),
                 ],
               ),
             ).paddingOnly(left: 0),

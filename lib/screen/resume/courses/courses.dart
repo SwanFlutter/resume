@@ -58,7 +58,7 @@ class Courses extends StatelessWidget {
           AnimatedPositioned(
             duration: Duration(seconds: 1),
             curve: Curves.ease,
-            bottom: bottomNavController.fabBottomPosition,
+            bottom: 0,
             right: 16.0,
             child: FloatingActionButton(
               backgroundColor: AppThemeColors.addFabColor,

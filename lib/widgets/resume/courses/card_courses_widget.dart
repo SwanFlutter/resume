@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get_x_master/get_x_master.dart';
 import 'package:resume/config/constant.dart';
+import 'package:resume/widgets/global/card_box.dart';
 
 class CardCoursesWidget extends StatelessWidget {
   final String title;
@@ -20,10 +21,7 @@ class CardCoursesWidget extends StatelessWidget {
   });
   @override
   Widget build(BuildContext context) {
-    return Card.outlined(
-      clipBehavior: Clip.antiAlias,
-      elevation: 2,
-      color: Colors.white,
+    return CardBox(
       child: Column(
         children: [
           Row(
@@ -33,7 +31,6 @@ class CardCoursesWidget extends StatelessWidget {
                   ? Container(
                       width: 8.0,
                       height: 8.0,
-
                       decoration: BoxDecoration(
                         color: Color.fromRGBO(19, 98, 52, 1),
                         shape: BoxShape.circle,
