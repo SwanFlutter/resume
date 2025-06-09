@@ -28,7 +28,7 @@ class CardBox extends StatelessWidget {
       height: height,
       width: width ?? double.infinity,
       decoration: BoxDecoration(
-        color: const Color.fromRGBO(255, 255, 255, 1),
+        color: context.theme.cardColor,
         borderRadius: BorderRadius.circular(8.0),
         boxShadow: boxShadow,
       ),

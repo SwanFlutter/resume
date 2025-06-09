@@ -1,25 +1,34 @@
 import 'package:flutter/material.dart';
-import 'package:get_x_master/get_x_master.dart';
-
-const Color resumeCardColorBoeder = Color.fromRGBO(253, 27, 81, 0.2);
-const Color resumeCardColorBoederDark = Color.fromRGBO(253, 27, 81, 0.2);
-
-const Color iconColors = Colors.black;
-const Color iconColorsDark = Colors.white;
-const Color iconColorsDark1 = Colors.white;
 
 const BoxShadow resumeBoxShadow = BoxShadow(
-  color: Color.fromRGBO(8, 14, 28, 0.25),
-  spreadRadius: 1,
+  color: Color.fromRGBO(8, 14, 28, 0.3),
+  spreadRadius: 0,
   blurRadius: 4,
   offset: Offset(0, 1.25),
+  blurStyle: BlurStyle.solid,
 );
 
 const BoxShadow resumeBoxShadowDark = BoxShadow(
-  color: Color.fromRGBO(21, 36, 70, 0.5),
-  spreadRadius: 1,
+  color: Color.fromRGBO(21, 36, 70, 1.0),
+  spreadRadius: 0,
   blurRadius: 4,
   offset: Offset(0, 1.25),
+  blurStyle: BlurStyle.solid,
+);
+
+const BoxShadow bottomNavbarBoxShadow = BoxShadow(
+  color: Color.fromRGBO(8, 14, 28, 0.3),
+  spreadRadius: 0,
+  blurRadius: 3,
+  offset: Offset(0, 1.0),
+  blurStyle: BlurStyle.solid,
+);
+const BoxShadow bottomNavbarBoxShadowDark = BoxShadow(
+  color: Color.fromRGBO(21, 36, 70, 1.0),
+  spreadRadius: 0,
+  blurRadius: 3,
+  offset: Offset(0, 1.0),
+  blurStyle: BlurStyle.solid,
 );
 
 const List<Color> logoWidgetColor = [
@@ -43,8 +52,11 @@ const List<Color> resumehCardColorDark = [
 ];
 
 const List<Color> backgroundColors = [
-  Color(0xFFFEDEE6),
-  Color.fromRGBO(255, 255, 255, 0.6),
+  Color.fromRGBO(255, 242, 245, 1),
+  Color.fromRGBO(255, 255, 255, 1),
+
+  /*Color(0xFFFEDEE6),
+  Color.fromRGBO(255, 255, 255, 0.6),*/
 ];
 
 const List<Color> backgroundColorsDark = [
@@ -83,9 +95,8 @@ class AppThemeColors {
 }
 
 // App Theme instance
-final appTheme = AppThemeColors();
 
-/// A helper class for managing text styles in the application
+/// TextStyle Helper integrated with theme colors
 class TextStyleHelper {
   static TextStyleHelper? _instance;
 
@@ -96,115 +107,204 @@ class TextStyleHelper {
     return _instance!;
   }
 
-  // Title Styles
-  // Medium text styles for titles and subtitles
-
-  static TextStyle get title20W400RegularOpenSans => TextStyle(
-    fontSize: 20.sp,
+  // Title Styles for Light Theme
+  static TextStyle get title20W400RegularOpenSans => const TextStyle(
+    fontSize: 20,
     fontWeight: FontWeight.w400,
     fontFamily: 'OpenSans',
     color: AppThemeColors.colorFF0407,
   );
 
-  static TextStyle get title14W400RegularOpenSans => TextStyle(
-    fontSize: 14.sp,
+  static TextStyle get title14W400RegularOpenSans => const TextStyle(
+    fontSize: 14,
     fontWeight: FontWeight.w400,
     fontFamily: 'OpenSans',
     color: AppThemeColors.colorFF0407,
   );
 
-  static TextStyle get title14W500RegularOpenSans => TextStyle(
-    fontSize: 14.sp,
+  static TextStyle get title14W500RegularOpenSans => const TextStyle(
+    fontSize: 14,
     fontWeight: FontWeight.w500,
     fontFamily: 'OpenSans',
     color: AppThemeColors.colorFF0407,
   );
 
-  static TextStyle get title14W600RegularOpenSans => TextStyle(
-    fontSize: 14.sp,
-    fontWeight: FontWeight.w500,
-    fontFamily: 'OpenSans',
-    color: AppThemeColors.colorFF0407,
-  );
-
-  static TextStyle get title10W700RegularOpenSans => TextStyle(
-    fontSize: 10.sp,
-    fontWeight: FontWeight.w700,
-    fontFamily: 'OpenSans',
-    color: AppThemeColors.colorFF0407,
-  );
-  // Body Styles
-  // Standard text styles for body content
-
-  static TextStyle get body10W400RegularOpenSans => TextStyle(
-    fontSize: 10.sp,
-    fontWeight: FontWeight.w400,
-    fontFamily: 'OpenSans',
-    color: AppThemeColors.colorFF0407,
-  );
-
-  static TextStyle get body12W400RegularOpenSans => TextStyle(
-    fontSize: 12.sp,
-    fontWeight: FontWeight.w400,
-    fontFamily: 'OpenSans',
-    color: Colors.black,
-  );
-
-  static TextStyle get body14W400RegularOpenSans => TextStyle(
-    fontSize: 14.sp,
-    fontWeight: FontWeight.w400,
-    fontFamily: 'OpenSans',
-    color: AppThemeColors.colorFF0407,
-  );
-
-  static TextStyle get body14W500MediumOpenSans => TextStyle(
-    fontSize: 14.sp,
-    fontWeight: FontWeight.w500,
-    fontFamily: 'OpenSans',
-    color: AppThemeColors.colorFF0407,
-  );
-
-  // Label Styles
-  // Small text styles for labels, captions, and hints
-
-  static TextStyle get label10W700BoldOpenSans => TextStyle(
-    fontSize: 10,
-    fontWeight: FontWeight.w700,
-    fontFamily: 'OpenSans',
-    color: AppThemeColors.colorFF0407,
-  );
-
-  static TextStyle get label10W400RegularOpenSans => TextStyle(
-    fontSize: 10,
-    fontWeight: FontWeight.w400,
-    fontFamily: 'OpenSans',
-    color: AppThemeColors.colorFF9999,
-  );
-
-  static TextStyle get label10W600SemiBoldOpenSans => TextStyle(
-    fontSize: 10,
+  static TextStyle get title14W600RegularOpenSans => const TextStyle(
+    fontSize: 14,
     fontWeight: FontWeight.w600,
     fontFamily: 'OpenSans',
     color: AppThemeColors.colorFF0407,
   );
 
-  static TextStyle get label8W400RegularOpenSans => TextStyle(
-    fontSize: 8,
-    fontWeight: FontWeight.w400,
+  static TextStyle get title10W700RegularOpenSans => const TextStyle(
+    fontSize: 10,
+    fontWeight: FontWeight.w700,
     fontFamily: 'OpenSans',
     color: AppThemeColors.colorFF0407,
   );
 
-  // CV Button Styles
-  static TextStyle get cvButtonLargeOpenSans => TextStyle(
+  // Dark Theme Title Styles
+  static TextStyle get title20W400RegularOpenSansDark => const TextStyle(
     fontSize: 20,
     fontWeight: FontWeight.w400,
     fontFamily: 'OpenSans',
     color: Colors.white,
   );
 
-  static TextStyle get cvButtonSmallOpenSans => TextStyle(
-    fontSize: 10.sp,
+  static TextStyle get title14W400RegularOpenSansDark => const TextStyle(
+    fontSize: 14,
+    fontWeight: FontWeight.w400,
+    fontFamily: 'OpenSans',
+    color: Colors.white,
+  );
+
+  static TextStyle get title14W500RegularOpenSansDark => const TextStyle(
+    fontSize: 14,
+    fontWeight: FontWeight.w500,
+    fontFamily: 'OpenSans',
+    color: Colors.white,
+  );
+
+  static TextStyle get title14W600RegularOpenSansDark => const TextStyle(
+    fontSize: 14,
+    fontWeight: FontWeight.w600,
+    fontFamily: 'OpenSans',
+    color: Colors.white,
+  );
+
+  static TextStyle get title10W700RegularOpenSansDark => const TextStyle(
+    fontSize: 10,
+    fontWeight: FontWeight.w700,
+    fontFamily: 'OpenSans',
+    color: Colors.white,
+  );
+
+  // Body Styles for Light Theme
+  static TextStyle get body10W400RegularOpenSans => const TextStyle(
+    fontSize: 10,
+    fontWeight: FontWeight.w400,
+    fontFamily: 'OpenSans',
+    color: AppThemeColors.colorFF0407,
+  );
+
+  static TextStyle get body12W400RegularOpenSans => const TextStyle(
+    fontSize: 12,
+    fontWeight: FontWeight.w400,
+    fontFamily: 'OpenSans',
+    color: Colors.black,
+  );
+
+  static TextStyle get body14W400RegularOpenSans => const TextStyle(
+    fontSize: 14,
+    fontWeight: FontWeight.w400,
+    fontFamily: 'OpenSans',
+    color: AppThemeColors.colorFF0407,
+  );
+
+  static TextStyle get body14W500MediumOpenSans => const TextStyle(
+    fontSize: 14,
+    fontWeight: FontWeight.w500,
+    fontFamily: 'OpenSans',
+    color: AppThemeColors.colorFF0407,
+  );
+
+  // Dark Theme Body Styles
+  static TextStyle get body10W400RegularOpenSansDark => const TextStyle(
+    fontSize: 10,
+    fontWeight: FontWeight.w400,
+    fontFamily: 'OpenSans',
+    color: Colors.white,
+  );
+
+  static TextStyle get body12W400RegularOpenSansDark => const TextStyle(
+    fontSize: 12,
+    fontWeight: FontWeight.w400,
+    fontFamily: 'OpenSans',
+    color: Colors.white,
+  );
+
+  static TextStyle get body14W400RegularOpenSansDark => const TextStyle(
+    fontSize: 14,
+    fontWeight: FontWeight.w400,
+    fontFamily: 'OpenSans',
+    color: Colors.white,
+  );
+
+  static TextStyle get body14W500MediumOpenSansDark => const TextStyle(
+    fontSize: 14,
+    fontWeight: FontWeight.w500,
+    fontFamily: 'OpenSans',
+    color: Colors.white,
+  );
+
+  // Label Styles
+  static TextStyle get label10W700BoldOpenSans => const TextStyle(
+    fontSize: 10,
+    fontWeight: FontWeight.w700,
+    fontFamily: 'OpenSans',
+    color: AppThemeColors.colorFF0407,
+  );
+
+  static TextStyle get label10W400RegularOpenSans => const TextStyle(
+    fontSize: 10,
+    fontWeight: FontWeight.w400,
+    fontFamily: 'OpenSans',
+    color: AppThemeColors.colorFF9999,
+  );
+
+  static TextStyle get label10W600SemiBoldOpenSans => const TextStyle(
+    fontSize: 10,
+    fontWeight: FontWeight.w600,
+    fontFamily: 'OpenSans',
+    color: AppThemeColors.colorFF0407,
+  );
+
+  static TextStyle get label8W400RegularOpenSans => const TextStyle(
+    fontSize: 8,
+    fontWeight: FontWeight.w400,
+    fontFamily: 'OpenSans',
+    color: AppThemeColors.colorFF0407,
+  );
+
+  // Dark Theme Label Styles
+  static TextStyle get label10W700BoldOpenSansDark => const TextStyle(
+    fontSize: 10,
+    fontWeight: FontWeight.w700,
+    fontFamily: 'OpenSans',
+    color: Colors.white,
+  );
+
+  static TextStyle get label10W400RegularOpenSansDark => const TextStyle(
+    fontSize: 10,
+    fontWeight: FontWeight.w400,
+    fontFamily: 'OpenSans',
+    color: AppThemeColors.colorFF9999, // No change for hint color
+  );
+
+  static TextStyle get label10W600SemiBoldOpenSansDark => const TextStyle(
+    fontSize: 10,
+    fontWeight: FontWeight.w600,
+    fontFamily: 'OpenSans',
+    color: Colors.white,
+  );
+
+  static TextStyle get label8W400RegularOpenSansDark => const TextStyle(
+    fontSize: 8,
+    fontWeight: FontWeight.w400,
+    fontFamily: 'OpenSans',
+    color: Colors.white,
+  );
+
+  // CV Button Styles
+  static TextStyle get cvButtonLargeOpenSans => const TextStyle(
+    fontSize: 20,
+    fontWeight: FontWeight.w400,
+    fontFamily: 'OpenSans',
+    color: Colors.white,
+  );
+
+  static TextStyle get cvButtonSmallOpenSans => const TextStyle(
+    fontSize: 10,
     fontWeight: FontWeight.w400,
     fontFamily: 'OpenSans',
     color: Colors.white,

@@ -7,9 +7,12 @@ import 'package:resume/config/constant.dart';
 import 'package:resume/config/extentions/extension_on_flutter.dart';
 import 'package:resume/controller/navigation_controller.dart';
 import 'package:resume/screen/resume_page.dart';
+import 'package:resume/themes/theme.dart'
+    hide backgroudColorFeild, AppThemeColors;
 import 'package:resume/widgets/global/appbar_widget.dart';
 import 'package:resume/widgets/global/card_box.dart';
 import 'package:resume/widgets/global/logo_widget.dart';
+import 'package:theme_master/theme_master.dart';
 
 class ResumehInfo extends StatefulWidget {
   const ResumehInfo({super.key});
@@ -23,7 +26,9 @@ class _ResumehInfoState extends State<ResumehInfo> {
     return SafeArea(
       child: Stack(
         children: [
-          SingleChildScrollView(
+          SizedBox(
+            width: context.width,
+            height: context.height,
             child: Column(
               children: [
                 LogoWidget(),
@@ -39,170 +44,205 @@ class _ResumehInfoState extends State<ResumehInfo> {
                     }
                   },
                 ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                  child: Column(
+
+                Expanded(
+                  child: ListView(
                     children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Avatar(
-                            text: "Sajjad",
-                            radius: 40,
-                            randomColor: false,
-                            randomGradient: true,
-                          ),
-                        ],
-                      ),
-                      SizedBox(height: 10.0),
-                      CardBox(
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 16.0),
                         child: Column(
                           children: [
                             Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Text(
-                                  "Personal Information",
-                                  style: TextStyleHelper
-                                      .title14W400RegularOpenSans,
+                                Avatar(
+                                  text: "Sajjad",
+                                  radius: 35,
+                                  randomColor: false,
+                                  randomGradient: true,
                                 ),
                               ],
                             ),
+                            SizedBox(height: 10.0),
+                            CardBox(
+                              child: Column(
+                                children: [
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        "Personal Information",
+                                        style:
+                                            context.theme.brightness ==
+                                                Brightness.dark
+                                            ? TextStyleHelper
+                                                  .title14W400RegularOpenSansDark
+                                            : TextStyleHelper
+                                                  .title14W400RegularOpenSans,
+                                      ),
+                                    ],
+                                  ),
+                                  SizedBox(height: context.height * 0.01),
+                                  RowCard(
+                                    imageIcon:
+                                        "assets/reuomeh/info/profile-tick.svg",
+                                    text: 'Female',
+                                    imageIcon1:
+                                        "assets/reuomeh/info/shield.svg",
+                                    text1: 'None',
+                                  ),
+                                  SizedBox(height: context.height * 0.01),
+                                  RowCard(
+                                    imageIcon:
+                                        "assets/reuomeh/info/calendar-2.svg",
+                                    text: '2000/19/10',
+                                    imageIcon1: "assets/reuomeh/info/heart.svg",
+                                    text1: 'Single',
+                                  ),
+                                  SizedBox(height: context.height * 0.01),
+                                  DescriotionView(
+                                    width: context.width,
+                                    height: context.height * 0.14,
+                                  ),
+                                ],
+                              ).paddingAll(8.0),
+                            ).paddingSymmetric(horizontal: 16.0),
                             SizedBox(height: context.height * 0.01),
-                            RowCard(
-                              imageIcon: "assets/reuomeh/info/profile-tick.svg",
-                              text: 'Female',
-                              imageIcon1: "assets/reuomeh/info/calendar-2.svg",
-                              text1: '2000/19/10',
-                            ),
-                            SizedBox(height: context.height * 0.01),
-                            RowCard(
-                              imageIcon: "assets/reuomeh/info/calendar-2.svg",
-                              text: '2000/19/10',
-                              imageIcon1: "assets/reuomeh/info/shield.svg",
-                              text1: 'None',
-                            ),
-                            SizedBox(height: context.height * 0.01),
-                            DescriotionView(
-                              width: context.width,
-                              height: context.height * 0.14,
-                            ),
-                          ],
-                        ).paddingAll(8.0),
-                      ),
-                    ],
-                  ),
-                ),
-                SizedBox(height: context.height * 0.01),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                  child: CardBox(
-                    width: context.width,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Text(
-                          "Contact Information",
-                          style: TextStyleHelper.title14W400RegularOpenSans,
-                        ).paddingOnly(top: 8.0),
-                        SizedBox(height: context.height * 0.01),
-                        RowCard(
-                          imageIcon: "assets/reuomeh/info/gps-slash.svg",
-                          text: "4311469391",
-                          imageIcon1: "assets/reuomeh/info/flag.svg",
-                          text1: "Iran",
-                        ),
-                        SizedBox(height: context.height * 0.01),
-                        RowCard(
-                          imageIcon: "assets/reuomeh/info/profile.svg",
-                          text: "Eva",
-                          imageIcon1: "assets/reuomeh/info/profile.svg",
-                          text1: "Rabinson",
-                        ),
-                      ],
-                    ).paddingAll(8.0).paddingOnly(bottom: 8.0),
-                  ),
-                ),
-                SizedBox(height: context.height * 0.01),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                  child: CardBox(
-                    width: context.width,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Row(
-                          children: [
-                            Expanded(
-                              child: CardInfoView(
-                                icon: Icons.language,
-                                text: "Iran",
-                                height: context.height * 0.045,
+                            Padding(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 16.0,
+                              ),
+                              child: CardBox(
+                                width: context.width,
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    Text(
+                                      "Contact Information",
+                                      style:
+                                          context.theme.brightness ==
+                                              Brightness.dark
+                                          ? TextStyleHelper
+                                                .title14W400RegularOpenSansDark
+                                          : TextStyleHelper
+                                                .title14W400RegularOpenSans,
+                                    ).paddingOnly(top: 8.0),
+                                    SizedBox(height: context.height * 0.01),
+                                    RowCard(
+                                      imageIcon:
+                                          "assets/reuomeh/info/gps-slash.svg",
+                                      text: "4311469391",
+                                      imageIcon1:
+                                          "assets/reuomeh/info/flag.svg",
+                                      text1: "Iran",
+                                    ),
+                                    SizedBox(height: context.height * 0.01),
+                                    RowCard(
+                                      imageIcon:
+                                          "assets/reuomeh/info/profile.svg",
+                                      text: "Eva",
+                                      imageIcon1:
+                                          "assets/reuomeh/info/profile.svg",
+                                      text1: "Rabinson",
+                                    ),
+                                  ],
+                                ).paddingAll(8.0).paddingOnly(bottom: 8.0),
                               ),
                             ),
-                            SizedBox(width: context.width * 0.01),
-                            Expanded(
-                              child: CardInfoView(
-                                icon: Icons.language,
-                                text: "Qazvin",
-                                height: context.height * 0.045,
+                            SizedBox(height: context.height * 0.01),
+                            Padding(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 16.0,
                               ),
-                            ),
-                          ],
-                        ),
-                        SizedBox(height: context.height * 0.01),
+                              child: CardBox(
+                                width: context.width,
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    Row(
+                                      children: [
+                                        Expanded(
+                                          child: CardInfoView(
+                                            icon: Icons.language,
+                                            text: "Iran",
+                                            height: context.height * 0.045,
+                                          ),
+                                        ),
+                                        SizedBox(width: context.width * 0.01),
+                                        Expanded(
+                                          child: CardInfoView(
+                                            icon: Icons.language,
+                                            text: "Qazvin",
+                                            height: context.height * 0.045,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    SizedBox(height: context.height * 0.01),
 
-                        CardInfoView(
-                          icon: Icons.language,
-                          text: "Sazman varzesh Qazvin",
-                          width: context.width * 0.9,
-                          height: context.height * 0.045,
+                                    CardInfoView(
+                                      icon: Icons.language,
+                                      text: "Sazman varzesh Qazvin",
+                                      width: context.width * 0.9,
+                                      height: context.height * 0.045,
+                                    ),
+                                  ],
+                                ).paddingAll(8.0).paddingOnly(bottom: 8.0),
+                              ),
+                            ),
+                            SizedBox(height: context.height * 0.01),
+                            // four
+                            CardBox(
+                              width: context.width,
+                              child: Column(
+                                children: [
+                                  RowCard1(
+                                    imageIcon:
+                                        "assets/reuomeh/info/profile.svg",
+                                    text: "Monimum salary",
+                                    price: "20000",
+                                  ),
+                                  SizedBox(height: context.height * 0.01),
+                                  RowCard1(
+                                    imageIcon:
+                                        "assets/reuomeh/info/profile.svg",
+                                    text: "Monimum salary",
+                                    price: "20000",
+                                  ),
+                                  SizedBox(height: context.height * 0.01),
+                                  RowCard1(
+                                    imageIcon:
+                                        "assets/reuomeh/info/profile.svg",
+                                    text: "Monimum salary",
+                                    price: "20000",
+                                  ),
+                                ],
+                              ).paddingAll(8.0),
+                            ).paddingSymmetric(horizontal: 16.0),
+                          ],
                         ),
-                      ],
-                    ).paddingAll(8.0).paddingOnly(bottom: 8.0),
+                      ),
+                      SizedBox(height: 50),
+                    ],
                   ),
                 ),
-                SizedBox(height: context.height * 0.01),
-                // four
-                CardBox(
-                  width: context.width,
-                  child: Column(
-                    children: [
-                      RowCard1(
-                        imageIcon: "assets/reuomeh/info/profile.svg",
-                        text: "Monimum salary",
-                        price: "20000",
-                      ),
-                      SizedBox(height: context.height * 0.01),
-                      RowCard1(
-                        imageIcon: "assets/reuomeh/info/profile.svg",
-                        text: "Monimum salary",
-                        price: "20000",
-                      ),
-                      SizedBox(height: context.height * 0.01),
-                      RowCard1(
-                        imageIcon: "assets/reuomeh/info/profile.svg",
-                        text: "Monimum salary",
-                        price: "20000",
-                      ),
-                    ],
-                  ).paddingAll(8.0),
-                ).paddingSymmetric(horizontal: 16.0),
               ],
             ),
           ),
+
           Positioned(
-            bottom: 0.0,
-            right: 16.0,
+            bottom: context.height * 0.115,
+            right: 22.0,
             child: FloatingActionButton(
               onPressed: () {
                 final navigationController = NavigationController.to;
                 navigationController.navToResumeEdite();
               },
               backgroundColor: AppThemeColors.addFabColor,
+              elevation: 0,
               shape: CircleBorder(),
               child: Image.asset("assets/edite.png"),
             ),
@@ -310,7 +350,7 @@ class DescriotionView extends StatelessWidget {
         children: [
           Text(
             "Descriptions",
-            style: TextStyleHelper.body14W500MediumOpenSans,
+            style: TextStyleHelper.label10W700BoldOpenSans,
           ).paddingOnly(top: 8.0),
           SizedBox(height: 4.0),
           Container(
@@ -356,19 +396,54 @@ class CardInfoView extends StatelessWidget {
       width: width,
       height: height,
       decoration: BoxDecoration(
+        border: Border.all(
+          color: context.getBorderColorByEnum(BorderColor.border2),
+        ),
         borderRadius: BorderRadius.circular(4),
-        gradient: LinearGradient(colors: backgroudColorFeild),
+        gradient: LinearGradient(
+          colors: context.theme.brightness == Brightness.dark
+              ? infoBoxColorDark
+              : backgroudColorFeild,
+        ),
       ),
       child: Row(
         children: [
           if (imageIcon != null)
             imageIcon!.endsWith('.svg')
-                ? SvgPicture.asset(imageIcon!, width: 16.0, height: 16.0)
-                : Image.asset(imageIcon!, width: 16.0, height: 16.0)
+                ? SvgPicture.asset(
+                    imageIcon!,
+                    width: 16.0,
+                    height: 16.0,
+                    colorFilter: ColorFilter.mode(
+                      context.theme.brightness == Brightness.dark
+                          ? Colors.white
+                          : AppThemeColors.titleFieldTextcolor,
+                      BlendMode.srcIn,
+                    ),
+                  )
+                : Image.asset(
+                    imageIcon!,
+                    width: 16.0,
+                    height: 16.0,
+                    color: context.theme.brightness == Brightness.dark
+                        ? Colors.white
+                        : AppThemeColors.titleFieldTextcolor,
+                  )
           else
-            Icon(icon, size: 14.0, color: AppThemeColors.titleFieldTextcolor),
+            Icon(
+              icon,
+              size: 14.0,
+              color: context.theme.brightness == Brightness.dark
+                  ? Colors.white
+                  : AppThemeColors.titleFieldTextcolor,
+            ),
           SizedBox(width: 2),
-          Text(text, style: TextStyleHelper.label10W600SemiBoldOpenSans),
+          Text(
+            text,
+            style: context.theme.brightness == Brightness.dark
+                ? TextStyleHelper.label10W600SemiBoldOpenSansDark
+                : TextStyleHelper.label10W600SemiBoldOpenSans,
+          ).paddingAll(5.0),
         ],
       ).paddingOnly(left: 5.0),
     );

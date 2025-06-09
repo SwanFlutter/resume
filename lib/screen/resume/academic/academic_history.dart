@@ -53,22 +53,26 @@ class AcademicHistory extends StatelessWidget {
               ],
             ),
           ),
-          AnimatedPositioned(
-            duration: Duration(milliseconds: 1200),
-            curve: Curves.ease,
-            bottom: 0.0,
-            right: 16.0,
-            child: FloatingActionButton(
-              elevation: 0,
-              backgroundColor: AppThemeColors.addFabColor,
-              shape: StadiumBorder(),
-              onPressed: () {
-                navigationController.navToAcademicHistoryAdd();
-              },
-              child: Image.asset(
-                "assets/isIconOnly.png",
-                width: 24,
-                height: 24,
+          Positioned(
+            bottom: 115.0,
+            right: 20,
+            child: AnimatedPositioned(
+              duration: Duration(milliseconds: 1200),
+              curve: Curves.ease,
+              bottom: 0.0,
+              right: 16.0,
+              child: FloatingActionButton(
+                elevation: 0,
+                backgroundColor: AppThemeColors.addFabColor,
+                shape: StadiumBorder(),
+                onPressed: () {
+                  navigationController.navToAcademicHistoryAdd();
+                },
+                child: Image.asset(
+                  "assets/isIconOnly.png",
+                  width: 24,
+                  height: 24,
+                ),
               ),
             ),
           ),

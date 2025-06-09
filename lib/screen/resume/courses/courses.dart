@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get_x_master/get_x_master.dart';
 import 'package:resume/config/constant.dart';
-import 'package:resume/controller/bottom_navigation_controller.dart';
 import 'package:resume/screen/resume_page.dart';
 import 'package:resume/widgets/global/appbar_widget.dart';
 import 'package:resume/widgets/global/logo_widget.dart';
@@ -12,8 +11,6 @@ class Courses extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final bottomNavController = BottomNavigationController.to;
-
     return SafeArea(
       child: Stack(
         children: [
@@ -48,30 +45,37 @@ class Courses extends StatelessWidget {
                         stateSchool: "Online Course",
                         timeSchool: "Feb 2024",
                         school: "Nahira.ir",
-                      );
+                      ).marginOnly(bottom: 8.0, left: 16.0, right: 16.0);
                     },
                   ),
                 ),
               ],
             ),
           ),
-          AnimatedPositioned(
-            duration: Duration(seconds: 1),
-            curve: Curves.ease,
-            bottom: 0,
-            right: 16.0,
-            child: FloatingActionButton(
-              backgroundColor: AppThemeColors.addFabColor,
-              shape: StadiumBorder(),
-              onPressed: () {
-                navigationController.navToCreateCourses();
-              },
-              child: Image.asset(
-                "assets/isIconOnly.png",
-                width: 24,
-                height: 24,
+          Stack(
+            children: [
+              Align(
+                alignment: Alignment.bottomRight,
+                child: AnimatedPositioned(
+                  duration: Duration(seconds: 1),
+                  curve: Curves.ease,
+                  bottom: 60,
+                  right: 16.0,
+                  child: FloatingActionButton(
+                    backgroundColor: AppThemeColors.addFabColor,
+                    shape: StadiumBorder(),
+                    onPressed: () {
+                      navigationController.navToCreateCourses();
+                    },
+                    child: Image.asset(
+                      "assets/isIconOnly.png",
+                      width: 24,
+                      height: 24,
+                    ),
+                  ),
+                ).paddingOnly(bottom: 110.0, right: 20.0),
               ),
-            ),
+            ],
           ),
         ],
       ),

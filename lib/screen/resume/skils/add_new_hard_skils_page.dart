@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get_x_master/get_x_master.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:resume/config/constant.dart';
 import 'package:resume/controller/bottom_navigation_controller.dart';
 import 'package:resume/screen/resume_page.dart';
@@ -116,11 +115,11 @@ class _AddNewHardSkillsPageState extends State<AddNewHardSkillsPage> {
       children: [
         Text(
           title,
-          style: GoogleFonts.poppins(
+          /*style: GoogleFonts.poppins(
             fontWeight: FontWeight.w500,
             fontSize: 16,
             color: Colors.black,
-          ),
+          ),*/
         ),
         const SizedBox(height: 8),
         if (tagsList != null)
@@ -253,7 +252,7 @@ class _AddNewHardSkillsPageState extends State<AddNewHardSkillsPage> {
     return Chip(
       label: Text(
         text,
-        style: GoogleFonts.poppins(color: Colors.white, fontSize: 14),
+        //style: GoogleFonts.poppins(color: Colors.white, fontSize: 14),
       ),
       backgroundColor: const Color(0xFF6C7A89),
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 2),

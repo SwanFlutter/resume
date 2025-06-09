@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get_x_master/get_x_master.dart';
 import 'package:resume/config/constant.dart';
 import 'package:resume/config/extentions/extension_on_flutter.dart';
+import 'package:theme_master/theme_master.dart';
 //import 'package:get_x_master/get_x_master.dart';
 
 class LogoWidget extends StatelessWidget {
@@ -18,12 +19,18 @@ class LogoWidget extends StatelessWidget {
     return Container(
       alignment: Alignment.center,
       width: context.width,
-      height: context.height * 0.08,
+      height: context.height * 0.07,
       decoration: BoxDecoration(
+        border: Border(
+          bottom: BorderSide(
+            color: Color.fromRGBO(204, 204, 204, 1),
+            width: 1.0,
+          ),
+        ),
         gradient: LinearGradient(
           begin: Alignment.topRight,
           end: Alignment.bottomLeft,
-          colors: logoWidgetColor,
+          colors: context.appBarGradientColors,
           stops: [0.2883, 0.8557],
         ),
       ),

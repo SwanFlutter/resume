@@ -14,24 +14,23 @@ class ResumePage extends StatelessWidget {
     return SafeArea(
       child: Stack(
         children: [
-          SingleChildScrollView(
-            child: SizedBox(
-              width: context.width,
-              height: context.height,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  LogoWidget(),
-                  AppBarWidget(
-                    title: "Resume Page",
-                    backBottom: true,
-                    imageIcon: "assets/reuomeh/personalcard.svg",
-                  ),
+          SizedBox(
+            width: context.width,
+            height: context.height,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                LogoWidget(),
+                AppBarWidget(
+                  title: "Resume Page",
+                  backBottom: true,
+                  imageIcon: "assets/reuomeh/personalcard.svg",
+                  showThemeToggle: true,
+                ),
 
-                  GridCardWidget(),
-                ],
-              ),
+                Expanded(child: GridCardWidget()),
+              ],
             ),
           ),
         ],
