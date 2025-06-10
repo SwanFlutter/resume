@@ -14,24 +14,50 @@ class ResumePage extends StatelessWidget {
     return SafeArea(
       child: Stack(
         children: [
-          SingleChildScrollView(
-            child: SizedBox(
-              width: context.width,
-              height: context.height,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  LogoWidget(),
-                  AppBarWidget(
-                    title: "Resume Page",
-                    backBottom: true,
-                    imageIcon: "assets/reuomeh/personalcard.svg",
-                  ),
+          SizedBox(
+            width: context.width,
+            height: context.height,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                LogoWidget(),
+                AppBarWidget(
+                  title: "Resume Page",
+                  backBottom: true,
+                  imageIcon: "assets/reuomeh/personalcard.svg",
+                  showThemeToggle: true,
+                ),
 
-                  GridCardWidget(),
-                ],
-              ),
+                Expanded(child: GridCardWidget()),
+
+                Positioned(
+                  bottom: context.height * 0.115,
+                  right: 16.0,
+                  child: AnimatedPositioned(
+                    duration: Duration(milliseconds: 1200),
+                    curve: Curves.ease,
+                    bottom: 0.0,
+                    right: 16.0,
+                    child: FloatingActionButton(
+                      elevation: 0,
+                      backgroundColor: context
+                          .theme
+                          .floatingActionButtonTheme
+                          .backgroundColor,
+                      shape: StadiumBorder(),
+                      onPressed: () {
+                        navigationController.navToAddJobExperience();
+                      },
+                      child: Image.asset(
+                        "assets/isIconOnly.png",
+                        width: 24,
+                        height: 24,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
         ],

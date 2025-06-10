@@ -40,25 +40,30 @@ class CardExperienceWidget extends StatelessWidget {
                   ),
                 ),
               ),
+
               SizedBox(width: 0.0),
-              Icon(Icons.school, size: 16.0),
-              SizedBox(width: 3.0),
               Text(
                 title,
-                style: TextStyle(
-                  fontSize: 12.0,
-                  fontWeight: FontWeight.w600,
-                  color: Color.fromRGBO(4, 7, 14, 1),
-                ),
+                style: context.theme.brightness == Brightness.dark
+                    ? TextStyleHelper.title14W600RegularOpenSansDark.copyWith(
+                        fontSize: 12.0,
+                      )
+                    : TextStyleHelper.title14W600RegularOpenSans.copyWith(
+                        fontSize: 12.0,
+                      ),
               ),
               Spacer(),
               Text(
                 subtitle,
-                style: TextStyle(
-                  fontSize: 10.0,
-                  fontWeight: FontWeight.w600,
-                  color: Color.fromRGBO(4, 7, 14, 1),
-                ),
+                style: context.theme.brightness == Brightness.dark
+                    ? TextStyleHelper.body12W400RegularOpenSansDark.copyWith(
+                        fontSize: 10.0,
+                        fontWeight: FontWeight.w600,
+                      )
+                    : TextStyleHelper.body12W400RegularOpenSans.copyWith(
+                        fontSize: 10.0,
+                        fontWeight: FontWeight.w600,
+                      ),
               ),
             ],
           ),
@@ -79,11 +84,15 @@ class CardExperienceWidget extends StatelessWidget {
                 ),
                 child: Text(
                   typeState,
-                  style: TextStyle(
-                    fontSize: 10.0,
-                    fontWeight: FontWeight.w600,
-                    color: AppThemeColors.colorFF0000,
-                  ),
+                  style: context.theme.brightness == Brightness.dark
+                      ? TextStyleHelper.title10W700RegularOpenSansDark.copyWith(
+                          fontSize: 10.0,
+                          fontWeight: FontWeight.w600,
+                        )
+                      : TextStyleHelper.title10W700RegularOpenSans.copyWith(
+                          fontSize: 10.0,
+                          fontWeight: FontWeight.w600,
+                        ),
                 ),
               ),
 
@@ -99,20 +108,28 @@ class CardExperienceWidget extends StatelessWidget {
               ),
               Text(
                 country,
-                style: TextStyle(
-                  fontSize: 10.0,
-                  fontWeight: FontWeight.w600,
-                  color: Color.fromRGBO(4, 7, 14, 1),
-                ),
+                style: context.theme.brightness == Brightness.dark
+                    ? TextStyleHelper.body10W400RegularOpenSansDark.copyWith(
+                        fontSize: 10.0,
+                        fontWeight: FontWeight.w600,
+                      )
+                    : TextStyleHelper.body10W400RegularOpenSans.copyWith(
+                        fontSize: 10.0,
+                        fontWeight: FontWeight.w600,
+                      ),
               ),
               Spacer(),
               Text(
                 school.toUpperCase(),
-                style: TextStyle(
-                  fontSize: 10.0,
-                  fontWeight: FontWeight.w600,
-                  color: Color.fromRGBO(4, 7, 14, 1),
-                ),
+                style: context.theme.brightness == Brightness.dark
+                    ? TextStyleHelper.body10W400RegularOpenSansDark.copyWith(
+                        fontSize: 10.0,
+                        fontWeight: FontWeight.w600,
+                      )
+                    : TextStyleHelper.body10W400RegularOpenSans.copyWith(
+                        fontSize: 10.0,
+                        fontWeight: FontWeight.w600,
+                      ),
               ),
             ],
           ),

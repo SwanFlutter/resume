@@ -248,14 +248,15 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.0.5"
-  google_fonts:
+  gradient_textfield:
     dependency: "direct main"
     description:
-      name: google_fonts
-      sha256: b1ac0fe2832c9cc95e5e88b57d627c5e68c223b9657f4b96e1487aa9098c7b82
-      url: "https://pub.dev"
-    source: hosted
-    version: "6.2.1"
+      path: "."
+      ref: HEAD
+      resolved-ref: "36196de4e07299ff885874a0e4cecc186b9edbac"
+      url: "https://github.com/SwanFlutter/gradient_textfield.git"
+    source: git
+    version: "0.0.1"
   html:
     dependency: transitive
     description:
@@ -653,6 +654,15 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.7.4"
+  theme_master:
+    dependency: "direct main"
+    description:
+      path: "."
+      ref: HEAD
+      resolved-ref: "71bcc004b7b95795d35cb8492abd5e092662cbef"
+      url: "https://github.com/SwanFlutter/theme_master.git"
+    source: git
+    version: "0.0.1"
   typed_data:
     dependency: transitive
     description:

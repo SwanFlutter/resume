@@ -24,7 +24,7 @@ class GridCardWidget extends StatelessWidget {
 
     return SizedBox(
       width: context.width,
-      height: context.height * 0.8,
+      height: context.height,
       child: Column(
         children: [
           Expanded(

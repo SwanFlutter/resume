@@ -56,22 +56,26 @@ class JobExperience extends StatelessWidget {
               ),
             ),
           ),
-          AnimatedPositioned(
-            duration: Duration(milliseconds: 1200),
-            curve: Curves.ease,
-            bottom: 0.0,
+          Positioned(
+            bottom: context.height * 0.10,
             right: 16.0,
-            child: FloatingActionButton(
-              elevation: 0,
-              backgroundColor: AppThemeColors.addFabColor,
-              shape: StadiumBorder(),
-              onPressed: () {
-                navigationController.navToAddJobExperience();
-              },
-              child: Image.asset(
-                "assets/isIconOnly.png",
-                width: 24,
-                height: 24,
+            child: AnimatedPositioned(
+              duration: Duration(milliseconds: 1200),
+              curve: Curves.ease,
+              bottom: 0.0,
+              right: 16.0,
+              child: FloatingActionButton(
+                elevation: 0,
+                backgroundColor: AppThemeColors.addFabColor,
+                shape: StadiumBorder(),
+                onPressed: () {
+                  navigationController.navToAddJobExperience();
+                },
+                child: Image.asset(
+                  "assets/isIconOnly.png",
+                  width: 24,
+                  height: 24,
+                ),
               ),
             ),
           ),

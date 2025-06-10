@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get_x_master/get_x_master.dart';
+import 'package:resume/controller/theme_controller.dart';
 import 'package:resume/widgets/global/appbar_widget.dart';
 import 'package:resume/widgets/global/logo_widget.dart';
 
@@ -12,9 +13,16 @@ class SettingsPage extends StatefulWidget {
 
 class _SettingsPageState extends State<SettingsPage> {
   bool _notificationsEnabled = true;
-  bool _darkModeEnabled = false;
   bool _locationEnabled = true;
   double _textSize = 1.0;
+
+  late ThemeControllers themeController;
+
+  @override
+  void initState() {
+    super.initState();
+    themeController = Get.find<ThemeControllers>();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -62,14 +70,20 @@ class _SettingsPageState extends State<SettingsPage> {
                     });
                   },
                 ),
-                _buildSwitchItem(
-                  icon: Icons.dark_mode,
-                  title: "Dark Mode",
-                  value: _darkModeEnabled,
-                  onChanged: (value) {
-                    setState(() {
-                      _darkModeEnabled = value;
-                    });
+                GetBuilder<ThemeControllers>(
+                  builder: (controller) {
+                    return _buildSwitchItem(
+                      icon: Icons.dark_mode,
+                      title: "Dark Mode",
+                      value: controller.themeMode == ThemeMode.dark,
+                      onChanged: (value) {
+                        if (value) {
+                          controller.setDarkTheme();
+                        } else {
+                          controller.setLightTheme();
+                        }
+                      },
+                    );
                   },
                 ),
                 _buildSwitchItem(
@@ -163,8 +177,8 @@ class _SettingsPageState extends State<SettingsPage> {
         height: 40,
         decoration: BoxDecoration(
           color: isDestructive
-              ? Colors.red.withOpacity(0.1)
-              : Colors.pink.withOpacity(0.1),
+              ? Colors.red.withValues(alpha: 0.1)
+              : Colors.pink.withValues(alpha: 0.1),
           borderRadius: BorderRadius.circular(8),
         ),
         child: Icon(icon, color: isDestructive ? Colors.red : Colors.pink),
@@ -193,7 +207,7 @@ class _SettingsPageState extends State<SettingsPage> {
         width: 40,
         height: 40,
         decoration: BoxDecoration(
-          color: Colors.pink.withOpacity(0.1),
+          color: Colors.pink.withValues(alpha: 0.1),
           borderRadius: BorderRadius.circular(8),
         ),
         child: Icon(icon, color: Colors.pink),
@@ -220,7 +234,7 @@ class _SettingsPageState extends State<SettingsPage> {
         width: 40,
         height: 40,
         decoration: BoxDecoration(
-          color: Colors.pink.withOpacity(0.1),
+          color: Colors.pink.withValues(alpha: 0.1),
           borderRadius: BorderRadius.circular(8),
         ),
         child: Icon(icon, color: Colors.pink),

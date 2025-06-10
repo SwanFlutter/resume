@@ -30,7 +30,7 @@ class AddJobExperience extends StatelessWidget {
                   onPressed: () {
                     if (navigationController.currentIndex >= 6 &&
                         navigationController.currentIndex <= 19) {
-                      navigationController.navToAcademicHistory();
+                      navigationController.navToJobExperience();
                     } else {
                       Get.back();
                     }
@@ -51,8 +51,13 @@ class AddJobExperience extends StatelessWidget {
                               children: [
                                 Text(
                                   "general Information",
-                                  style: TextStyleHelper
-                                      .title14W600RegularOpenSans,
+                                  style:
+                                      context.theme.brightness ==
+                                          Brightness.dark
+                                      ? TextStyleHelper
+                                            .title14W400RegularOpenSansDark
+                                      : TextStyleHelper
+                                            .title14W600RegularOpenSans,
                                 ),
                               ],
                             ),
@@ -127,9 +132,15 @@ class AddJobExperience extends StatelessWidget {
                                 Flexible(
                                   child: Text(
                                     "I am currently In This Course",
-                                    style: TextStyleHelper
-                                        .title14W400RegularOpenSans
-                                        .copyWith(fontSize: 10),
+                                    style:
+                                        context.theme.brightness ==
+                                            Brightness.dark
+                                        ? TextStyleHelper
+                                              .title14W400RegularOpenSansDark
+                                              .copyWith(fontSize: 10)
+                                        : TextStyleHelper
+                                              .title14W400RegularOpenSans
+                                              .copyWith(fontSize: 10),
                                   ),
                                 ),
                               ],
@@ -148,8 +159,13 @@ class AddJobExperience extends StatelessWidget {
                               children: [
                                 Text(
                                   "Detail Information",
-                                  style: TextStyleHelper
-                                      .title14W600RegularOpenSans,
+                                  style:
+                                      context.theme.brightness ==
+                                          Brightness.dark
+                                      ? TextStyleHelper
+                                            .title14W400RegularOpenSansDark
+                                      : TextStyleHelper
+                                            .title14W600RegularOpenSans,
                                 ),
                               ],
                             ),

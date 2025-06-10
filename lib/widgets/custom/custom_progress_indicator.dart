@@ -1,9 +1,9 @@
 import 'dart:math' as math;
+
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 /// CustomProgressIndicator - پراگرس دایره‌ای حرفه‌ای با گرادیانت
-/// 
+///
 /// ویژگی‌ها:
 /// - دو پراگرس روی هم (قابل تنظیم)
 /// - گرادیانت چند رنگ
@@ -13,28 +13,28 @@ import 'package:google_fonts/google_fonts.dart';
 class CustomProgressIndicator extends StatefulWidget {
   /// درصد پراگرس اصلی (0-100)
   final int progress;
-  
+
   /// لیست رنگ‌های گرادیانت
   final List<Color> gradientColors;
-  
+
   /// اندازه کل widget
   final double size;
-  
+
   /// نمایش متن درصد
   final bool isVisiblePersentText;
-  
+
   /// نمایش دو پراگرس روی هم
   final bool showDoubleProgress;
-  
+
   /// درصد پراگرس دوم (اختیاری - پیش‌فرض 70% پراگرس اصلی)
   final int? secondaryProgress;
-  
+
   /// ضخامت خط پراگرس
   final double strokeWidth;
-  
+
   /// مدت زمان انیمیشن
   final Duration animationDuration;
-  
+
   /// استایل متن سفارشی
   final TextStyle? textStyle;
 
@@ -54,10 +54,14 @@ class CustomProgressIndicator extends StatefulWidget {
     this.strokeWidth = 6,
     this.animationDuration = const Duration(milliseconds: 1500),
     this.textStyle,
-  }) : assert(progress >= 0 && progress <= 100, 'Progress must be between 0 and 100');
+  }) : assert(
+         progress >= 0 && progress <= 100,
+         'Progress must be between 0 and 100',
+       );
 
   @override
-  State<CustomProgressIndicator> createState() => _CustomProgressIndicatorState();
+  State<CustomProgressIndicator> createState() =>
+      _CustomProgressIndicatorState();
 }
 
 class _CustomProgressIndicatorState extends State<CustomProgressIndicator>
@@ -81,32 +85,29 @@ class _CustomProgressIndicatorState extends State<CustomProgressIndicator>
     );
 
     // انیمیشن پراگرس اصلی
-    _progressAnimation = Tween<double>(
-      begin: 0.0,
-      end: widget.progress / 100.0,
-    ).animate(CurvedAnimation(
-      parent: _animationController,
-      curve: Curves.easeInOutCubic,
-    ));
+    _progressAnimation = Tween<double>(begin: 0.0, end: widget.progress / 100.0)
+        .animate(
+          CurvedAnimation(
+            parent: _animationController,
+            curve: Curves.easeInOutCubic,
+          ),
+        );
 
     // انیمیشن پراگرس ثانویه
-    final secondaryValue = widget.secondaryProgress ?? (widget.progress * 0.7).round();
-    _secondaryProgressAnimation = Tween<double>(
-      begin: 0.0,
-      end: secondaryValue / 100.0,
-    ).animate(CurvedAnimation(
-      parent: _animationController,
-      curve: Curves.easeInOutCubic,
-    ));
+    final secondaryValue =
+        widget.secondaryProgress ?? (widget.progress * 0.7).round();
+    _secondaryProgressAnimation =
+        Tween<double>(begin: 0.0, end: secondaryValue / 100.0).animate(
+          CurvedAnimation(
+            parent: _animationController,
+            curve: Curves.easeInOutCubic,
+          ),
+        );
 
     // انیمیشن scale برای جلوه بصری بهتر
-    _scaleAnimation = Tween<double>(
-      begin: 0.8,
-      end: 1.0,
-    ).animate(CurvedAnimation(
-      parent: _animationController,
-      curve: Curves.elasticOut,
-    ));
+    _scaleAnimation = Tween<double>(begin: 0.8, end: 1.0).animate(
+      CurvedAnimation(parent: _animationController, curve: Curves.elasticOut),
+    );
   }
 
   @override
@@ -149,7 +150,7 @@ class _CustomProgressIndicatorState extends State<CustomProgressIndicator>
                   ),
                 ),
               ),
-              
+
               // پراگرس کوچک (ثانویه) - فقط اگر showDoubleProgress فعال باشد
               if (widget.showDoubleProgress)
                 SizedBox(
@@ -178,11 +179,7 @@ class _CustomProgressIndicatorState extends State<CustomProgressIndicator>
                   ).createShader(bounds),
                   child: Text(
                     '${(_progressAnimation.value * 100).round()}%',
-                    style: widget.textStyle ?? GoogleFonts.poppins(
-                      fontSize: widget.size * 0.18,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                    ),
+                    style: widget.textStyle,
                   ),
                 ),
             ],
@@ -224,7 +221,7 @@ class GradientCircularProgressPainter extends CustomPainter {
     // رسم پراگرس با گرادیانت
     if (progress > 0) {
       final rect = Rect.fromCircle(center: center, radius: radius);
-      
+
       final gradient = SweepGradient(
         colors: gradientColors,
         stops: List.generate(

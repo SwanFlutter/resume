@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get_x_master/get_x_master.dart';
 import 'package:resume/config/constant.dart';
+import 'package:resume/controller/bottom_navigation_controller.dart';
 import 'package:resume/controller/courses_controller.dart';
 import 'package:resume/screen/resume_page.dart';
 import 'package:resume/widgets/global/appbar_widget.dart';
@@ -17,6 +18,7 @@ class CreateCourses extends StatelessWidget {
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
     final _ = MediaQuery.of(context).size.height;
+    final bottomNavController = BottomNavigationController.to;
 
     // محاسبه عرض‌های رسپانسیو
     double getFieldWidth() {
@@ -307,23 +309,25 @@ class CreateCourses extends StatelessWidget {
             ),
           ),
 
-          // Floating Action Button
-          AnimatedPositioned(
-            duration: Duration(milliseconds: 1200),
-            curve: Curves.ease,
-            bottom: 0,
+          // Floating Action Button positioned over navigation bar
+          Positioned(
+            bottom: bottomNavController.fabBottomPosition,
             right: 16.0,
-            child: FloatingActionButton(
-              elevation: 0,
-              backgroundColor: AppThemeColors.addFabColor,
-              shape: StadiumBorder(),
-              onPressed: () {
-                navigationController.navToEditCreateCourses();
-              },
-              child: Image.asset(
-                "assets/isIconOnly.png",
-                width: 24,
-                height: 24,
+            child: AnimatedContainer(
+              duration: Duration(milliseconds: 300),
+              curve: Curves.easeInOut,
+              child: FloatingActionButton(
+                elevation: 8,
+                backgroundColor: AppThemeColors.addFabColor,
+                shape: StadiumBorder(),
+                onPressed: () {
+                  navigationController.navToEditCreateCourses();
+                },
+                child: Image.asset(
+                  "assets/isIconOnly.png",
+                  width: 24,
+                  height: 24,
+                ),
               ),
             ),
           ),
