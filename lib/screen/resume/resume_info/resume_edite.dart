@@ -18,27 +18,7 @@ class ResumeEdite extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Stack(
-    return SafeArea(
-      child: Stack(
         children: [
-          SizedBox(
-            width: context.width,
-            height: context.height,
-            child: Column(
-              children: [
-                const LogoWidget(),
-                AppBarWidget(
-                  title: "Resume Edit",
-                  onPressed: () {
-                    final navigationController = NavigationController.to;
-                    if (navigationController.currentIndex >= 6 &&
-                        navigationController.currentIndex <= 12) {
-                      navigationController.navToResumeInfo();
-                    } else {
-                      Get.back();
-                    }
-                  },
-                ),
           SizedBox(
             width: context.width,
             height: context.height,
@@ -423,16 +403,8 @@ class ResumeEdite extends StatelessWidget {
 
 
 /** floatingActionButton: FloatingActionButton(
-    );
-  }
-}
-
-
-
-/** floatingActionButton: FloatingActionButton(
         onPressed: () {},
         backgroundColor: AppThemeColors.editeFabColor,
         shape: const StadiumBorder(),
         child: Image.asset("assets/Vector.png", width: 24.0, height: 24.0),
-      ), */
       ), */
