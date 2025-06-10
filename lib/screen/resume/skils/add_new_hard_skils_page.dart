@@ -86,7 +86,7 @@ class _AddNewHardSkillsPageState extends State<AddNewHardSkillsPage> {
               () => AnimatedPositioned(
                 duration: Duration(milliseconds: 1200),
                 curve: Curves.ease,
-                bottom: bottomNavController.fabBottomPosition,
+                bottom: bottomNavController.fabBottomPosition(context),
                 right: 16.0,
                 child: FloatingActionButton(
                   elevation: 0,

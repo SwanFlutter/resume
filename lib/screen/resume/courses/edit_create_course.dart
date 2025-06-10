@@ -324,9 +324,9 @@ class EditCreateCourse extends StatelessWidget {
           // Floating Action Button
           Obx(
             () => AnimatedPositioned(
-              duration: Duration(milliseconds: 1200),
-              curve: Curves.ease,
-              bottom: bottomNavController.fabBottomPosition,
+              duration: const Duration(milliseconds: 1000),
+              curve: Curves.easeInOutCubic,
+              bottom: bottomNavController.fabBottomPosition(context),
               right: 16.0,
               child: FloatingActionButton(
                 elevation: 0,

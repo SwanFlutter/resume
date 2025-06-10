@@ -68,13 +68,13 @@ const List<Color> resumehCardColorDark = [
 ];
 
 const List<Color> backgroundColors = [
-  Color.fromRGBO(255, 255, 255, 1),
-  Color.fromRGBO(255, 242, 245, 1),
+  Color(0xFFFEDEE6), // #FEDEE6 - شروع gradient
+  Color(0xFFFFFFFF), // #FFFFFF - پایان gradient
 ];
 
 const List<Color> backgroundColorsDark = [
-  Color.fromRGBO(1, 22, 30, 1),
-  Color.fromRGBO(36, 3, 1, 1),
+  Color(0xFF24030B), // #24030B - شروع gradient (3.29%)
+  Color(0xFF01161E), // #01161E - پایان gradient (84.35%)
 ];
 
 const List<Color> drawerGradientColorsLight = [

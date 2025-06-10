@@ -91,7 +91,7 @@ class _ResumehInfoState extends State<ResumehInfo> {
                                         "assets/reuomeh/info/shield.svg",
                                     text1: 'None',
                                   ),
-                                  SizedBox(height: context.height * 0.01),
+                                  SizedBox(height: context.height * 0.02),
                                   RowCard(
                                     imageIcon:
                                         "assets/reuomeh/info/calendar-2.svg",
@@ -107,7 +107,7 @@ class _ResumehInfoState extends State<ResumehInfo> {
                                 ],
                               ).paddingAll(8.0),
                             ).paddingSymmetric(horizontal: 16.0),
-                            SizedBox(height: context.height * 0.01),
+                            SizedBox(height: context.height * 0.02),
                             Padding(
                               padding: const EdgeInsets.symmetric(
                                 horizontal: 16.0,
@@ -193,7 +193,7 @@ class _ResumehInfoState extends State<ResumehInfo> {
                                 ).paddingAll(8.0).paddingOnly(bottom: 8.0),
                               ),
                             ),
-                            SizedBox(height: context.height * 0.01),
+                            SizedBox(height: context.height * 0.02),
                             // four
                             CardBox(
                               width: context.width,
@@ -233,18 +233,22 @@ class _ResumehInfoState extends State<ResumehInfo> {
             ),
           ),
 
-          Positioned(
-            bottom: context.height * 0.115,
-            right: 22.0,
-            child: FloatingActionButton(
-              onPressed: () {
-                final navigationController = NavigationController.to;
-                navigationController.navToResumeEdite();
-              },
-              backgroundColor: AppThemeColors.addFabColor,
-              elevation: 0,
-              shape: CircleBorder(),
-              child: Image.asset("assets/edite.png"),
+          Obx(
+            () => AnimatedPositioned(
+              duration: const Duration(milliseconds: 1000),
+              curve: Curves.easeInOutCubic,
+              bottom: bottomNavController.fabBottomPosition(context),
+              right: 16.0,
+              child: FloatingActionButton(
+                onPressed: () {
+                  final navigationController = NavigationController.to;
+                  navigationController.navToResumeEdite();
+                },
+                backgroundColor: AppThemeColors.addFabColor,
+                elevation: 0,
+                shape: CircleBorder(),
+                child: Image.asset("assets/edite.png"),
+              ),
             ),
           ),
         ],
@@ -301,7 +305,9 @@ class RowCard1 extends StatelessWidget {
           Spacer(),
           Text(
             "\$$price".toNumberFormat(),
-            style: TextStyleHelper.label10W600SemiBoldOpenSans,
+            style: context.theme.brightness == Brightness.dark
+                ? TextStyleHelper.label10W600SemiBoldOpenSansDark
+                : TextStyleHelper.label10W600SemiBoldOpenSans,
           ),
         ],
       ),
@@ -377,6 +383,9 @@ class DescriotionView extends StatelessWidget {
             height: height,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(4),
+              border: Border.all(
+                color: context.getBorderColorByEnum(BorderColor.border2),
+              ),
               gradient: LinearGradient(
                 colors: context.theme.brightness == Brightness.dark
                     ? infoBoxColorDark

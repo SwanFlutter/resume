@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get_x_master/get_x_master.dart';
+import 'package:resume/config/constant.dart';
+import 'package:resume/controller/bottom_navigation_controller.dart';
 import 'package:resume/controller/navigation_controller.dart';
 import 'package:resume/widgets/global/appbar_widget.dart';
 import 'package:resume/widgets/global/logo_widget.dart';
 import 'package:resume/widgets/views/home/grid_card_widget.dart';
 
 final NavigationController navigationController = NavigationController.to;
+final bottomNavController = BottomNavigationController.to;
 
 class ResumePage extends StatelessWidget {
   const ResumePage({super.key});
@@ -30,34 +33,59 @@ class ResumePage extends StatelessWidget {
                 ),
 
                 Expanded(child: GridCardWidget()),
+              ],
+            ),
+          ),
 
-                Positioned(
-                  bottom: context.height * 0.115,
-                  right: 16.0,
-                  child: AnimatedPositioned(
-                    duration: Duration(milliseconds: 1200),
-                    curve: Curves.ease,
-                    bottom: 0.0,
-                    right: 16.0,
-                    child: FloatingActionButton(
-                      elevation: 0,
-                      backgroundColor: context
-                          .theme
-                          .floatingActionButtonTheme
-                          .backgroundColor,
-                      shape: StadiumBorder(),
-                      onPressed: () {
-                        navigationController.navToAddJobExperience();
-                      },
-                      child: Image.asset(
-                        "assets/isIconOnly.png",
-                        width: 24,
-                        height: 24,
+          // Floating Action Button که با navigation bar جابجا می‌شود
+          Obx(
+            () => AnimatedPositioned(
+              duration: const Duration(
+                milliseconds: 1000,
+              ), // هماهنگ با انیمیشن navigation bar
+              curve: Curves.easeInOutCubic,
+              bottom: bottomNavController.fabBottomPosition(context),
+              right: 22.0,
+              child: FloatingActionButton(
+                highlightElevation: 48,
+                elevation: 0,
+                backgroundColor: AppThemeColors.addFabColor,
+                shape: StadiumBorder(),
+                onPressed: () {
+                  navigationController.navToAddJobExperience();
+                },
+                child: SizedBox(
+                  width: 48,
+                  height: 48,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text(
+                        'CV',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 20,
+                          fontWeight: FontWeight.w400,
+                          fontFamily: 'Open Sans',
+                        ),
                       ),
-                    ),
+                      Text(
+                        'PDF',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 10,
+                          fontWeight: FontWeight.w400,
+                          fontFamily: 'Open Sans',
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-              ],
+              ),
             ),
           ),
         ],

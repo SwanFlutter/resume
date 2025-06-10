@@ -17,22 +17,25 @@ class MainNavigation extends StatelessWidget {
   Widget build(BuildContext context) {
     final controller = NavigationController.to;
 
-    return Scaffold(
-      extendBody: true,
-      resizeToAvoidBottomInset: false,
-      body: Stack(
-        children: [
-          // Main content - full screen
-          BackgroundColors(child: Obx(() => controller.currentPage)),
+    return WillPopScope(
+      onWillPop: () async => false, // غیرفعال کردن دکمه back
+      child: Scaffold(
+        extendBody: true,
+        resizeToAvoidBottomInset: false,
+        body: Stack(
+          children: [
+            // Main content - full screen
+            BackgroundColors(child: Obx(() => controller.currentPage)),
 
-          // Bottom navigation bar - positioned at bottom
-          Positioned(
-            left: 10,
-            right: 10,
-            bottom: 20.0,
-            child: BottomNavigationBar(),
-          ),
-        ],
+            // Bottom navigation bar - positioned at bottom
+            Positioned(
+              left: 10,
+              right: 10,
+              bottom: 12.0,
+              child: BottomNavigationBar(),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -57,11 +60,13 @@ class _BottomNavigationBarState extends State<BottomNavigationBar> {
     return Stack(
       children: [
         AnimatedPositioned(
-          duration: 700.milliseconds,
+          duration: const Duration(milliseconds: 1000),
+          curve: Curves.easeInOutCubic,
           child: AnimatedContainer(
-            duration: const Duration(milliseconds: 700),
+            duration: const Duration(milliseconds: 1000),
+            curve: Curves.easeInOutCubic,
             width: MediaQuery.of(context).size.width,
-            height: isExpanded ? context.height * 0.2 : context.height * 0.073,
+            height: isExpanded ? context.height * 0.2 : 75,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(8.0),
               gradient: LinearGradient(
@@ -76,7 +81,7 @@ class _BottomNavigationBarState extends State<BottomNavigationBar> {
             child: Padding(
               padding: const EdgeInsets.only(
                 bottom: 10,
-                top: 12,
+                top: 10,
                 left: 8,
                 right: 8.0,
               ),

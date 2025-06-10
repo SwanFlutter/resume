@@ -60,8 +60,8 @@ const List<Color> backgroundColors = [
 ];
 
 const List<Color> backgroundColorsDark = [
-  Color.fromRGBO(36, 3, 1, 1),
-  Color.fromRGBO(1, 22, 30, 1),
+  Color.fromRGBO(36, 3, 11, 1),
+  Color.fromRGBO(4, 20, 28, 1),
 ];
 
 const List<Color> backgroudColorFeild = [

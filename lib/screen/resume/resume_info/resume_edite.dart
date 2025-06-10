@@ -4,6 +4,7 @@ import 'package:get_x_master/get_x_master.dart';
 import 'package:resume/config/constant.dart';
 import 'package:resume/controller/navigation_controller.dart';
 import 'package:resume/controller/resume_controller.dart';
+import 'package:resume/screen/resume_page.dart';
 import 'package:resume/widgets/global/appbar_widget.dart';
 import 'package:resume/widgets/global/card_box.dart';
 import 'package:resume/widgets/global/custom_dropdown_widget.dart';
@@ -27,6 +28,7 @@ class ResumeEdite extends StatelessWidget {
                 const LogoWidget(),
                 AppBarWidget(
                   title: "Resume Edit",
+                  imageIcon: "assets/reuomeh/personalcard.svg",
                   onPressed: () {
                     final navigationController = NavigationController.to;
                     if (navigationController.currentIndex >= 6 &&
@@ -376,21 +378,25 @@ class ResumeEdite extends StatelessWidget {
           ),
 
           // Non-scrollable content
-          Positioned(
-            bottom: 115.0,
-            right: 16.0,
-            child: FloatingActionButton(
-              onPressed: () {
-                final navigationController = NavigationController.to;
-                navigationController.navToResumeEdite();
-              },
-              backgroundColor: AppThemeColors.editeFabColor,
-              elevation: 0,
-              shape: const StadiumBorder(),
-              child: Image.asset(
-                "assets/Vector.png",
-                width: 24.0,
-                height: 24.0,
+          Obx(
+            () => AnimatedPositioned(
+              duration: const Duration(milliseconds: 1000),
+              curve: Curves.easeInOutCubic,
+              bottom: bottomNavController.fabBottomPosition(context),
+              right: 16.0,
+              child: FloatingActionButton(
+                onPressed: () {
+                  final navigationController = NavigationController.to;
+                  navigationController.navToResumeEdite();
+                },
+                backgroundColor: AppThemeColors.editeFabColor,
+                elevation: 0,
+                shape: const StadiumBorder(),
+                child: Image.asset(
+                  "assets/Vector.png",
+                  width: 24.0,
+                  height: 24.0,
+                ),
               ),
             ),
           ),

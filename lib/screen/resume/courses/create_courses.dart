@@ -5,6 +5,7 @@ import 'package:resume/controller/bottom_navigation_controller.dart';
 import 'package:resume/controller/courses_controller.dart';
 import 'package:resume/screen/resume_page.dart';
 import 'package:resume/widgets/global/appbar_widget.dart';
+import 'package:resume/widgets/global/background_colors.dart';
 import 'package:resume/widgets/global/card_box.dart';
 import 'package:resume/widgets/global/custom_dropdown_widget.dart';
 import 'package:resume/widgets/global/custom_fields_widget.dart';
@@ -36,9 +37,10 @@ class CreateCourses extends StatelessWidget {
     return SafeArea(
       child: Stack(
         children: [
-          SingleChildScrollView(
-            physics: AlwaysScrollableScrollPhysics(),
-            child: Column(
+          BackgroundColors(
+            child: SingleChildScrollView(
+              physics: AlwaysScrollableScrollPhysics(),
+              child: Column(
               children: [
                 LogoWidget(),
                 AppBarWidget(
@@ -310,14 +312,14 @@ class CreateCourses extends StatelessWidget {
           ),
 
           // Floating Action Button positioned over navigation bar
-          Positioned(
-            bottom: bottomNavController.fabBottomPosition,
-            right: 16.0,
-            child: AnimatedContainer(
-              duration: Duration(milliseconds: 300),
-              curve: Curves.easeInOut,
+          Obx(
+            () => AnimatedPositioned(
+              duration: const Duration(milliseconds: 1000),
+              curve: Curves.easeInOutCubic,
+              bottom: bottomNavController.fabBottomPosition(context),
+              right: 16.0,
               child: FloatingActionButton(
-                elevation: 8,
+                elevation: 0,
                 backgroundColor: AppThemeColors.addFabColor,
                 shape: StadiumBorder(),
                 onPressed: () {

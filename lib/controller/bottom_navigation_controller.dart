@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:get_x_master/get_x_master.dart';
 
 class BottomNavigationController extends GetXController {
@@ -14,7 +15,15 @@ class BottomNavigationController extends GetXController {
   // محاسبه ارتفاع navigation bar
   double get navigationHeight => _isExpanded.value ? 161.0 : 63.0;
 
-  // محاسبه موقعیت FAB (فاصله از پایین)
-  double get fabBottomPosition => navigationHeight + 20.0;
-  // Removed duplicate method fabBottomPosition to avoid naming conflict with getter.
+  // محاسبه موقعیت FAB (فاصله از پایین) - همیشه بالای navigation bar
+  double? fabBottomPosition(BuildContext context) {
+    final screenHeight = MediaQuery.of(context).size.height;
+    if (_isExpanded.value) {
+      return navigationHeight +
+          (screenHeight * 0.0545); // حالت باز: 10% ارتفاع دیوایس
+    } else {
+      return navigationHeight +
+          (screenHeight * 0.065); // حالت ثابت: 6.5% ارتفاع دیوایس
+    }
+  }
 }

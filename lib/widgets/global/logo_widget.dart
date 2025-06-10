@@ -43,7 +43,12 @@ class LogoWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Image.asset("assets/logo.png", width: 94, height: 31),
+              Image.asset(
+                "assets/logo.png",
+                width: 100,
+                height: 40,
+                fit: BoxFit.cover,
+              ),
               Container(
                 width: 93,
                 height: 1,
