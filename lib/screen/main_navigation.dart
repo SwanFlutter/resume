@@ -19,6 +19,7 @@ class MainNavigation extends StatelessWidget {
 
     return Scaffold(
       extendBody: true,
+      resizeToAvoidBottomInset: false,
       body: Stack(
         children: [
           // Main content - full screen
