@@ -1,4 +1,5 @@
 /*import 'package:flutter/material.dart';
+/*import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get_x_master/get_x_master.dart';
 import 'package:resume/config/constant.dart';

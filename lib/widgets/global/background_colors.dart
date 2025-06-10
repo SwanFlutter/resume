@@ -52,6 +52,39 @@ class BackgroundColors extends StatelessWidget {
         gradient: LinearGradient(
           begin: Alignment.bottomLeft,
           end: Alignment.topRight,
+          colors: context.scaffoldGradientColors,
+        ),
+      ),
+      child: child,
+    );
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/**class BackgroundColors extends StatelessWidget {
+  final Widget? child;
+  const BackgroundColors({super.key, this.child});
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: context.height,
+      width: context.width,
+      clipBehavior: Clip.antiAlias,
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment.bottomLeft,
+          end: Alignment.topRight,
           colors: backgroundColors,
         ),
       ),

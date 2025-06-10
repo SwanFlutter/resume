@@ -9,6 +9,7 @@ class CustomDropdownWidget<T extends GetXController> extends StatelessWidget {
   final String label;
   final double width;
   final double? height;
+  final double? height;
   final String? title; // Make title nullable
   final List<String> titleList;
   final String dropdownId; // Unique identifier for this dropdown instance
@@ -23,6 +24,7 @@ class CustomDropdownWidget<T extends GetXController> extends StatelessWidget {
     required this.titleList,
     this.onChanged,
     this.width = 134,
+    this.height,
     this.height,
   });
 

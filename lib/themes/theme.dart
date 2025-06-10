@@ -122,6 +122,25 @@ class AppTheme {
           foregroundColor: Colors.white,
           backgroundColor: lightPrimary,
         ),
+  AppTheme._(); // Private constructor to prevent instantiation
+
+  /// Light theme with your custom colors and gradient support.
+  ExtendedThemeData get lightTheme {
+    final baseTheme = ThemeData(
+      useMaterial3: true,
+      fontFamily: 'OpenSans',
+      brightness: Brightness.light,
+      colorScheme: const ColorScheme.light(
+        primary: lightPrimary,
+        secondary: Color.fromRGBO(253, 27, 81, 1), // editeFabColor
+      ),
+      scaffoldBackgroundColor: Colors.white,
+
+      elevatedButtonTheme: ElevatedButtonThemeData(
+        style: ElevatedButton.styleFrom(
+          foregroundColor: Colors.white,
+          backgroundColor: lightPrimary,
+        ),
       ),
       cardColor: Colors.white,
       textButtonTheme: TextButtonThemeData(
@@ -250,7 +269,7 @@ class AppTheme {
   }
 
   /// Dark theme with your custom colors and gradient support.
-  static ExtendedThemeData get darkTheme {
+  ExtendedThemeData get darkTheme {
     final baseTheme = ThemeData(
       useMaterial3: true,
       brightness: Brightness.dark,
