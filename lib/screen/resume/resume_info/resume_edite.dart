@@ -382,8 +382,10 @@ class ResumeEdite extends StatelessWidget {
             () => AnimatedPositioned(
               duration: const Duration(milliseconds: 1000),
               curve: Curves.easeInOutCubic,
-              bottom: bottomNavController.fabBottomPosition(context),
-              right: 16.0,
+              bottom: bottomNavController.isExpanded
+                  ? bottomNavController.fabBottomPosition(context)
+                  : context.width * 0.04,
+              right: context.height * 0.022,
               child: FloatingActionButton(
                 onPressed: () {
                   final navigationController = NavigationController.to;

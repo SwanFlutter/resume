@@ -25,7 +25,7 @@ class AddNewAchivement extends StatelessWidget {
                     imageIcon: 'assets/reuomeh/cup-star-svgrepo-com 1.svg',
                     onPressed: () {
                       if (navigationController.currentIndex >= 6 &&
-                          navigationController.currentIndex <= 12) {
+                          navigationController.currentIndex <= 18) {
                         navigationController
                             .navToResume(); // Return to Resume Page
                       } else {
@@ -91,19 +91,23 @@ class AddNewAchivement extends StatelessWidget {
               ),
             ),
           ),
-          AnimatedPositioned(
-            duration: Duration(milliseconds: 1200),
-            curve: Curves.ease,
-            bottom: 0.0,
-            right: 16.0,
-            child: FloatingActionButton(
-              elevation: 0,
-              backgroundColor: AppThemeColors.editeFabColor,
-              shape: StadiumBorder(),
-              onPressed: () {
-                navigationController.navToAchievement();
-              },
-              child: Image.asset("assets/Vector.png", width: 24, height: 24),
+          Obx(
+            () => AnimatedPositioned(
+              duration: const Duration(milliseconds: 1000),
+              curve: Curves.easeInOutCubic,
+              bottom: bottomNavController.isExpanded
+                  ? bottomNavController.fabBottomPosition(context)
+                  : context.width * 0.04,
+              right: context.height * 0.022,
+              child: FloatingActionButton(
+                elevation: 0,
+                backgroundColor: AppThemeColors.editeFabColor,
+                shape: StadiumBorder(),
+                onPressed: () {
+                  navigationController.navToAchievement();
+                },
+                child: Image.asset("assets/Vector.png", width: 24, height: 24),
+              ),
             ),
           ),
         ],

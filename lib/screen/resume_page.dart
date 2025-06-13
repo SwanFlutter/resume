@@ -44,15 +44,16 @@ class ResumePage extends StatelessWidget {
                 milliseconds: 1000,
               ), // هماهنگ با انیمیشن navigation bar
               curve: Curves.easeInOutCubic,
-              bottom: bottomNavController.fabBottomPosition(context),
-              right: 22.0,
+              bottom: bottomNavController.isExpanded
+                  ? bottomNavController.fabBottomPosition(context)
+                  : context.width * 0.04,
+              right: context.height * 0.022,
               child: FloatingActionButton(
-                highlightElevation: 48,
                 elevation: 0,
                 backgroundColor: AppThemeColors.addFabColor,
                 shape: StadiumBorder(),
                 onPressed: () {
-                  navigationController.navToAddJobExperience();
+                  navigationController.navToResumeExportPage();
                 },
                 child: SizedBox(
                   width: 48,

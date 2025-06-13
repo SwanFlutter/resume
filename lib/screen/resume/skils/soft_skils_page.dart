@@ -6,7 +6,6 @@ import 'package:resume/controller/bottom_navigation_controller.dart';
 import 'package:resume/screen/resume_page.dart';
 import 'package:resume/widgets/custom/custom_progress_indicator.dart';
 import 'package:resume/widgets/global/appbar_widget.dart';
-import 'package:resume/widgets/global/background_colors.dart';
 import 'package:resume/widgets/global/card_box.dart';
 import 'package:resume/widgets/global/logo_widget.dart';
 
@@ -52,148 +51,188 @@ class SoftSkillsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final bottomNavController = BottomNavigationController.to;
 
-    return Stack(
-      children: [
-        SafeArea(
-          child: BackgroundColors(
-            child: ListView.builder(
-              itemCount: skills.length + 3, // Logo, AppBar, bottom padding
-              padding: const EdgeInsets.only(bottom: 80),
-              itemBuilder: (context, index) {
-                if (index == 0) return LogoWidget();
-                if (index == 1) {
-                  return AppBarWidget(
-                    title: "Soft Skills",
-                    imageIcon: 'assets/star.png',
-                    isSearch: true,
-                    onPressed: () {
-                      if (navigationController.currentIndex >= 6 &&
-                          navigationController.currentIndex <= 15) {
-                        navigationController.navToSkills();
-                      } else {
-                        Get.back();
-                      }
-                    },
-                  );
-                }
+    return SafeArea(
+      child: Stack(
+        children: [
+          Column(
+            children: [
+              LogoWidget(),
+              AppBarWidget(
+                title: "Soft Skills",
+                imageIcon: 'assets/star.png',
+                isSearch: true,
+                onPressed: () {
+                  if (navigationController.currentIndex >= 6 &&
+                      navigationController.currentIndex <= 15) {
+                    navigationController.navToSkills();
+                  } else {
+                    Get.back();
+                  }
+                },
+              ),
 
-                if (index == 2) return const SizedBox(height: 21);
-
-                final skill = skills[index - 3];
-
-                return CardBox(
-                  height: 80,
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                      vertical: 12.0,
-                      horizontal: 8.0,
-                    ),
-                    child: Row(
-                      children: [
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Row(
-                                children: [
-                                  SvgPicture.asset(
-                                    "assets/skills-svgrepo.svg",
-                                    width: 14.0,
-                                    height: 14.0,
-                                  ),
-                                  const SizedBox(width: 4),
-                                  Text(
-                                    skill['name'],
-                                    style: TextStyleHelper
-                                        .body12W400RegularOpenSans
-                                        .copyWith(
-                                          color: AppThemeColors
-                                              .titleFieldTextcolor,
-                                        ),
-                                  ),
-                                ],
-                              ),
-                              const SizedBox(height: 14),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceAround,
-                                children: [
-                                  _buildInfoItem('Level:', skill['level']),
-                                  const SizedBox(width: 16),
-                                  _buildInfoItem('Grad:', skill['grad']),
-                                  const SizedBox(width: 16),
-                                  _buildInfoItem('Date:', skill['date']),
-                                ],
-                              ),
-                            ],
-                          ),
+              Expanded(
+                child: ListView.builder(
+                  itemCount: skills.length,
+                  padding: const EdgeInsets.only(bottom: 16), // کاهش padding
+                  itemBuilder: (context, index) {
+                    final skill = skills[index];
+                    return CardBox(
+                      height: context.height * 0.115,
+                      boxShadow: context.theme.brightness == Brightness.dark
+                          ? [resumeBoxShadowDark]
+                          : [resumeBoxShadow],
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                          vertical: 10.0,
+                          horizontal: 8.0,
                         ),
-                        const SizedBox(width: 8),
-                        Stack(
-                          alignment: Alignment.center,
+                        child: Row(
                           children: [
-                            CustomProgressIndicator(
-                              progress: skill['progress'],
-                              gradientColors: [
-                                skill['color'],
-                                skill['color'].withOpacity(0.7),
-                                skill['color'].withOpacity(0.5),
-                              ],
-                              size: 56,
-                              showDoubleProgress: true,
-                              secondaryProgress: skill['progress'],
-                              strokeWidth: 4,
+                            Expanded(
+                              flex: 2,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Row(
+                                    children: [
+                                      SvgPicture.asset(
+                                        "assets/skills-svgrepo.svg",
+                                        width: 14.0,
+                                        height: 14.0,
+                                        colorFilter: ColorFilter.mode(
+                                          context.theme.brightness ==
+                                                  Brightness.dark
+                                              ? Colors.white
+                                              : AppThemeColors
+                                                    .titleFieldTextcolor,
+                                          BlendMode.srcIn,
+                                        ),
+                                      ),
+                                      const SizedBox(width: 4),
+                                      Text(
+                                        skill['name'],
+                                        style:
+                                            context.theme.brightness ==
+                                                Brightness.dark
+                                            ? TextStyleHelper
+                                                  .title12W600RegularOpenSansDark
+                                            : TextStyleHelper
+                                                  .title12W600RegularOpenSans,
+                                      ),
+                                    ],
+                                  ),
+                                  SizedBox(height: context.height * 0.032),
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceAround,
+                                    children: [
+                                      _buildInfoItem(
+                                        'Level:',
+                                        skill['level'],
+                                        context,
+                                      ),
+                                      SizedBox(width: context.width * 0.015),
+                                      _buildInfoItem(
+                                        'Grad:',
+                                        skill['grad'],
+                                        context,
+                                      ),
+                                      SizedBox(width: context.width * 0.015),
+                                      _buildInfoItem(
+                                        'Date:',
+                                        skill['date'],
+                                        context,
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ).paddingOnly(top: 12.0, bottom: 12.0, left: 8.0),
+                            ),
+                            const SizedBox(width: 8),
+                            Expanded(
+                              flex: 1,
+                              child: Stack(
+                                alignment: Alignment.center,
+                                children: [
+                                  CustomProgressIndicator(
+                                    progress: skill['progress'],
+                                    gradientColors: [
+                                      skill['color'],
+                                      skill['color'].withOpacity(0.7),
+                                      skill['color'].withOpacity(0.5),
+                                    ],
+                                    size: 65,
+                                    showDoubleProgress: true,
+                                    secondaryProgress: skill['progress'],
+                                    strokeWidth: 4,
+                                    textStyle: TextStyle(
+                                      fontSize: 10,
+                                      fontWeight: FontWeight.w600,
+                                      color: skill['color'],
+                                    ),
+                                  ).paddingOnly(left: 25),
+                                ],
+                              ),
                             ),
                           ],
                         ),
-                      ],
-                    ),
-                  ),
-                ).marginOnly(bottom: 8.0, right: 16.0, left: 16.0);
-              },
-            ),
+                      ),
+                    ).marginOnly(bottom: 8.0, right: 16.0, left: 16.0);
+                  },
+                ),
+              ),
+            ],
           ),
-        ),
-        Obx(
-          () => AnimatedPositioned(
-            duration: const Duration(milliseconds: 1200),
-            curve: Curves.ease,
-            bottom: bottomNavController.fabBottomPosition(context),
-            right: 16.0,
-            child: FloatingActionButton(
-              elevation: 0,
-              backgroundColor: AppThemeColors.addFabColor,
-              shape: const StadiumBorder(),
-              onPressed: () {
-                navigationController.navToAddNewHardSkillsPage();
-              },
-              child: Image.asset(
-                "assets/isIconOnly.png",
-                width: 24,
-                height: 24,
+          Obx(
+            () => AnimatedPositioned(
+              duration: const Duration(milliseconds: 1000),
+              curve: Curves.easeInOutCubic,
+              bottom: bottomNavController.isExpanded
+                  ? bottomNavController.fabBottomPosition(context)
+                 : context.width * 0.04,
+              right: context.height * 0.022,
+              child: FloatingActionButton(
+                elevation: 0,
+                backgroundColor: AppThemeColors.addFabColor,
+                shape: const StadiumBorder(),
+                onPressed: () {
+                  navigationController.navToAddNewHardSkillsPage();
+                },
+                child: Image.asset(
+                  "assets/isIconOnly.png",
+                  width: 24,
+                  height: 24,
+                ),
               ),
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 
-  Widget _buildInfoItem(String label, String value) {
+  Widget _buildInfoItem(String label, String value, BuildContext context) {
     return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Text(
           label,
-          style: TextStyleHelper.label10W400RegularOpenSans.copyWith(
-            color: const Color.fromRGBO(136, 136, 136, 1),
-          ),
+          style: Theme.of(context).brightness == Brightness.dark
+              ? TextStyleHelper.label10W400RegularOpenSansDark.copyWith(
+                  color: AppThemeColors.gray,
+                )
+              : TextStyleHelper.label10W400RegularOpenSans.copyWith(
+                  color: AppThemeColors.gray,
+                ),
         ),
         const SizedBox(width: 4),
         Text(
           value,
-          style: TextStyleHelper.label10W400RegularOpenSans.copyWith(
-            color: AppThemeColors.titleFieldTextcolor,
-          ),
+          style: Theme.of(context).brightness == Brightness.dark
+              ? TextStyleHelper.label10W600SemiBoldOpenSansDark
+              : TextStyleHelper.label10W600SemiBoldOpenSans,
         ),
       ],
     );

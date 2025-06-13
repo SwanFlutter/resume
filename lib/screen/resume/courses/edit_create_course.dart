@@ -48,7 +48,7 @@ class EditCreateCourse extends StatelessWidget {
                     imageIcon: "assets/reuomeh/Academy.svg",
                     onPressed: () {
                       if (navigationController.currentIndex >= 6 &&
-                          navigationController.currentIndex <= 13) {
+                          navigationController.currentIndex <= 14) {
                         navigationController.navToCreateCourses();
                       } else {
                         Get.back();
@@ -179,8 +179,13 @@ class EditCreateCourse extends StatelessWidget {
                                   Flexible(
                                     child: Text(
                                       "I am currently In This Course",
-                                      style: TextStyleHelper
-                                          .title14W400RegularOpenSans,
+                                      style:
+                                          context.theme.brightness ==
+                                              Brightness.dark
+                                          ? TextStyleHelper
+                                                .body10W400RegularOpenSansDark
+                                          : TextStyleHelper
+                                                .body10W400RegularOpenSans,
                                     ),
                                   ),
                                 ],
@@ -326,8 +331,10 @@ class EditCreateCourse extends StatelessWidget {
             () => AnimatedPositioned(
               duration: const Duration(milliseconds: 1000),
               curve: Curves.easeInOutCubic,
-              bottom: bottomNavController.fabBottomPosition(context),
-              right: 16.0,
+              bottom: bottomNavController.isExpanded
+                  ? bottomNavController.fabBottomPosition(context)
+                 : context.width * 0.04,
+              right: context.height * 0.022,
               child: FloatingActionButton(
                 elevation: 0,
                 backgroundColor: AppThemeColors.editeFabColor,

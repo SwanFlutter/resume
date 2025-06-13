@@ -10,7 +10,7 @@ class CustomFieldsWidget1 extends StatelessWidget {
   final String label;
   final TextEditingController controllerInstance;
   final String hint;
-  final double? width; // اختیاری کردن width
+  final double? width;
   final double? height;
   final int maxLines;
   final bool prefixIcon;
@@ -139,6 +139,7 @@ class CustomFieldsWidget1 extends StatelessWidget {
               ),
               child: TextField(
                 maxLines: maxLines,
+
                 controller: controllerInstance,
                 textAlign: TextAlign.left,
                 textAlignVertical: TextAlignVertical.center,
@@ -207,6 +208,7 @@ class CustomFieldsWidget extends StatelessWidget {
   final Color? prefixIconColor;
   final double? prefixIconSize;
   final double vertical;
+  final AlignmentGeometry hintAlignment;
 
   const CustomFieldsWidget({
     super.key,
@@ -221,23 +223,8 @@ class CustomFieldsWidget extends StatelessWidget {
     this.customPrefixIcon,
     this.prefixIconColor,
     this.prefixIconSize,
+    this.hintAlignment = Alignment.centerLeft,
   });
-
-  // محاسبه ارتفاع بر اساس اندازه صفحه
-  double _getResponsiveHeight(BuildContext context) {
-    final screenHeight = MediaQuery.of(context).size.height;
-
-    if (height != null) return height!;
-
-    // تعریف ارتفاع بر اساس اندازه صفحه
-    if (screenHeight > 800) {
-      return screenHeight * 0.045; // صفحه‌های بزرگ
-    } else if (screenHeight > 600) {
-      return screenHeight * 0.05; // صفحه‌های متوسط
-    } else {
-      return screenHeight * 0.055; // صفحه‌های کوچک
-    }
-  }
 
   // محاسبه اندازه فونت بر اساس اندازه صفحه
 
@@ -252,21 +239,28 @@ class CustomFieldsWidget extends StatelessWidget {
           style: context.theme.brightness == Brightness.dark
               ? TextStyleHelper.label10W700BoldOpenSansDark
               : TextStyleHelper.label10W700BoldOpenSans,
-        ).paddingOnly(
-          left: MediaQuery.of(context).size.width > 600 ? 4.0 : 3.0,
-        ),
-        SizedBox(height: MediaQuery.of(context).size.width > 600 ? 6.0 : 4.0),
+        ).paddingOnly(left: context.width > 600 ? 4.0 : 3.0),
+        SizedBox(height: context.width > 600 ? 6.0 : 4.0),
         GradientTextField(
           maxWidth: 1.0,
-          height: _getResponsiveHeight(context),
+          height: height ?? context.height * 0.045,
           controller: controllerInstance,
           hint: hint,
-          suffixIconAsset: prefixIcon ? "assets/calendar-2.svg" : null,
+          hintAlignment: hintAlignment,
+
+          decoration: InputDecoration(
+            floatingLabelAlignment: FloatingLabelAlignment.start,
+            hintStyle: TextStyleHelper.label10W400RegularOpenSans,
+            iconColor: Colors.amberAccent,
+          ),
+
+          prefixIconAsset: prefixIcon ? "assets/calendar-2.svg" : null,
+
           iconColor: context.theme.brightness == Brightness.dark
               ? Colors.white
               : AppThemeColors.colorFF0407,
-          iconSize: MediaQuery.of(context).size.width > 600 ? 16 : 14,
-
+          iconSize: 35.0,
+          shadowBlurRadius: 0.0,
           gradientBackgroundConfiguration: GradientBackgroundConfiguration(
             borderColor: context.theme.brightness == Brightness.dark
                 ? feildBorderColorDark
@@ -282,8 +276,8 @@ class CustomFieldsWidget extends StatelessWidget {
                 ? [boxColorDark, boxColorDark]
                 : backgroudColorFeild,
 
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
+            begin: Alignment(1.03, -0.08),
+            end: Alignment(-0.02, 1.00),
           ),
           style: TextStyleHelper.label10W400RegularOpenSans.copyWith(
             color: context.theme.brightness == Brightness.dark

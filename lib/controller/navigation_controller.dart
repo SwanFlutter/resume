@@ -14,8 +14,10 @@ import 'package:resume/screen/resume/courses/edit_create_course.dart';
 import 'package:resume/screen/resume/experience/add_job_experience.dart';
 import 'package:resume/screen/resume/experience/job_experience.dart';
 import 'package:resume/screen/resume/resume_info/resume_edite.dart';
+import 'package:resume/screen/resume/resume_info/resume_export_page.dart';
 import 'package:resume/screen/resume/resume_info/resumeh_info.dart';
 import 'package:resume/screen/resume/skils/add_new_hard_skils_page.dart';
+import 'package:resume/screen/resume/skils/hard_skils.dart';
 import 'package:resume/screen/resume/skils/skils.dart';
 import 'package:resume/screen/resume/skils/soft_skils_page.dart';
 import 'package:resume/screen/resume_page.dart';
@@ -48,12 +50,17 @@ class NavigationController extends GetXController {
     // Skils
     SoftSkillsPage(), // 15
     AddNewHardSkillsPage(), // 16
+    
     // job experience
     AddJobExperience(), // 17
     // achivement
     AddNewAchivement(), // 18
     // academic history
     AcademicHistoryAdd(), // 19
+    // export
+    ResumeExportPage(), // 20
+
+    HardSkils(), // 21
   ];
 
   Widget get currentPage => _pages[_currentIndex.value];
@@ -155,6 +162,14 @@ class NavigationController extends GetXController {
 
   void navToAcademicHistoryAdd() {
     changePage(19);
+  }
+
+  void navToResumeExportPage() {
+    changePage(20);
+  }
+
+  void navToHardSkils() {
+    changePage(21);
   }
 
   /* void navToTestProgress() {

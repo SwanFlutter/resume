@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get_x_master/get_x_master.dart';
 import 'package:resume/config/constant.dart';
+import 'package:resume/config/extentions/extension_on_flutter.dart';
 import 'package:resume/controller/bottom_navigation_controller.dart';
 import 'package:resume/controller/navigation_controller.dart';
 import 'package:resume/screen/resume_page.dart';
@@ -16,6 +17,10 @@ class MainNavigation extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = NavigationController.to;
+    final screenHeight = MediaQuery.of(context).size.height;
+    final bottomPadding = screenHeight * 0.11; // 14% از ارتفاع صفحه نمایش
+    final bottomPaddingNavBar =
+        screenHeight * 0.015; // 14% از ارتفاع صفحه نمایش
 
     return WillPopScope(
       onWillPop: () async => false, // غیرفعال کردن دکمه back
@@ -24,14 +29,19 @@ class MainNavigation extends StatelessWidget {
         resizeToAvoidBottomInset: false,
         body: Stack(
           children: [
-            // Main content - full screen
-            BackgroundColors(child: Obx(() => controller.currentPage)),
+            // Main content - full screen with padding at the bottom
+            BackgroundColors(
+              child: Padding(
+                padding: EdgeInsets.only(bottom: bottomPadding),
+                child: Obx(() => controller.currentPage),
+              ),
+            ),
 
             // Bottom navigation bar - positioned at bottom
             Positioned(
               left: 10,
               right: 10,
-              bottom: 12.0,
+              bottom: bottomPaddingNavBar,
               child: BottomNavigationBar(),
             ),
           ],
@@ -66,7 +76,7 @@ class _BottomNavigationBarState extends State<BottomNavigationBar> {
             duration: const Duration(milliseconds: 1000),
             curve: Curves.easeInOutCubic,
             width: MediaQuery.of(context).size.width,
-            height: isExpanded ? context.height * 0.2 : 75,
+            height: isExpanded ? context.height * 0.24 : 75,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(8.0),
               gradient: LinearGradient(
@@ -109,7 +119,7 @@ class _BottomNavigationBarState extends State<BottomNavigationBar> {
                                 ),
                                 child: SingleChildScrollView(
                                   physics: const NeverScrollableScrollPhysics(),
-                                  child: Column(
+                                  child: Row(
                                     mainAxisSize: MainAxisSize.min,
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
@@ -128,7 +138,7 @@ class _BottomNavigationBarState extends State<BottomNavigationBar> {
                                           BlendMode.srcIn,
                                         ),
                                       ),
-                                      const SizedBox(height: 2),
+                                      const SizedBox(width: 3),
                                       Text(
                                         "Home",
                                         style: TextStyleHelper
@@ -195,7 +205,7 @@ class _BottomNavigationBarState extends State<BottomNavigationBar> {
                                         style: TextStyleHelper
                                             .label8W400RegularOpenSans
                                             .copyWith(
-                                              fontSize: 8.0,
+                                              fontSize: 8.0.ssp,
                                               color:
                                                   _navigationController
                                                           .currentIndex ==
@@ -351,7 +361,7 @@ class _BottomNavigationBarState extends State<BottomNavigationBar> {
                                 ),
                                 child: SingleChildScrollView(
                                   physics: const NeverScrollableScrollPhysics(),
-                                  child: Column(
+                                  child: Row(
                                     mainAxisSize: MainAxisSize.min,
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
@@ -367,17 +377,53 @@ class _BottomNavigationBarState extends State<BottomNavigationBar> {
                                           BlendMode.srcIn,
                                         ),
                                       ),
-                                      const SizedBox(height: 2),
-                                      Text(
-                                        "Logout",
-                                        style: TextStyleHelper
-                                            .label10W400RegularOpenSans
-                                            .copyWith(
-                                              color:
-                                                  AppThemeColors.navColorIcon,
-                                              fontSize: 8.0,
-                                            ),
+                                      const SizedBox(width: 5),
+                                      Icon(
+                                        Icons.logout,
+                                        color:
+                                            Theme.of(context).brightness ==
+                                                Brightness.dark
+                                            ? Colors.white
+                                            : AppThemeColors.navColorIcon,
                                       ),
+                                      const SizedBox(width: 5),
+                                      Icon(
+                                        Icons.logout,
+                                        color:
+                                            Theme.of(context).brightness ==
+                                                Brightness.dark
+                                            ? Colors.white
+                                            : AppThemeColors.navColorIcon,
+                                      ),
+                                      const SizedBox(width: 5),
+                                      Icon(
+                                        Icons.logout,
+                                        color:
+                                            Theme.of(context).brightness ==
+                                                Brightness.dark
+                                            ? Colors.white
+                                            : AppThemeColors.navColorIcon,
+                                      ),
+                                      const SizedBox(width: 5),
+                                      /* Text(
+                                        "Logout",
+                                        style:
+                                            context.theme.brightness ==
+                                                Brightness.dark
+                                            ? TextStyleHelper
+                                                  .label10W400RegularOpenSansDark
+                                                  .copyWith(
+                                                    color: Colors.white,
+                                                    fontSize: 8.0,
+                                                  )
+                                            : TextStyleHelper
+                                                  .label10W400RegularOpenSans
+                                                  .copyWith(
+                                                    color: AppThemeColors
+                                                        .navColorIcon,
+                                                    fontSize: 8.0,
+                                                  ),
+                                      ),*/
                                     ],
                                   ),
                                 ),
@@ -385,15 +431,22 @@ class _BottomNavigationBarState extends State<BottomNavigationBar> {
                             ),
                           ),
                         if (isExpanded)
-                          const Expanded(child: SizedBox.shrink()),
+                          Expanded(
+                            child: Container(
+                              color: Colors.amber,
+                              width: context.width,
+                              height: double.infinity,
+                              child: Text(""),
+                            ),
+                          ),
                         // دکمه expand/collapse همیشه نمایش داده می‌شود
                         Expanded(
                           child: InkWell(
                             onTap: _toggleExpand,
                             child: SvgPicture.asset(
                               navigationController.nav[7],
-                              width: 24.0,
-                              height: 24.0,
+                              width: 34.0,
+                              height: 34.0,
                               colorFilter: ColorFilter.mode(
                                 isExpanded
                                     ? Colors.pink

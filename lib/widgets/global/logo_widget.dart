@@ -19,7 +19,7 @@ class LogoWidget extends StatelessWidget {
     return Container(
       alignment: Alignment.center,
       width: context.width,
-      height: context.height * 0.07,
+      height: context.height * 0.09,
       decoration: BoxDecoration(
         border: Border(
           bottom: BorderSide(

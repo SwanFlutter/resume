@@ -12,18 +12,43 @@ class BottomNavigationController extends GetXController {
     _isExpanded.value = !_isExpanded.value;
   }
 
-  // محاسبه ارتفاع navigation bar
-  double get navigationHeight => _isExpanded.value ? 161.0 : 63.0;
-
-  // محاسبه موقعیت FAB (فاصله از پایین) - همیشه بالای navigation bar
-  double? fabBottomPosition(BuildContext context) {
+  // Calculate navigation bar height based on screen size and expansion state
+  double navigationHeight(BuildContext context) {
     final screenHeight = MediaQuery.of(context).size.height;
-    if (_isExpanded.value) {
-      return navigationHeight +
-          (screenHeight * 0.0545); // حالت باز: 10% ارتفاع دیوایس
-    } else {
-      return navigationHeight +
-          (screenHeight * 0.065); // حالت ثابت: 6.5% ارتفاع دیوایس
+    final screenWidth = MediaQuery.of(context).size.width;
+    final pixelRatio = MediaQuery.of(context).devicePixelRatio;
+    
+    // Base height calculation
+    double baseHeight = screenHeight * 0.08; // 8% of screen height
+    
+    // Adjust for different screen sizes
+    if (screenWidth < 360) { // Small phones
+      baseHeight = screenHeight * 0.09;
+    } else if (screenWidth > 600) { // Tablets
+      baseHeight = screenHeight * 0.07;
     }
+    
+    // Adjust for pixel ratio
+    if (pixelRatio > 2.0) {
+      baseHeight *= 0.9; // Slightly smaller on high-density screens
+    }
+    
+    // Return expanded or collapsed height
+    return _isExpanded.value ? baseHeight * 1.5 : baseHeight;
+  }
+
+  // Calculate FAB position to be consistently above navigation bar
+  double fabBottomPosition(BuildContext context) {
+    final screenHeight = MediaQuery.of(context).size.height;
+    final navHeight = navigationHeight(context);
+    final safePadding = MediaQuery.of(context).padding.bottom;
+    
+    // Calculate base spacing (15% of navigation height)
+    final baseSpacing = navHeight * 0.15;
+    
+    // Add extra padding for devices with bottom safe area
+    final extraPadding = safePadding > 0 ? safePadding * 0.5 : 0;
+    
+    return navHeight + baseSpacing + extraPadding;
   }
 }

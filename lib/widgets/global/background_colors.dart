@@ -13,15 +13,16 @@ class BackgroundColors extends StatelessWidget {
       decoration: BoxDecoration(
         gradient: LinearGradient(
           begin: context.theme.brightness == Brightness.dark
-              ? const Alignment(-0.7, 0.7) // 250.75deg برای dark theme
+              ? Alignment
+                    .centerRight // 250.75deg برای dark theme
               : const Alignment(-0.8, 0.8), // 259.02deg برای light theme
           end: context.theme.brightness == Brightness.dark
-              ? const Alignment(0.7, -0.7)
+              ? Alignment.centerLeft
               : const Alignment(0.8, -0.8),
           colors: context.theme.brightness == Brightness.dark
               ? [
-                  const Color(0xFF01161E), // #01161E - آبی تیره در پایین چپ
-                  const Color(0xFF24030B), // #24030B - قرمز در بالا راست
+                  const Color.fromRGBO(36, 3, 11, 1),
+                  const Color.fromRGBO(1, 22, 30, 1),
                 ]
               : [
                   const Color(0xFFFFFFFF), // #FFFFFF - سفید در پایین چپ

@@ -52,11 +52,11 @@ class CustomDropdownWidget<T extends GetXController> extends StatelessWidget {
                   : TextStyleHelper.label10W700BoldOpenSans.copyWith(
                       fontWeight: FontWeight.w800,
                     ),
-            ),
+            ).paddingOnly(left: 5),
             SizedBox(height: 4),
             Container(
               width: width,
-              height: _getResponsiveHeight(context),
+              height: context.height * 0.045,
               decoration: BoxDecoration(
                 border: Border.all(
                   color: context.theme.brightness == Brightness.dark

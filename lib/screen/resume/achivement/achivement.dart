@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get_x_master/get_x_master.dart';
 import 'package:resume/config/constant.dart';
+import 'package:resume/controller/bottom_navigation_controller.dart';
 import 'package:resume/screen/resume_page.dart';
 import 'package:resume/widgets/global/appbar_widget.dart';
 import 'package:resume/widgets/global/card_box.dart';
@@ -11,6 +12,7 @@ class Achivement extends StatelessWidget {
   const Achivement({super.key});
   @override
   Widget build(BuildContext context) {
+    final bottomNavController = BottomNavigationController.to;
     return SafeArea(
       child: Stack(
         children: [
@@ -43,6 +45,10 @@ class Achivement extends StatelessWidget {
                       itemBuilder: (context, index) {
                         return CardBox(
                           width: context.width,
+                          height: context.height * 0.12,
+                          boxShadow: context.theme.brightness == Brightness.dark
+                              ? [resumeBoxShadowDark]
+                              : [resumeBoxShadow],
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisSize: MainAxisSize.min,
@@ -55,30 +61,44 @@ class Achivement extends StatelessWidget {
                                     "assets/reuomeh/cup-star-svgrepo-com 1.svg",
                                     width: 14,
                                     height: 14,
+                                    colorFilter: ColorFilter.mode(
+                                      Theme.of(context).brightness ==
+                                              Brightness.dark
+                                          ? Colors.white
+                                          : Colors.black,
+                                      BlendMode.srcIn,
+                                    ),
                                   ),
-
                                   Text(
                                     "Best Referee",
                                     style: TextStyleHelper
                                         .title14W600RegularOpenSans
                                         .copyWith(
                                           fontSize: 12.0,
-                                          color: Colors.black,
+                                          color:
+                                              Theme.of(context).brightness ==
+                                                  Brightness.dark
+                                              ? Colors.white
+                                              : Colors.black,
                                         ),
                                   ),
                                 ],
                               ),
-                              SizedBox(height: 4),
+                              Spacer(),
                               Text(
                                 "Top 5 Product Design Lead in the world !",
                                 style: TextStyle(
-                                  color: const Color(0xFF064368),
+                                  color:
+                                      Theme.of(context).brightness ==
+                                          Brightness.dark
+                                      ? Colors.white
+                                      : const Color(0xFF064368),
                                   fontSize: 10,
                                   fontFamily: 'Open Sans',
                                   fontWeight: FontWeight.w600,
                                 ),
                               ),
-                              SizedBox(height: 8),
+                              Spacer(),
                               Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
@@ -86,18 +106,31 @@ class Achivement extends StatelessWidget {
                                   Text(
                                     "2024",
                                     style: TextStyleHelper
-                                        .label10W600SemiBoldOpenSans,
+                                        .label10W600SemiBoldOpenSans
+                                        .copyWith(
+                                          color:
+                                              Theme.of(context).brightness ==
+                                                  Brightness.dark
+                                              ? Colors.white
+                                              : null,
+                                        ),
                                   ),
-
                                   Text(
                                     "Iran - Tehran".toUpperCase(),
                                     style: TextStyleHelper
-                                        .label10W600SemiBoldOpenSans,
+                                        .label10W600SemiBoldOpenSans
+                                        .copyWith(
+                                          color:
+                                              Theme.of(context).brightness ==
+                                                  Brightness.dark
+                                              ? Colors.white
+                                              : null,
+                                        ),
                                   ),
                                 ],
-                              ).paddingSymmetric(horizontal: 3.0),
+                              ).paddingOnly(bottom: 10),
                             ],
-                          ).paddingAll(8.0),
+                          ).paddingSymmetric(horizontal: 12.0, vertical: 8.0),
                         ).paddingOnly(left: 16, right: 16.0, bottom: 8.0);
                       },
                     ),
@@ -106,22 +139,26 @@ class Achivement extends StatelessWidget {
               ),
             ),
           ),
-          AnimatedPositioned(
-            duration: Duration(milliseconds: 1200),
-            curve: Curves.ease,
-            bottom: 0.0,
-            right: 16.0,
-            child: FloatingActionButton(
-              elevation: 0,
-              backgroundColor: AppThemeColors.addFabColor,
-              shape: StadiumBorder(),
-              onPressed: () {
-                navigationController.navToAddNewAchivement();
-              },
-              child: Image.asset(
-                "assets/isIconOnly.png",
-                width: 24,
-                height: 24,
+          Obx(
+            () => AnimatedPositioned(
+              duration: const Duration(milliseconds: 1000),
+              curve: Curves.easeInOutCubic,
+              bottom: bottomNavController.isExpanded
+                  ? bottomNavController.fabBottomPosition(context)
+                 : context.width * 0.04,
+              right: context.height * 0.022,
+              child: FloatingActionButton(
+                elevation: 0,
+                backgroundColor: AppThemeColors.addFabColor,
+                shape: const StadiumBorder(),
+                onPressed: () {
+                  navigationController.navToAddNewAchivement();
+                },
+                child: Image.asset(
+                  "assets/isIconOnly.png",
+                  width: 24,
+                  height: 24,
+                ),
               ),
             ),
           ),

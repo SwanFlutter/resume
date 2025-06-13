@@ -42,25 +42,26 @@ class AcademicHistory extends StatelessWidget {
                         title: "Software Developer",
                         subtitle: "Bachelor",
                         isOnline: true,
-                        stateSchool: "Bachelor",
-                        school: "Tehran University",
                         width: context.width,
-                        height: context.height * 0.12,
-                      );
+                        height: context.height * 0.1115,
+                        degree: "Bachelor",
+                        dateRange: "Bachelor",
+                        university: "Tehran University",
+                      ).paddingOnly(bottom: 10.0);
                     },
-                  ),
+                  ).paddingSymmetric(horizontal: 16.0),
                 ),
               ],
             ),
           ),
-          Positioned(
-            bottom: 115.0,
-            right: 20,
-            child: AnimatedPositioned(
-              duration: Duration(milliseconds: 1200),
-              curve: Curves.ease,
-              bottom: 0.0,
-              right: 16.0,
+          Obx(
+            () => AnimatedPositioned(
+              duration: const Duration(milliseconds: 1000),
+              curve: Curves.easeInOutCubic,
+              bottom: bottomNavController.isExpanded
+                  ? bottomNavController.fabBottomPosition(context)
+                  : context.width * 0.04,
+              right: context.height * 0.022,
               child: FloatingActionButton(
                 elevation: 0,
                 backgroundColor: AppThemeColors.addFabColor,

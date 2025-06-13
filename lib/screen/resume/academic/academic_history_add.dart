@@ -53,8 +53,13 @@ class AcademicHistoryAdd extends StatelessWidget {
                                 children: [
                                   Text(
                                     "general Information",
-                                    style: TextStyleHelper
-                                        .title14W600RegularOpenSans,
+                                    style:
+                                        context.theme.brightness ==
+                                            Brightness.dark
+                                        ? TextStyleHelper
+                                              .title14W400RegularOpenSansDark
+                                        : TextStyleHelper
+                                              .title14W400RegularOpenSans,
                                   ),
                                 ],
                               ),
@@ -137,9 +142,13 @@ class AcademicHistoryAdd extends StatelessWidget {
                                   Flexible(
                                     child: Text(
                                       "I am currently In This Course",
-                                      style: TextStyleHelper
-                                          .title14W400RegularOpenSans
-                                          .copyWith(fontSize: 10),
+                                      style:
+                                          context.theme.brightness ==
+                                              Brightness.dark
+                                          ? TextStyleHelper
+                                                .body10W400RegularOpenSansDark
+                                          : TextStyleHelper
+                                                .body10W400RegularOpenSans,
                                     ),
                                   ),
                                 ],
@@ -159,8 +168,13 @@ class AcademicHistoryAdd extends StatelessWidget {
                                 children: [
                                   Text(
                                     "Detail Information",
-                                    style: TextStyleHelper
-                                        .title14W600RegularOpenSans,
+                                    style:
+                                        context.theme.brightness ==
+                                            Brightness.dark
+                                        ? TextStyleHelper
+                                              .title14W400RegularOpenSansDark
+                                        : TextStyleHelper
+                                              .title14W400RegularOpenSans,
                                   ),
                                 ],
                               ),
@@ -254,8 +268,10 @@ class AcademicHistoryAdd extends StatelessWidget {
           AnimatedPositioned(
             duration: Duration(milliseconds: 1200),
             curve: Curves.ease,
-            bottom: 0.0,
-            right: 16.0,
+            bottom: bottomNavController.isExpanded
+                ? bottomNavController.fabBottomPosition(context)
+                : context.width * 0.04,
+            right: context.height * 0.022,
             child: FloatingActionButton(
               elevation: 0,
               backgroundColor: AppThemeColors.editeFabColor,

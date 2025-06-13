@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get_x_master/get_x_master.dart';
 import 'package:intl/intl.dart';
 
+
 // Extensions for Margin
 
 // Extension for Visibility
@@ -113,6 +114,91 @@ extension ConvertFormating on Widget {
   String toNumberFormatting(int number) {
     final formatter = NumberFormat('#,###');
     return formatter.format(number);
+  }
+}
+
+extension ResponsiveFontSize on num {
+  double get sp {
+    final context = Get.context!;
+    final width = MediaQuery.of(context).size.width;
+    final height = MediaQuery.of(context).size.height;
+    final pixelRatio = MediaQuery.of(context).devicePixelRatio;
+    
+    // Base values for different screen sizes
+    const double baseWidth = 375.0; // iPhone SE width as base
+    const double baseHeight = 667.0; // iPhone SE height as base
+    
+    // Calculate scale factors
+    final widthScale = width / baseWidth;
+    final heightScale = height / baseHeight;
+    
+    // Use the smaller scale factor to prevent oversized fonts
+    final scaleFactor = widthScale < heightScale ? widthScale : heightScale;
+    
+    // Adjust scale factor based on pixel ratio
+    final adjustedScaleFactor = scaleFactor * (pixelRatio > 2.0 ? 0.8 : 1.0);
+    
+    // Clamp the scale factor to prevent extreme sizes
+    final clampedScaleFactor = adjustedScaleFactor.clamp(0.8, 1.4);
+    
+    // Calculate final font size
+    return (this * clampedScaleFactor).toDouble();
+  }
+  
+  // For larger text (headings, titles)
+  double get hsp {
+    final context = Get.context!;
+    final width = MediaQuery.of(context).size.width;
+    final height = MediaQuery.of(context).size.height;
+    final pixelRatio = MediaQuery.of(context).devicePixelRatio;
+    
+    // Base values for different screen sizes
+    const double baseWidth = 375.0;
+    const double baseHeight = 667.0;
+    
+    // Calculate scale factors
+    final widthScale = width / baseWidth;
+    final heightScale = height / baseHeight;
+    
+    // Use the smaller scale factor to prevent oversized fonts
+    final scaleFactor = widthScale < heightScale ? widthScale : heightScale;
+    
+    // Adjust scale factor based on pixel ratio
+    final adjustedScaleFactor = scaleFactor * (pixelRatio > 2.0 ? 0.7 : 0.9);
+    
+    // Clamp the scale factor to prevent extreme sizes
+    final clampedScaleFactor = adjustedScaleFactor.clamp(0.7, 1.2);
+    
+    // Calculate final font size
+    return (this * clampedScaleFactor).toDouble();
+  }
+  
+  // For smaller text (captions, footnotes)
+  double get ssp {
+    final context = Get.context!;
+    final width = MediaQuery.of(context).size.width;
+    final height = MediaQuery.of(context).size.height;
+    final pixelRatio = MediaQuery.of(context).devicePixelRatio;
+    
+    // Base values for different screen sizes
+    const double baseWidth = 375.0;
+    const double baseHeight = 667.0;
+    
+    // Calculate scale factors
+    final widthScale = width / baseWidth;
+    final heightScale = height / baseHeight;
+    
+    // Use the smaller scale factor to prevent oversized fonts
+    final scaleFactor = widthScale < heightScale ? widthScale : heightScale;
+    
+    // Adjust scale factor based on pixel ratio
+    final adjustedScaleFactor = scaleFactor * (pixelRatio > 2.0 ? 0.9 : 1.1);
+    
+    // Clamp the scale factor to prevent extreme sizes
+    final clampedScaleFactor = adjustedScaleFactor.clamp(0.9, 1.3);
+    
+    // Calculate final font size
+    return (this * clampedScaleFactor).toDouble();
   }
 }
 

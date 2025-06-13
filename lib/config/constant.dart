@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:resume/config/extentions/extension_on_flutter.dart';
 
 const BoxShadow resumeBoxShadow = BoxShadow(
   color: Color.fromRGBO(8, 14, 28, 0.3),
@@ -78,6 +79,7 @@ class AppThemeColors {
   static const Color colorFF0000 = Color.fromRGBO(0, 0, 0, 1); // Black
   static const Color colorFF0407 = Color.fromRGBO(4, 7, 14, 1); // Dark text
   static const Color colorFF9999 = Color.fromRGBO(153, 153, 153, 1);
+  static const Color gray = Color.fromRGBO(136, 136, 136, 1);
   static const Color navColorIcon = Color.fromRGBO(7, 14, 7, 0.5);
   static const Color addFabColor = Color.fromRGBO(30, 51, 99, 1);
   static const Color editeFabColor = Color.fromRGBO(253, 27, 81, 1);
@@ -98,203 +100,217 @@ class TextStyleHelper {
   }
 
   // Title Styles for Light Theme
-  static TextStyle get title20W400RegularOpenSans => const TextStyle(
-    fontSize: 20,
+  static TextStyle get title20W400RegularOpenSans => TextStyle(
+    fontSize: 20.hsp,
     fontWeight: FontWeight.w400,
-    fontFamily: 'OpenSans',
-    color: AppThemeColors.colorFF0407,
-  );
-
-  static TextStyle get title14W400RegularOpenSans => const TextStyle(
-    fontSize: 14,
-    fontWeight: FontWeight.w400,
-    fontFamily: 'OpenSans',
-    color: AppThemeColors.colorFF0407,
-  );
-
-  static TextStyle get title14W500RegularOpenSans => const TextStyle(
-    fontSize: 14,
-    fontWeight: FontWeight.w500,
-    fontFamily: 'OpenSans',
-    color: AppThemeColors.colorFF0407,
-  );
-
-  static TextStyle get title14W600RegularOpenSans => const TextStyle(
-    fontSize: 14,
-    fontWeight: FontWeight.w600,
-    fontFamily: 'OpenSans',
-    color: AppThemeColors.colorFF0407,
-  );
-
-  static TextStyle get title10W700RegularOpenSans => const TextStyle(
-    fontSize: 10,
-    fontWeight: FontWeight.w700,
     fontFamily: 'OpenSans',
     color: AppThemeColors.colorFF0407,
   );
 
   // Dark Theme Title Styles
-  static TextStyle get title20W400RegularOpenSansDark => const TextStyle(
-    fontSize: 20,
+  static TextStyle get title20W400RegularOpenSansDark => TextStyle(
+    fontSize: 20.hsp,
     fontWeight: FontWeight.w400,
     fontFamily: 'OpenSans',
     color: Colors.white,
   );
 
-  static TextStyle get title14W400RegularOpenSansDark => const TextStyle(
-    fontSize: 14,
+  static TextStyle get title14W400RegularOpenSans => TextStyle(
+    fontSize: 16.sp,
+    fontWeight: FontWeight.w400,
+    fontFamily: 'OpenSans',
+    color: AppThemeColors.colorFF0407,
+  );
+
+  static TextStyle get title14W500RegularOpenSans => TextStyle(
+    fontSize: 16.sp,
+    fontWeight: FontWeight.w500,
+    fontFamily: 'OpenSans',
+    color: AppThemeColors.colorFF0407,
+  );
+
+  static TextStyle get title14W600RegularOpenSans => TextStyle(
+    fontSize: 16.sp,
+    fontWeight: FontWeight.w600,
+    fontFamily: 'OpenSans',
+    color: AppThemeColors.colorFF0407,
+  );
+
+  static TextStyle get title10W700RegularOpenSans => TextStyle(
+    fontSize: 12.ssp,
+    fontWeight: FontWeight.w700,
+    fontFamily: 'OpenSans',
+    color: AppThemeColors.colorFF0407,
+  );
+
+  static TextStyle get title14W400RegularOpenSansDark => TextStyle(
+    fontSize: 16.sp,
     fontWeight: FontWeight.w400,
     fontFamily: 'OpenSans',
     color: Colors.white,
   );
 
-  static TextStyle get title14W500RegularOpenSansDark => const TextStyle(
-    fontSize: 14,
+  static TextStyle get title14W500RegularOpenSansDark => TextStyle(
+    fontSize: 16.sp,
     fontWeight: FontWeight.w500,
     fontFamily: 'OpenSans',
     color: Colors.white,
   );
 
-  static TextStyle get title14W600RegularOpenSansDark => const TextStyle(
-    fontSize: 14,
+  static TextStyle get title14W600RegularOpenSansDark => TextStyle(
+    fontSize: 16.sp,
     fontWeight: FontWeight.w600,
     fontFamily: 'OpenSans',
     color: Colors.white,
   );
 
-  static TextStyle get title10W700RegularOpenSansDark => const TextStyle(
-    fontSize: 10,
+  static TextStyle get title10W700RegularOpenSansDark => TextStyle(
+    fontSize: 12.ssp,
     fontWeight: FontWeight.w700,
     fontFamily: 'OpenSans',
     color: Colors.white,
   );
 
+  static TextStyle get title12W600RegularOpenSans => TextStyle(
+    fontSize: 14.sp,
+    fontWeight: FontWeight.w600,
+    fontFamily: 'OpenSans',
+    color: AppThemeColors.colorFF0407,
+  );
+
+  static TextStyle get title12W600RegularOpenSansDark => TextStyle(
+    fontSize: 14.sp,
+    fontWeight: FontWeight.w600,
+    fontFamily: 'OpenSans',
+    color: Colors.white,
+  );
+
   // Body Styles for Light Theme
-  static TextStyle get body10W400RegularOpenSans => const TextStyle(
-    fontSize: 10,
+  static TextStyle get body10W400RegularOpenSans => TextStyle(
+    fontSize: 12.ssp,
     fontWeight: FontWeight.w400,
     fontFamily: 'OpenSans',
     color: AppThemeColors.colorFF0407,
   );
 
-  static TextStyle get body12W400RegularOpenSans => const TextStyle(
-    fontSize: 12,
+  static TextStyle get body12W400RegularOpenSans => TextStyle(
+    fontSize: 14.sp,
     fontWeight: FontWeight.w400,
     fontFamily: 'OpenSans',
     color: AppThemeColors.colorFF0407,
   );
 
-  static TextStyle get body14W400RegularOpenSans => const TextStyle(
-    fontSize: 14,
+  static TextStyle get body12W400RegularOpenSansDark => TextStyle(
+    fontSize: 14.sp,
+    fontWeight: FontWeight.w400,
+    fontFamily: 'OpenSans',
+    color: Colors.white,
+  );
+
+  static TextStyle get body14W400RegularOpenSans => TextStyle(
+    fontSize: 16.sp,
     fontWeight: FontWeight.w400,
     fontFamily: 'OpenSans',
     color: AppThemeColors.colorFF0407,
   );
 
-  static TextStyle get body14W500MediumOpenSans => const TextStyle(
-    fontSize: 14,
+  static TextStyle get body14W500MediumOpenSans => TextStyle(
+    fontSize: 16.sp,
     fontWeight: FontWeight.w500,
     fontFamily: 'OpenSans',
     color: AppThemeColors.colorFF0407,
   );
 
   // Dark Theme Body Styles
-  static TextStyle get body10W400RegularOpenSansDark => const TextStyle(
-    fontSize: 10,
+  static TextStyle get body10W400RegularOpenSansDark => TextStyle(
+    fontSize: 12.ssp,
     fontWeight: FontWeight.w400,
     fontFamily: 'OpenSans',
     color: Colors.white,
   );
 
-  static TextStyle get body12W400RegularOpenSansDark => const TextStyle(
-    fontSize: 12,
+  static TextStyle get body14W400RegularOpenSansDark => TextStyle(
+    fontSize: 16.sp,
     fontWeight: FontWeight.w400,
     fontFamily: 'OpenSans',
     color: Colors.white,
   );
 
-  static TextStyle get body14W400RegularOpenSansDark => const TextStyle(
-    fontSize: 14,
-    fontWeight: FontWeight.w400,
-    fontFamily: 'OpenSans',
-    color: Colors.white,
-  );
-
-  static TextStyle get body14W500MediumOpenSansDark => const TextStyle(
-    fontSize: 14,
+  static TextStyle get body14W500MediumOpenSansDark => TextStyle(
+    fontSize: 16.sp,
     fontWeight: FontWeight.w500,
     fontFamily: 'OpenSans',
     color: Colors.white,
   );
 
   // Label Styles
-  static TextStyle get label10W700BoldOpenSans => const TextStyle(
-    fontSize: 10,
+  static TextStyle get label10W700BoldOpenSans => TextStyle(
+    fontSize: 12.ssp,
     fontWeight: FontWeight.w700,
     fontFamily: 'OpenSans',
     color: AppThemeColors.colorFF0407,
   );
 
-  static TextStyle get label10W400RegularOpenSans => const TextStyle(
-    fontSize: 10,
-    fontWeight: FontWeight.w400,
-    fontFamily: 'OpenSans',
-    color: AppThemeColors.colorFF9999,
-  );
-
-  static TextStyle get label10W600SemiBoldOpenSans => const TextStyle(
-    fontSize: 10,
+  static TextStyle get label10W600SemiBoldOpenSans => TextStyle(
+    fontSize: 12.ssp,
     fontWeight: FontWeight.w600,
     fontFamily: 'OpenSans',
     color: AppThemeColors.colorFF0407,
   );
 
-  static TextStyle get label8W400RegularOpenSans => const TextStyle(
-    fontSize: 8,
+  static TextStyle get label8W400RegularOpenSans => TextStyle(
+    fontSize: 10.ssp,
     fontWeight: FontWeight.w400,
     fontFamily: 'OpenSans',
     color: AppThemeColors.colorFF0407,
   );
 
   // Dark Theme Label Styles
-  static TextStyle get label10W700BoldOpenSansDark => const TextStyle(
-    fontSize: 10,
+  static TextStyle get label10W700BoldOpenSansDark => TextStyle(
+    fontSize: 12.ssp,
     fontWeight: FontWeight.w700,
     fontFamily: 'OpenSans',
     color: Colors.white,
   );
 
-  static TextStyle get label10W400RegularOpenSansDark => const TextStyle(
-    fontSize: 10,
+  static TextStyle get label10W400RegularOpenSans => TextStyle(
+    fontSize: 12.ssp,
     fontWeight: FontWeight.w400,
     fontFamily: 'OpenSans',
-    color: AppThemeColors.colorFF9999, // No change for hint color
+    color: AppThemeColors.colorFF9999,
   );
 
-  static TextStyle get label10W600SemiBoldOpenSansDark => const TextStyle(
-    fontSize: 10,
+  static TextStyle get label10W400RegularOpenSansDark => TextStyle(
+    fontSize: 12.ssp,
+    fontWeight: FontWeight.w400,
+    fontFamily: 'OpenSans',
+    color: AppThemeColors.colorFF9999,
+  );
+
+  static TextStyle get label10W600SemiBoldOpenSansDark => TextStyle(
+    fontSize: 12.ssp,
     fontWeight: FontWeight.w600,
     fontFamily: 'OpenSans',
     color: Colors.white,
   );
 
-  static TextStyle get label8W400RegularOpenSansDark => const TextStyle(
-    fontSize: 8,
+  static TextStyle get label8W400RegularOpenSansDark => TextStyle(
+    fontSize: 10.ssp,
     fontWeight: FontWeight.w400,
     fontFamily: 'OpenSans',
     color: Colors.white,
   );
 
   // CV Button Styles
-  static TextStyle get cvButtonLargeOpenSans => const TextStyle(
-    fontSize: 20,
+  static TextStyle get cvButtonLargeOpenSans => TextStyle(
+    fontSize: 18.hsp,
     fontWeight: FontWeight.w400,
     fontFamily: 'OpenSans',
     color: Colors.white,
   );
 
-  static TextStyle get cvButtonSmallOpenSans => const TextStyle(
-    fontSize: 10,
+  static TextStyle get cvButtonSmallOpenSans => TextStyle(
+    fontSize: 14.sp,
     fontWeight: FontWeight.w400,
     fontFamily: 'OpenSans',
     color: Colors.white,

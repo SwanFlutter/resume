@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get_x_master/get_x_master.dart';
 import 'package:resume/config/constant.dart';
+import 'package:resume/themes/theme.dart' hide backgroudColorFeild;
 
 class FileWidget extends StatelessWidget {
   final String label;
@@ -29,22 +30,26 @@ class FileWidget extends StatelessWidget {
       children: [
         Text(
           titel,
-          style: TextStyle(
-            color: AppThemeColors.titleFieldTextcolor,
-            fontWeight: FontWeight.w400,
-            fontSize: 10.0,
-          ),
+          style: context.theme.brightness == Brightness.dark
+              ? TextStyleHelper.body10W400RegularOpenSansDark
+              : TextStyleHelper.body10W400RegularOpenSans,
         ),
         SizedBox(height: 5.0),
         Container(
           width: context.width,
           height: 32,
           decoration: BoxDecoration(
-            //  border: Border.all(color: AppThemeColors.colorFF0000),
+            border: Border.all(
+              color: context.theme.brightness == Brightness.dark
+                  ? feildBorderColorDark
+                  : feildBorderColor,
+            ),
             gradient: LinearGradient(
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
-              colors: backgroudColorFeild,
+              colors: context.theme.brightness == Brightness.dark
+                  ? [boxColorDark, boxColorDark]
+                  : backgroudColorFeild,
             ),
           ),
           child: Row(

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get_x_master/get_x_master.dart';
 import 'package:resume/config/constant.dart';
 import 'package:resume/controller/academic_controller.dart';
+import 'package:resume/controller/experience_controller.dart';
 import 'package:resume/screen/resume_page.dart';
 import 'package:resume/widgets/global/appbar_widget.dart';
 import 'package:resume/widgets/global/card_box.dart';
@@ -14,6 +15,7 @@ class AddJobExperience extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ExperienceController experienceController = ExperienceController.to;
     return SafeArea(
       child: Stack(
         children: [
@@ -25,7 +27,7 @@ class AddJobExperience extends StatelessWidget {
                 // بخش ثابت بالا
                 LogoWidget(),
                 AppBarWidget(
-                  title: "Add New Academic History",
+                  title: "Add Job Exprience",
                   imageIcon: "assets/reuomeh/personalcard.svg",
                   onPressed: () {
                     if (navigationController.currentIndex >= 6 &&
@@ -82,6 +84,15 @@ class AddJobExperience extends StatelessWidget {
                                   ),
                                 ),
                               ],
+                            ),
+                            SizedBox(height: context.height * 0.01),
+                            CustomDropdownWidget(
+                              width: context.width,
+                              controller: ExperienceController(),
+                              label: "Job Type",
+                              dropdownId: "Job Type",
+                              titleList: experienceController.jobTypeList,
+                              title: experienceController.title,
                             ),
                             SizedBox(height: context.height * 0.01),
                             Row(
@@ -239,8 +250,9 @@ class AddJobExperience extends StatelessWidget {
                               label: 'Description *',
                               hint: "Description",
                               width: context.width,
-                              height: context.height * 0.10,
+                              height: context.height * 0.15,
                               maxLines: 6,
+                              hintAlignment: Alignment.topLeft,
                             ),
                             SizedBox(height: context.height * 0.01),
                           ],
@@ -253,17 +265,23 @@ class AddJobExperience extends StatelessWidget {
             ),
           ),
           // Floating Action Button ثابت
-          Positioned(
-            bottom: 0.0,
-            right: 16.0,
-            child: FloatingActionButton(
-              elevation: 0,
-              backgroundColor: AppThemeColors.editeFabColor,
-              shape: StadiumBorder(),
-              onPressed: () {
-                navigationController.navToAchievement();
-              },
-              child: Image.asset("assets/Vector.png", width: 24, height: 24),
+          Obx(
+            () => AnimatedPositioned(
+              duration: const Duration(milliseconds: 1000),
+              curve: Curves.easeInOutCubic,
+              bottom: bottomNavController.isExpanded
+                  ? bottomNavController.fabBottomPosition(context)
+                  : context.width * 0.04,
+              right: context.height * 0.022,
+              child: FloatingActionButton(
+                elevation: 0,
+                backgroundColor: AppThemeColors.editeFabColor,
+                shape: StadiumBorder(),
+                onPressed: () {
+                  navigationController.navToAchievement();
+                },
+                child: Image.asset("assets/Vector.png", width: 24, height: 24),
+              ),
             ),
           ),
         ],

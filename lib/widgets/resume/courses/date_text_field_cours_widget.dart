@@ -4,6 +4,7 @@ import 'package:get_x_master/get_x_master.dart';
 import 'package:intl/intl.dart';
 import 'package:resume/config/constant.dart';
 import 'package:resume/controller/courses_controller.dart';
+import 'package:resume/themes/theme.dart' hide backgroudColorFeild;
 
 class DateTextFielCoursdWidget extends StatelessWidget {
   final CoursesController controller;
@@ -95,9 +96,9 @@ class CupertioDateField extends StatelessWidget {
       children: [
         Text(
           label,
-          style: TextStyleHelper.label10W700BoldOpenSans.copyWith(
-            color: AppThemeColors.titleFieldTextcolor,
-          ),
+          style: context.theme.brightness == Brightness.dark
+              ? TextStyleHelper.label10W700BoldOpenSansDark
+              : TextStyleHelper.label10W700BoldOpenSans,
         ),
         const SizedBox(height: 4),
         DateCupertinoBottomSheetPicker(
@@ -113,10 +114,12 @@ class CupertioDateField extends StatelessWidget {
             containerPadding: const EdgeInsets.only(top: 0.0),
             containerHeight: context.height * 0.045,
             containerDecoration: BoxDecoration(
-              gradient: const LinearGradient(
+              gradient: LinearGradient(
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
-                colors: backgroudColorFeild,
+                colors: context.theme.brightness == Brightness.dark
+                    ? [boxColorDark, boxColorDark]
+                    : backgroudColorFeild,
               ),
               borderRadius: BorderRadius.circular(4),
             ),
@@ -147,6 +150,16 @@ class CupertioDateField extends StatelessWidget {
             isDense: true,
           ),
           onTimeChanged: onTimeChanged,
+          cancelButtonConfig: CancelButtonConfig(
+            text: "Cancel",
+            color: AppThemeColors.editeFabColor,
+            shape: OutlineInputBorder(borderRadius: BorderRadius.circular(8.0)),
+          ),
+          confirmButtonConfig: ConfirmButtonConfig(
+            text: "Confirm",
+            color: AppThemeColors.addFabColor,
+            shape: OutlineInputBorder(borderRadius: BorderRadius.circular(8.0)),
+          ),
         ),
       ],
     );

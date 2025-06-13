@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get_x_master/get_x_master.dart';
 import 'package:resume/config/constant.dart';
 import 'package:resume/widgets/global/card_box.dart';
@@ -37,21 +38,31 @@ class CardCoursesWidget extends StatelessWidget {
                       ),
                     )
                   : SizedBox.shrink(),
-
-              Icon(Icons.school, size: 16.0),
-              SizedBox(width: 3.0),
+              SizedBox(width: 5.0),
+              SvgPicture.asset(
+                "assets/reuomeh/Academy.svg",
+                width: 16,
+                height: 16,
+                colorFilter: ColorFilter.mode(
+                  context.theme.brightness == Brightness.dark
+                      ? Colors.white
+                      : AppThemeColors.titleFieldTextcolor,
+                  BlendMode.srcIn,
+                ),
+              ),
+              SizedBox(width: 5.0),
               Text(
                 title,
-                style: TextStyle(
-                  fontSize: 12.0,
-                  fontWeight: FontWeight.w600,
-                  color: Color.fromRGBO(4, 7, 14, 1),
-                ),
+                style: context.theme.brightness == Brightness.dark
+                    ? TextStyleHelper.label10W600SemiBoldOpenSansDark
+                    : TextStyleHelper.label10W600SemiBoldOpenSans,
               ),
               Spacer(),
               Text(
                 subtitle,
-                style: TextStyleHelper.label10W600SemiBoldOpenSans,
+                style: context.theme.brightness == Brightness.dark
+                    ? TextStyleHelper.label10W600SemiBoldOpenSansDark
+                    : TextStyleHelper.label10W600SemiBoldOpenSans,
               ),
             ],
           ),
@@ -82,20 +93,16 @@ class CardCoursesWidget extends StatelessWidget {
               ),
               Text(
                 timeSchool,
-                style: TextStyle(
-                  fontSize: 10.0,
-                  fontWeight: FontWeight.w600,
-                  color: Color.fromRGBO(4, 7, 14, 1),
-                ),
+                style: context.theme.brightness == Brightness.dark
+                    ? TextStyleHelper.label10W600SemiBoldOpenSansDark
+                    : TextStyleHelper.label10W600SemiBoldOpenSans,
               ),
               Spacer(),
               Text(
                 school.toUpperCase(),
-                style: TextStyle(
-                  fontSize: 10.0,
-                  fontWeight: FontWeight.w600,
-                  color: Color.fromRGBO(4, 7, 14, 1),
-                ),
+                style: context.theme.brightness == Brightness.dark
+                    ? TextStyleHelper.label10W600SemiBoldOpenSansDark
+                    : TextStyleHelper.label10W600SemiBoldOpenSans,
               ),
             ],
           ),
