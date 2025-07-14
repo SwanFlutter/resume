@@ -244,10 +244,10 @@ packages:
     dependency: "direct main"
     description:
       name: get_x_master
-      sha256: "7e5556c79ef5b53f8d3bd719aefdbc8704a6121b62783427cd8aaff9d456c390"
+      sha256: "47218cf0013ee9214e5cb1becb389437edccff46ac2bcf3cbc134650c04793b7"
       url: "https://pub.dev"
     source: hosted
-    version: "0.0.8"
+    version: "0.0.13"
   get_x_storage:
     dependency: "direct main"
     description:
