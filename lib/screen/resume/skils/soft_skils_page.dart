@@ -6,7 +6,7 @@ import 'package:resume/controller/bottom_navigation_controller.dart';
 import 'package:resume/screen/resume_page.dart';
 import 'package:resume/widgets/custom/custom_progress_indicator.dart';
 import 'package:resume/widgets/global/appbar_widget.dart';
-import 'package:resume/widgets/global/card_box.dart';
+import 'package:resume/widgets/global/card_box_widget.dart';
 import 'package:resume/widgets/global/logo_widget.dart';
 
 class SoftSkillsPage extends StatelessWidget {
@@ -70,18 +70,19 @@ class SoftSkillsPage extends StatelessWidget {
                   }
                 },
               ),
-
               Expanded(
                 child: ListView.builder(
                   itemCount: skills.length,
-                  padding: const EdgeInsets.only(bottom: 16), // کاهش padding
+
                   itemBuilder: (context, index) {
                     final skill = skills[index];
-                    return CardBox(
-                      height: context.height * 0.115,
+                    return CardBoxWidget(
+                      height: context.height * 0.11,
                       boxShadow: context.theme.brightness == Brightness.dark
                           ? [resumeBoxShadowDark]
                           : [resumeBoxShadow],
+                      isBorder: true,
+                      isSkils: true,
                       child: Padding(
                         padding: const EdgeInsets.symmetric(
                           vertical: 10.0,
@@ -90,7 +91,6 @@ class SoftSkillsPage extends StatelessWidget {
                         child: Row(
                           children: [
                             Expanded(
-                              flex: 2,
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
@@ -122,23 +122,21 @@ class SoftSkillsPage extends StatelessWidget {
                                       ),
                                     ],
                                   ),
-                                  SizedBox(height: context.height * 0.032),
+                                  Spacer(),
                                   Row(
                                     mainAxisAlignment:
-                                        MainAxisAlignment.spaceAround,
+                                        MainAxisAlignment.spaceBetween,
                                     children: [
                                       _buildInfoItem(
                                         'Level:',
                                         skill['level'],
                                         context,
                                       ),
-                                      SizedBox(width: context.width * 0.015),
                                       _buildInfoItem(
                                         'Grad:',
                                         skill['grad'],
                                         context,
                                       ),
-                                      SizedBox(width: context.width * 0.015),
                                       _buildInfoItem(
                                         'Date:',
                                         skill['date'],
@@ -147,38 +145,39 @@ class SoftSkillsPage extends StatelessWidget {
                                     ],
                                   ),
                                 ],
-                              ).paddingOnly(top: 12.0, bottom: 12.0, left: 8.0),
+                              ).paddingOnly(top: 12.0, bottom: 8.0, left: 8.0),
                             ),
                             const SizedBox(width: 8),
-                            Expanded(
-                              flex: 1,
-                              child: Stack(
-                                alignment: Alignment.center,
-                                children: [
-                                  CustomProgressIndicator(
-                                    progress: skill['progress'],
-                                    gradientColors: [
-                                      skill['color'],
-                                      skill['color'].withOpacity(0.7),
-                                      skill['color'].withOpacity(0.5),
-                                    ],
-                                    size: 65,
-                                    showDoubleProgress: true,
-                                    secondaryProgress: skill['progress'],
-                                    strokeWidth: 4,
-                                    textStyle: TextStyle(
-                                      fontSize: 10,
-                                      fontWeight: FontWeight.w600,
-                                      color: skill['color'],
-                                    ),
-                                  ).paddingOnly(left: 25),
-                                ],
-                              ),
+                            Stack(
+                              alignment: Alignment.center,
+                              children: [
+                                CustomProgressIndicator(
+                                  progress: skill['progress'],
+                                  gradientColors: [
+                                    skill['color'],
+                                    skill['color'].withOpacity(0.7),
+                                    skill['color'].withOpacity(0.5),
+                                  ],
+                                  size: 65,
+                                  showDoubleProgress: true,
+                                  secondaryProgress: skill['progress'],
+                                  strokeWidth: 4,
+                                  textStyle: TextStyle(
+                                    fontSize: 10,
+                                    fontWeight: FontWeight.w600,
+                                    color: skill['color'],
+                                  ),
+                                ).paddingOnly(left: 0),
+                              ],
                             ),
                           ],
-                        ),
+                        ).paddingOnly(right: 15.0),
                       ),
-                    ).marginOnly(bottom: 8.0, right: 16.0, left: 16.0);
+                    ).marginOnly(
+                      bottom: context.height * 0.013,
+                      right: context.width * 0.04,
+                      left: context.width * 0.04,
+                    );
                   },
                 ),
               ),
@@ -186,11 +185,11 @@ class SoftSkillsPage extends StatelessWidget {
           ),
           Obx(
             () => AnimatedPositioned(
-              duration: const Duration(milliseconds: 1000),
+              duration: const Duration(milliseconds: 1200),
               curve: Curves.easeInOutCubic,
               bottom: bottomNavController.isExpanded
                   ? bottomNavController.fabBottomPosition(context)
-                 : context.width * 0.04,
+                  : context.height * 0.0015,
               right: context.height * 0.022,
               child: FloatingActionButton(
                 elevation: 0,
@@ -214,8 +213,7 @@ class SoftSkillsPage extends StatelessWidget {
 
   Widget _buildInfoItem(String label, String value, BuildContext context) {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.center,
+      mainAxisSize: MainAxisSize.min,
       children: [
         Text(
           label,

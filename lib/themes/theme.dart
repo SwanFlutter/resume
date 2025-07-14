@@ -73,13 +73,17 @@ const List<Color> backgroundColors = [
 ];
 
 const List<Color> backgroundColorsDark = [
-  Color(0xFF24030B), // #24030B - شروع gradient (3.29%)
-  Color(0xFF01161E), // #01161E - پایان gradient (84.35%)
+  Color.fromRGBO(36, 3, 11, 1),
+  Color.fromRGBO(1, 22, 30, 1),
+  /* Color(0xFF24030B), // #24030B - شروع gradient (3.29%)
+  Color(0xFF01161E), // #01161E - پایان gradient (84.35%)*/
 ];
 
 const List<Color> drawerGradientColorsLight = [
-  Color.fromRGBO(255, 255, 255, 1),
-  Color.fromRGBO(254, 222, 230, 0.8),
+  Color(0xFFFFFFFF),
+  Color(0xFFFEDEE6),
+  /*Color.fromRGBO(255, 255, 255, 1),
+  Color.fromRGBO(254, 222, 230, 0.8),*/
 ];
 
 const List<Color> drawerGradientColorsDark = [

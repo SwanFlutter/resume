@@ -25,6 +25,8 @@ class MyApp extends StatelessWidget {
           theme: AppTheme.lightTheme,
           darkTheme: AppTheme.darkTheme,
           themeMode: themeController.themeMode,
+          animationCurve: Curves.easeInOutCubic,
+          animationDuration: Duration(seconds: 2),
           child: GetMaterialApp(
             debugShowCheckedModeBanner: false,
             initialBinding: MyBindings(),
@@ -39,3 +41,8 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
+
+/**theme_master:
+    git:
+      url: https://github.com/SwanFlutter/theme_master.git */

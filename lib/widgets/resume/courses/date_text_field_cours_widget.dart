@@ -99,7 +99,7 @@ class CupertioDateField extends StatelessWidget {
           style: context.theme.brightness == Brightness.dark
               ? TextStyleHelper.label10W700BoldOpenSansDark
               : TextStyleHelper.label10W700BoldOpenSans,
-        ),
+        ).paddingOnly(left: 5),
         const SizedBox(height: 4),
         DateCupertinoBottomSheetPicker(
           minWidth: 1.0,
@@ -114,6 +114,11 @@ class CupertioDateField extends StatelessWidget {
             containerPadding: const EdgeInsets.only(top: 0.0),
             containerHeight: context.height * 0.045,
             containerDecoration: BoxDecoration(
+              border: Border.all(
+                color: context.theme.brightness == Brightness.dark
+                    ? feildBorderColorDark
+                    : feildBorderColor,
+              ),
               gradient: LinearGradient(
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
@@ -125,7 +130,6 @@ class CupertioDateField extends StatelessWidget {
             ),
 
             // Border properties - همه کار می‌کنند ✅
-            border: InputBorder.none,
             widthBorder: 0.0,
             widthEnabledBorder: 0.0,
             widthFocusedBorder: 0.0,
@@ -152,11 +156,13 @@ class CupertioDateField extends StatelessWidget {
           onTimeChanged: onTimeChanged,
           cancelButtonConfig: CancelButtonConfig(
             text: "Cancel",
+            height: 50,
             color: AppThemeColors.editeFabColor,
             shape: OutlineInputBorder(borderRadius: BorderRadius.circular(8.0)),
           ),
           confirmButtonConfig: ConfirmButtonConfig(
             text: "Confirm",
+            height: 50,
             color: AppThemeColors.addFabColor,
             shape: OutlineInputBorder(borderRadius: BorderRadius.circular(8.0)),
           ),

@@ -3,7 +3,7 @@ import 'package:get_x_master/get_x_master.dart';
 import 'package:resume/config/constant.dart';
 import 'package:resume/screen/resume_page.dart';
 import 'package:resume/widgets/global/appbar_widget.dart';
-import 'package:resume/widgets/global/card_box.dart';
+import 'package:resume/widgets/global/card_box_widget.dart';
 import 'package:resume/widgets/global/custom_fields_widget.dart';
 import 'package:resume/widgets/global/logo_widget.dart';
 import 'package:resume/widgets/resume/courses/file_widget.dart';
@@ -34,7 +34,7 @@ class AddNewAchivement extends StatelessWidget {
                     },
                   ),
                   SizedBox(height: 21.0),
-                  CardBox(
+                  CardBoxWidget(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisSize: MainAxisSize.min,
@@ -82,7 +82,8 @@ class AddNewAchivement extends StatelessWidget {
                           hint: 'Describe Text',
                           width: context.width,
                           maxLines: 2,
-                          height: 64.0,
+                          height: context.height * 0.1,
+                          hintAlignment: Alignment.topLeft,
                         ),
                       ],
                     ).paddingAll(8.0),
@@ -93,11 +94,11 @@ class AddNewAchivement extends StatelessWidget {
           ),
           Obx(
             () => AnimatedPositioned(
-              duration: const Duration(milliseconds: 1000),
+              duration: const Duration(milliseconds: 1300),
               curve: Curves.easeInOutCubic,
               bottom: bottomNavController.isExpanded
                   ? bottomNavController.fabBottomPosition(context)
-                  : context.width * 0.04,
+                  : bottomNavController.bottomNavBarTop.value,
               right: context.height * 0.022,
               child: FloatingActionButton(
                 elevation: 0,

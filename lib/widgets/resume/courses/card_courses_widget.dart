@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get_x_master/get_x_master.dart';
 import 'package:resume/config/constant.dart';
-import 'package:resume/widgets/global/card_box.dart';
+import 'package:resume/widgets/global/card_box_widget.dart';
 
 class CardCoursesWidget extends StatelessWidget {
   final String title;
@@ -22,7 +22,9 @@ class CardCoursesWidget extends StatelessWidget {
   });
   @override
   Widget build(BuildContext context) {
-    return CardBox(
+    return CardBoxWidget(
+      height: context.height * 0.10,
+      isBorder: true,
       child: Column(
         children: [
           Row(
@@ -30,8 +32,8 @@ class CardCoursesWidget extends StatelessWidget {
             children: [
               isOnline
                   ? Container(
-                      width: 8.0,
-                      height: 8.0,
+                      width: context.height * 0.01,
+                      height: context.height * 0.01,
                       decoration: BoxDecoration(
                         color: Color.fromRGBO(19, 98, 52, 1),
                         shape: BoxShape.circle,
@@ -41,8 +43,8 @@ class CardCoursesWidget extends StatelessWidget {
               SizedBox(width: 5.0),
               SvgPicture.asset(
                 "assets/reuomeh/Academy.svg",
-                width: 16,
-                height: 16,
+                width: context.height * 0.02,
+                height: context.height * 0.02,
                 colorFilter: ColorFilter.mode(
                   context.theme.brightness == Brightness.dark
                       ? Colors.white
@@ -66,19 +68,15 @@ class CardCoursesWidget extends StatelessWidget {
               ),
             ],
           ),
-          SizedBox(height: 8.0),
+          Spacer(),
           Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Text(
                 stateSchool,
-                style: TextStyle(
-                  fontSize: 10.0,
-                  fontWeight: FontWeight.w600,
-                  color: isOnline
-                      ? Color.fromRGBO(19, 98, 52, 1)
-                      : Color.fromRGBO(4, 7, 14, 1),
-                ),
+                style: context.theme.brightness == Brightness.dark
+                    ? TextStyleHelper.body10W600RegularOpenSansDark
+                    : TextStyleHelper.body10W600SemiBoldOpenSans,
               ),
 
               SizedBox(

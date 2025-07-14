@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get_x_master/get_x_master.dart';
+import 'package:theme_master/theme_master.dart';
 
-class BackgroundColors extends StatelessWidget {
+class BackgroundColorsWidget extends StatelessWidget {
   final Widget? child;
-  const BackgroundColors({super.key, this.child});
+  const BackgroundColorsWidget({super.key, this.child});
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -13,21 +14,14 @@ class BackgroundColors extends StatelessWidget {
       decoration: BoxDecoration(
         gradient: LinearGradient(
           begin: context.theme.brightness == Brightness.dark
-              ? Alignment
-                    .centerRight // 250.75deg برای dark theme
-              : const Alignment(-0.8, 0.8), // 259.02deg برای light theme
+              ? Alignment.centerRight
+              : const Alignment(-0.8, 0.8),
           end: context.theme.brightness == Brightness.dark
               ? Alignment.centerLeft
               : const Alignment(0.8, -0.8),
           colors: context.theme.brightness == Brightness.dark
-              ? [
-                  const Color.fromRGBO(36, 3, 11, 1),
-                  const Color.fromRGBO(1, 22, 30, 1),
-                ]
-              : [
-                  const Color(0xFFFFFFFF), // #FFFFFF - سفید در پایین چپ
-                  const Color(0xFFFEDEE6), // #FEDEE6 - صورتی در بالا راست
-                ],
+              ? context.scaffoldGradientColors
+              : context.scaffoldGradientColors,
         ),
       ),
       child: context.theme.brightness == Brightness.dark

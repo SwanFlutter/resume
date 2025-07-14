@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get_x_master/get_x_master.dart';
 import 'package:resume/config/constant.dart';
+import 'package:resume/config/extentions/extension_on_flutter.dart';
 import 'package:resume/controller/bottom_navigation_controller.dart';
 import 'package:resume/screen/resume_page.dart';
 import 'package:resume/widgets/global/appbar_widget.dart';
-import 'package:resume/widgets/global/card_box.dart';
+import 'package:resume/widgets/global/card_box_widget.dart';
 import 'package:resume/widgets/global/logo_widget.dart';
 
 class Achivement extends StatelessWidget {
@@ -43,9 +44,11 @@ class Achivement extends StatelessWidget {
                     child: ListView.builder(
                       itemCount: 8,
                       itemBuilder: (context, index) {
-                        return CardBox(
+                        return CardBoxWidget(
                           width: context.width,
                           height: context.height * 0.12,
+                          isSkils: true,
+                          isBorder: true,
                           boxShadow: context.theme.brightness == Brightness.dark
                               ? [resumeBoxShadowDark]
                               : [resumeBoxShadow],
@@ -71,16 +74,13 @@ class Achivement extends StatelessWidget {
                                   ),
                                   Text(
                                     "Best Referee",
-                                    style: TextStyleHelper
-                                        .title14W600RegularOpenSans
-                                        .copyWith(
-                                          fontSize: 12.0,
-                                          color:
-                                              Theme.of(context).brightness ==
-                                                  Brightness.dark
-                                              ? Colors.white
-                                              : Colors.black,
-                                        ),
+                                    style:
+                                        context.theme.brightness ==
+                                            Brightness.dark
+                                        ? TextStyleHelper
+                                              .title14W600RegularOpenSansDark
+                                        : TextStyleHelper
+                                              .title14W600RegularOpenSans,
                                   ),
                                 ],
                               ),
@@ -93,7 +93,7 @@ class Achivement extends StatelessWidget {
                                           Brightness.dark
                                       ? Colors.white
                                       : const Color(0xFF064368),
-                                  fontSize: 10,
+                                  fontSize: 10.ssp,
                                   fontFamily: 'Open Sans',
                                   fontWeight: FontWeight.w600,
                                 ),
@@ -105,33 +105,34 @@ class Achivement extends StatelessWidget {
                                 children: [
                                   Text(
                                     "2024",
-                                    style: TextStyleHelper
-                                        .label10W600SemiBoldOpenSans
-                                        .copyWith(
-                                          color:
-                                              Theme.of(context).brightness ==
-                                                  Brightness.dark
-                                              ? Colors.white
-                                              : null,
-                                        ),
+                                    style:
+                                        context.theme.brightness ==
+                                            Brightness.dark
+                                        ? TextStyleHelper
+                                              .label10W600SemiBoldOpenSansDark
+                                        : TextStyleHelper
+                                              .label10W600SemiBoldOpenSans,
                                   ),
+
                                   Text(
                                     "Iran - Tehran".toUpperCase(),
-                                    style: TextStyleHelper
-                                        .label10W600SemiBoldOpenSans
-                                        .copyWith(
-                                          color:
-                                              Theme.of(context).brightness ==
-                                                  Brightness.dark
-                                              ? Colors.white
-                                              : null,
-                                        ),
+                                    style:
+                                        context.theme.brightness ==
+                                            Brightness.dark
+                                        ? TextStyleHelper
+                                              .label10W600SemiBoldOpenSansDark
+                                        : TextStyleHelper
+                                              .label10W600SemiBoldOpenSans,
                                   ),
                                 ],
                               ).paddingOnly(bottom: 10),
                             ],
                           ).paddingSymmetric(horizontal: 12.0, vertical: 8.0),
-                        ).paddingOnly(left: 16, right: 16.0, bottom: 8.0);
+                        ).paddingOnly(
+                          left: 16,
+                          right: 16.0,
+                          bottom: context.height * 0.013,
+                        );
                       },
                     ),
                   ),
@@ -141,11 +142,11 @@ class Achivement extends StatelessWidget {
           ),
           Obx(
             () => AnimatedPositioned(
-              duration: const Duration(milliseconds: 1000),
+              duration: const Duration(milliseconds: 1300),
               curve: Curves.easeInOutCubic,
               bottom: bottomNavController.isExpanded
                   ? bottomNavController.fabBottomPosition(context)
-                 : context.width * 0.04,
+                  : bottomNavController.bottomNavBarTop.value,
               right: context.height * 0.022,
               child: FloatingActionButton(
                 elevation: 0,

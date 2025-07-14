@@ -4,7 +4,7 @@ import 'package:get_x_master/get_x_master.dart';
 import 'package:resume/config/constant.dart';
 import 'package:resume/screen/resume_page.dart';
 import 'package:resume/widgets/global/appbar_widget.dart';
-import 'package:resume/widgets/global/card_box.dart';
+import 'package:resume/widgets/global/card_box_widget.dart';
 import 'package:resume/widgets/global/logo_widget.dart';
 
 class Skills extends StatelessWidget {
@@ -55,7 +55,7 @@ class Skills extends StatelessWidget {
                             navigationController.navToHardSkils();
                           }
                         },
-                        child: CardBox(
+                        child: CardBoxWidget(
                           height: context.height * 0.05,
                           boxShadow: context.theme.brightness == Brightness.dark
                               ? [resumeBoxShadowDark]

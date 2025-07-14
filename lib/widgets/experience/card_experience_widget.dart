@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get_x_master/get_x_master.dart';
 import 'package:resume/config/constant.dart';
-import 'package:resume/widgets/global/card_box.dart';
+import 'package:resume/config/extentions/extension_on_flutter.dart';
+import 'package:resume/widgets/global/card_box_widget.dart';
 
 class CardExperienceWidget extends StatelessWidget {
   final String title;
@@ -23,7 +24,9 @@ class CardExperienceWidget extends StatelessWidget {
   });
   @override
   Widget build(BuildContext context) {
-    return CardBox(
+    return CardBoxWidget(
+      height: context.height * 0.1,
+      isBorder: true,
       child: Column(
         children: [
           Row(
@@ -31,9 +34,9 @@ class CardExperienceWidget extends StatelessWidget {
               Offstage(
                 offstage: !isOnline,
                 child: Container(
-                  width: 8.0,
-                  height: 8.0,
-                  margin: const EdgeInsets.only(left: 0.0, right: 10.0),
+                  width:context.height * 0.01,
+                  height: context.height * 0.01,
+                  margin: const EdgeInsets.only(left: 0.0, right: 3.0),
                   decoration: BoxDecoration(
                     color: Color.fromRGBO(19, 98, 52, 1),
                     shape: BoxShape.circle,
@@ -41,58 +44,42 @@ class CardExperienceWidget extends StatelessWidget {
                 ),
               ),
 
-              SizedBox(width: 0.0),
               Text(
                 title,
                 style: context.theme.brightness == Brightness.dark
                     ? TextStyleHelper.title14W600RegularOpenSansDark.copyWith(
-                        fontSize: 12.0,
+                        fontSize: 12.0.ssp,
                       )
                     : TextStyleHelper.title14W600RegularOpenSans.copyWith(
-                        fontSize: 12.0,
+                        fontSize: 12.0.ssp,
                       ),
               ),
               Spacer(),
               Text(
                 subtitle,
                 style: context.theme.brightness == Brightness.dark
-                    ? TextStyleHelper.body12W400RegularOpenSansDark.copyWith(
-                        fontSize: 10.0,
-                        fontWeight: FontWeight.w600,
-                      )
-                    : TextStyleHelper.body12W400RegularOpenSans.copyWith(
-                        fontSize: 10.0,
-                        fontWeight: FontWeight.w600,
-                      ),
+                    ? TextStyleHelper.title12W600RegularOpenSansDark
+                    : TextStyleHelper.title12W600RegularOpenSans
               ),
             ],
           ),
-          SizedBox(height: 8.0),
+          Spacer(),
           Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Container(
-                padding: EdgeInsets.all(
-                  5,
-                ), // این مقدار فاصله داخلی را تنظیم می‌کند
+                padding: EdgeInsets.all(5),
                 decoration: BoxDecoration(
                   color: index != null
                       ? changeColor(index!)
                       : Colors.transparent, // رنگ پس‌زمینه
-
                   borderRadius: BorderRadius.circular(4),
                 ),
                 child: Text(
                   typeState,
                   style: context.theme.brightness == Brightness.dark
-                      ? TextStyleHelper.title10W700RegularOpenSansDark.copyWith(
-                          fontSize: 10.0,
-                          fontWeight: FontWeight.w600,
-                        )
-                      : TextStyleHelper.title10W700RegularOpenSans.copyWith(
-                          fontSize: 10.0,
-                          fontWeight: FontWeight.w600,
-                        ),
+                      ? TextStyleHelper.label10W600SemiBoldOpenSansDark
+                      : TextStyleHelper.label10W600SemiBoldOpenSans,
                 ),
               ),
 
@@ -109,27 +96,15 @@ class CardExperienceWidget extends StatelessWidget {
               Text(
                 country,
                 style: context.theme.brightness == Brightness.dark
-                    ? TextStyleHelper.body10W400RegularOpenSansDark.copyWith(
-                        fontSize: 10.0,
-                        fontWeight: FontWeight.w600,
-                      )
-                    : TextStyleHelper.body10W400RegularOpenSans.copyWith(
-                        fontSize: 10.0,
-                        fontWeight: FontWeight.w600,
-                      ),
+                      ? TextStyleHelper.label10W600SemiBoldOpenSansDark
+                      : TextStyleHelper.label10W600SemiBoldOpenSans,
               ),
               Spacer(),
               Text(
                 school.toUpperCase(),
                 style: context.theme.brightness == Brightness.dark
-                    ? TextStyleHelper.body10W400RegularOpenSansDark.copyWith(
-                        fontSize: 10.0,
-                        fontWeight: FontWeight.w600,
-                      )
-                    : TextStyleHelper.body10W400RegularOpenSans.copyWith(
-                        fontSize: 10.0,
-                        fontWeight: FontWeight.w600,
-                      ),
+                      ? TextStyleHelper.label10W600SemiBoldOpenSansDark
+                      : TextStyleHelper.label10W600SemiBoldOpenSans,
               ),
             ],
           ),

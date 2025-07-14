@@ -44,4 +44,38 @@ class HomeController extends GetXController {
     isExpanded.value = !isExpanded.value;
     height = isExpanded.value ? 120.0 : 63.0;
   }
+
+  RxInt lastClickedIndex = (-1).obs;
+
+  void setLastClickedIndex(int index) {
+    lastClickedIndex.value = index;
+  }
+
+  // Method to update selected index based on current navigation page
+  void updateSelectedIndexFromNavigation(int navigationIndex) {
+    // Map navigation indices to grid card indices
+    switch (navigationIndex) {
+      case 6: // ResumehInfo
+        lastClickedIndex.value = 0;
+        break;
+      case 7: // JobExperience
+        lastClickedIndex.value = 1;
+        break;
+      case 8: // AcademicHistory
+        lastClickedIndex.value = 2;
+        break;
+      case 9: // Skills
+        lastClickedIndex.value = 3;
+        break;
+      case 10: // Achivement
+        lastClickedIndex.value = 4;
+        break;
+      case 11: // Courses
+        lastClickedIndex.value = 5;
+        break;
+      default:
+        // Keep current selection or reset if not a resume sub-page
+        break;
+    }
+  }
 }

@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get_x_master/get_x_master.dart';
 
-class CardBox extends StatelessWidget {
+class CardBoxWidget extends StatelessWidget {
   final double? height;
   final double? width;
   final Widget? child;
   final List<BoxShadow>? boxShadow;
-
-  const CardBox({
+  final bool isBorder;
+  final bool isSkils;
+  const CardBoxWidget({
     super.key,
     this.height,
     this.width,
@@ -20,6 +21,8 @@ class CardBox extends StatelessWidget {
         offset: Offset(0, 1),
       ),
     ],
+    this.isBorder = false,
+    this.isSkils = false,
   });
 
   @override
@@ -30,6 +33,16 @@ class CardBox extends StatelessWidget {
       decoration: BoxDecoration(
         color: context.theme.cardColor,
         borderRadius: BorderRadius.circular(8.0),
+        border: isBorder
+            ? Border.all(
+                color: context.theme.brightness == Brightness.dark
+                    ? isSkils
+                          ? Color.fromRGBO(4, 66, 92, 0.6)
+                          : Color.fromRGBO(220, 240, 249, 0.4)
+                    : Color.fromRGBO(220, 240, 249, 0.4),
+                width: 1.0,
+              )
+            : null,
         boxShadow: boxShadow,
       ),
       child: child,

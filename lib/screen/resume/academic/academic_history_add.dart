@@ -4,7 +4,7 @@ import 'package:resume/config/constant.dart';
 import 'package:resume/controller/academic_controller.dart';
 import 'package:resume/screen/resume_page.dart';
 import 'package:resume/widgets/global/appbar_widget.dart';
-import 'package:resume/widgets/global/card_box.dart';
+import 'package:resume/widgets/global/card_box_widget.dart';
 import 'package:resume/widgets/global/custom_dropdown_widget.dart';
 import 'package:resume/widgets/global/custom_fields_widget.dart';
 import 'package:resume/widgets/global/logo_widget.dart';
@@ -42,7 +42,7 @@ class AcademicHistoryAdd extends StatelessWidget {
                   child: SingleChildScrollView(
                     child: Column(
                       children: [
-                        CardBox(
+                        CardBoxWidget(
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisSize: MainAxisSize.min,
@@ -157,7 +157,7 @@ class AcademicHistoryAdd extends StatelessWidget {
                           ).paddingAll(8.0),
                         ).paddingSymmetric(horizontal: 16.0),
                         SizedBox(height: context.height * 0.01),
-                        CardBox(
+                        CardBoxWidget(
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisSize: MainAxisSize.min,
@@ -266,11 +266,11 @@ class AcademicHistoryAdd extends StatelessWidget {
             ),
           ),
           AnimatedPositioned(
-            duration: Duration(milliseconds: 1200),
+            duration: Duration(milliseconds: 1300),
             curve: Curves.ease,
             bottom: bottomNavController.isExpanded
                 ? bottomNavController.fabBottomPosition(context)
-                : context.width * 0.04,
+                : bottomNavController.bottomNavBarTop.value,
             right: context.height * 0.022,
             child: FloatingActionButton(
               elevation: 0,

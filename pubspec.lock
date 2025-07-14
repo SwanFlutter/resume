@@ -261,7 +261,7 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: "0bed64e15ae1da327515527c7fc5816e6cd70f07"
+      resolved-ref: "928b7a459820f11372be1cec5186ffb8f47a95c5"
       url: "https://github.com/SwanFlutter/gradient_textfield.git"
     source: git
     version: "0.0.1"
@@ -673,11 +673,9 @@ packages:
   theme_master:
     dependency: "direct main"
     description:
-      path: "."
-      ref: HEAD
-      resolved-ref: "71bcc004b7b95795d35cb8492abd5e092662cbef"
-      url: "https://github.com/SwanFlutter/theme_master.git"
-    source: git
+      path: "G:\\Android\\Pakege\\theme_master"
+      relative: false
+    source: path
     version: "0.0.1"
   typed_data:
     dependency: transitive

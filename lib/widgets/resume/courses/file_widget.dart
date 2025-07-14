@@ -31,13 +31,13 @@ class FileWidget extends StatelessWidget {
         Text(
           titel,
           style: context.theme.brightness == Brightness.dark
-              ? TextStyleHelper.body10W400RegularOpenSansDark
-              : TextStyleHelper.body10W400RegularOpenSans,
+              ? TextStyleHelper.label10W700BoldOpenSansDark
+              : TextStyleHelper.label10W700BoldOpenSans,
         ),
         SizedBox(height: 5.0),
         Container(
           width: context.width,
-          height: 32,
+          height: height,
           decoration: BoxDecoration(
             border: Border.all(
               color: context.theme.brightness == Brightness.dark

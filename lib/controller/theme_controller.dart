@@ -4,8 +4,8 @@ import 'package:get_x_master/get_x_master.dart';
 class ThemeControllers extends GetXController {
   static ThemeControllers get to => Get.find<ThemeControllers>();
 
-  // Make themeMode reactive
-  final Rx<ThemeMode> _themeMode = ThemeMode.system.obs;
+  // Make themeMode reactive - start with light theme
+  final Rx<ThemeMode> _themeMode = ThemeMode.light.obs;
 
   ThemeMode get themeMode => _themeMode.value;
 
@@ -15,7 +15,7 @@ class ThemeControllers extends GetXController {
     } else {
       _themeMode.value = ThemeMode.light;
     }
-    update(); // Update GetBuilder widgets
+    update(); // Update GetBuilder widgets only once
   }
 
   void setThemeMode(ThemeMode mode) {

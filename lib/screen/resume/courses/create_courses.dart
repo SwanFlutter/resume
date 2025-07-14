@@ -5,7 +5,7 @@ import 'package:resume/controller/bottom_navigation_controller.dart';
 import 'package:resume/controller/courses_controller.dart';
 import 'package:resume/screen/resume_page.dart';
 import 'package:resume/widgets/global/appbar_widget.dart';
-import 'package:resume/widgets/global/card_box.dart';
+import 'package:resume/widgets/global/card_box_widget.dart';
 import 'package:resume/widgets/global/custom_dropdown_widget.dart';
 import 'package:resume/widgets/global/custom_fields_widget.dart';
 import 'package:resume/widgets/global/logo_widget.dart';
@@ -58,7 +58,7 @@ class CreateCourses extends StatelessWidget {
                 Container(
                   width: getFullWidth(),
                   margin: EdgeInsets.symmetric(horizontal: 16.0),
-                  child: CardBox(
+                  child: CardBoxWidget(
                     width: getFullWidth(),
                     child: GetBuilder<CoursesController>(
                       init: CoursesController(),
@@ -219,7 +219,7 @@ class CreateCourses extends StatelessWidget {
                 Container(
                   width: getFullWidth(),
                   margin: EdgeInsets.symmetric(horizontal: 16.0),
-                  child: CardBox(
+                  child: CardBoxWidget(
                     width: getFullWidth(),
                     child: Padding(
                       padding: EdgeInsets.all(16.0),
@@ -229,7 +229,7 @@ class CreateCourses extends StatelessWidget {
                           // فایل ویجت
                           FileWidget(
                             controllerInstance: TextEditingController(),
-                            height: 32,
+                            height: context.height * 0.046,
                           ),
                           SizedBox(height: 16.0),
 
@@ -343,6 +343,7 @@ class CreateCourses extends StatelessWidget {
                             width: getFullWidth() - 32,
                             maxLines: 6,
                             height: context.height * 0.096,
+                            hintAlignment: Alignment.topLeft,
                           ),
                         ],
                       ),
@@ -354,11 +355,11 @@ class CreateCourses extends StatelessWidget {
           ),
           Obx(
             () => AnimatedPositioned(
-              duration: const Duration(milliseconds: 1000),
+              duration: const Duration(milliseconds: 1300),
               curve: Curves.easeInOutCubic,
               bottom: bottomNavController.isExpanded
                   ? bottomNavController.fabBottomPosition(context)
-                  : context.width * 0.04,
+                  : bottomNavController.bottomNavBarTop.value,
               right: context.height * 0.022,
               child: FloatingActionButton(
                 elevation: 0,

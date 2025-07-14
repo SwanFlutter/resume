@@ -2,16 +2,34 @@ import 'package:flutter/material.dart';
 import 'package:get_x_master/get_x_master.dart';
 import 'package:resume/config/constant.dart';
 import 'package:resume/controller/bottom_navigation_controller.dart';
+import 'package:resume/controller/home_controller.dart';
 import 'package:resume/controller/navigation_controller.dart';
-import 'package:resume/widgets/global/appbar_widget.dart';
 import 'package:resume/widgets/global/logo_widget.dart';
 import 'package:resume/widgets/views/home/grid_card_widget.dart';
 
 final NavigationController navigationController = NavigationController.to;
 final bottomNavController = BottomNavigationController.to;
+final HomeController homeController = HomeController.to;
 
-class ResumePage extends StatelessWidget {
+class ResumePage extends StatefulWidget {
   const ResumePage({super.key});
+
+  @override
+  State<ResumePage> createState() => _ResumePageState();
+}
+
+class _ResumePageState extends State<ResumePage> {
+  @override
+  void initState() {
+    super.initState();
+    // Update selected index based on where user came from
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      homeController.updateSelectedIndexFromNavigation(
+        navigationController.currentIndex,
+      );
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -23,30 +41,18 @@ class ResumePage extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                LogoWidget(),
-                AppBarWidget(
-                  title: "Resume Page",
-                  backBottom: true,
-                  imageIcon: "assets/reuomeh/personalcard.svg",
-                  showThemeToggle: true,
-                ),
-
-                Expanded(child: GridCardWidget()),
-              ],
+              children: [LogoWidget(), GridCardWidget()],
             ),
           ),
 
           // Floating Action Button که با navigation bar جابجا می‌شود
           Obx(
             () => AnimatedPositioned(
-              duration: const Duration(
-                milliseconds: 1000,
-              ), // هماهنگ با انیمیشن navigation bar
+              duration: const Duration(milliseconds: 1300),
               curve: Curves.easeInOutCubic,
               bottom: bottomNavController.isExpanded
                   ? bottomNavController.fabBottomPosition(context)
-                  : context.width * 0.04,
+                  : bottomNavController.bottomNavBarTop.value,
               right: context.height * 0.022,
               child: FloatingActionButton(
                 elevation: 0,

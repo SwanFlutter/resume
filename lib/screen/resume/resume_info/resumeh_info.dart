@@ -10,7 +10,7 @@ import 'package:resume/screen/resume_page.dart';
 import 'package:resume/themes/theme.dart'
     hide backgroudColorFeild, AppThemeColors;
 import 'package:resume/widgets/global/appbar_widget.dart';
-import 'package:resume/widgets/global/card_box.dart';
+import 'package:resume/widgets/global/card_box_widget.dart';
 import 'package:resume/widgets/global/logo_widget.dart';
 import 'package:theme_master/theme_master.dart';
 
@@ -57,14 +57,14 @@ class _ResumehInfoState extends State<ResumehInfo> {
                               children: [
                                 Avatar(
                                   text: "Sajjad",
-                                  radius: context.height * 0.035,
+                                  radius: context.height * 0.038,
                                   randomColor: false,
                                   randomGradient: true,
                                 ),
                               ],
                             ),
                             SizedBox(height: 10.0),
-                            CardBox(
+                            CardBoxWidget(
                               child: Column(
                                 children: [
                                   Row(
@@ -112,7 +112,7 @@ class _ResumehInfoState extends State<ResumehInfo> {
                               padding: const EdgeInsets.symmetric(
                                 horizontal: 16.0,
                               ),
-                              child: CardBox(
+                              child: CardBoxWidget(
                                 width: context.width,
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.start,
@@ -156,7 +156,7 @@ class _ResumehInfoState extends State<ResumehInfo> {
                               padding: const EdgeInsets.symmetric(
                                 horizontal: 16.0,
                               ),
-                              child: CardBox(
+                              child: CardBoxWidget(
                                 width: context.width,
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.start,
@@ -195,29 +195,28 @@ class _ResumehInfoState extends State<ResumehInfo> {
                             ),
                             SizedBox(height: context.height * 0.02),
                             // four
-                            CardBox(
+                            CardBoxWidget(
                               width: context.width,
                               child: Column(
                                 children: [
                                   RowCard1(
                                     imageIcon:
-                                        "assets/reuomeh/info/profile.svg",
+                                        "assets/reuomeh/info/dollar-circle.svg",
                                     text: "Monimum salary",
                                     price: "20000",
+                                    isMoney: true,
                                   ),
                                   SizedBox(height: context.height * 0.01),
                                   RowCard1(
-                                    imageIcon:
-                                        "assets/reuomeh/info/profile.svg",
-                                    text: "Monimum salary",
-                                    price: "20000",
+                                    imageIcon: "assets/reuomeh/info/menu.svg",
+                                    text: "Working Category",
+                                    price: "Manager",
                                   ),
                                   SizedBox(height: context.height * 0.01),
                                   RowCard1(
-                                    imageIcon:
-                                        "assets/reuomeh/info/profile.svg",
-                                    text: "Monimum salary",
-                                    price: "20000",
+                                    imageIcon: "assets/reuomeh/info/more-2.svg",
+                                    text: "Organizational category",
+                                    price: "Competitions",
                                   ),
                                 ],
                               ).paddingAll(8.0),
@@ -225,7 +224,7 @@ class _ResumehInfoState extends State<ResumehInfo> {
                           ],
                         ),
                       ),
-                      SizedBox(height: 200),
+                      SizedBox(height: context.height * 0.05),
                     ],
                   ),
                 ),
@@ -235,11 +234,11 @@ class _ResumehInfoState extends State<ResumehInfo> {
 
           Obx(
             () => AnimatedPositioned(
-              duration: const Duration(milliseconds: 1000),
+              duration: const Duration(milliseconds: 1300),
               curve: Curves.easeInOutCubic,
               bottom: bottomNavController.isExpanded
                   ? bottomNavController.fabBottomPosition(context)
-                  : context.width * 0.04,
+                  : bottomNavController.bottomNavBarTop.value,
               right: context.height * 0.022,
               child: FloatingActionButton(
                 onPressed: () {
@@ -263,11 +262,13 @@ class RowCard1 extends StatelessWidget {
   final String imageIcon;
   final String text;
   final String price;
+  final bool isMoney;
   const RowCard1({
     super.key,
     required this.imageIcon,
     required this.text,
     required this.price,
+    this.isMoney = false,
   });
 
   @override
@@ -306,7 +307,7 @@ class RowCard1 extends StatelessWidget {
           ),
           Spacer(),
           Text(
-            "\$$price".toNumberFormat(),
+            isMoney ? "\$$price".toNumberFormat() : price,
             style: context.theme.brightness == Brightness.dark
                 ? TextStyleHelper.label10W600SemiBoldOpenSansDark
                 : TextStyleHelper.label10W600SemiBoldOpenSans,

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:resume/widgets/global/appbar_widget.dart';
-import 'package:resume/widgets/global/background_colors.dart';
+import 'package:resume/widgets/global/background_colors_widget.dart';
 import 'package:resume/widgets/global/logo_widget.dart';
 
 class JobsPage extends StatelessWidget {
@@ -8,7 +8,7 @@ class JobsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BackgroundColors(
+    return BackgroundColorsWidget(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,

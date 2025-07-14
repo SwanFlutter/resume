@@ -5,7 +5,7 @@ import 'package:resume/controller/bottom_navigation_controller.dart';
 import 'package:resume/screen/resume_page.dart';
 import 'package:resume/widgets/custom/custom_progress_indicator.dart';
 import 'package:resume/widgets/global/appbar_widget.dart';
-import 'package:resume/widgets/global/card_box.dart';
+import 'package:resume/widgets/global/card_box_widget.dart';
 import 'package:resume/widgets/global/logo_widget.dart';
 
 class HardSkils extends StatelessWidget {
@@ -72,39 +72,49 @@ class HardSkils extends StatelessWidget {
                     }
                   },
                 ),
-                const SizedBox(height: 21),
+
                 Expanded(
                   child: ListView.builder(
                     itemCount: skills.length,
-                    padding: const EdgeInsets.only(bottom: 100),
+                    padding: const EdgeInsets.only(bottom: 16.0),
                     itemBuilder: (context, index) {
                       final skill = skills[index];
-                      return CardBox(
-                        height: context.height * 0.12,
+                      return CardBoxWidget(
+                        isSkils: true,
+                        isBorder: true,
+                        height: context.height * 0.11,
                         boxShadow: context.theme.brightness == Brightness.dark
                             ? [resumeBoxShadowDark]
                             : [resumeBoxShadow],
                         child: Padding(
-                          padding: EdgeInsets.symmetric(
-                            vertical: context.height * 0.015,
+                          padding: const EdgeInsets.symmetric(
+                            vertical: 10.0,
                             horizontal: 8.0,
                           ),
                           child: Row(
                             children: [
                               Expanded(
-                                flex: 2,
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
                                   children: [
                                     Row(
                                       children: [
-                                        Image.asset(
-                                          "assets/ps.png",
+                                        Container(
                                           width: context.height * 0.02,
                                           height: context.height * 0.02,
+                                          decoration: BoxDecoration(
+                                            borderRadius: BorderRadius.circular(
+                                              2.80,
+                                            ),
+                                            image: DecorationImage(
+                                              image: AssetImage(
+                                                "assets/ps.png",
+                                              ),
+                                              fit: BoxFit.cover,
+                                            ),
+                                          ),
                                         ),
+
                                         SizedBox(width: context.width * 0.01),
                                         Text(
                                           skill['name'],
@@ -112,13 +122,13 @@ class HardSkils extends StatelessWidget {
                                               context.theme.brightness ==
                                                   Brightness.dark
                                               ? TextStyleHelper
-                                                    .body12W400RegularOpenSansDark
+                                                    .title12W600RegularOpenSansDark
                                               : TextStyleHelper
-                                                    .body12W400RegularOpenSans,
+                                                    .title12W600RegularOpenSans,
                                         ),
                                       ],
                                     ),
-                                    SizedBox(height: context.height * 0.04),
+                                    Spacer(),
                                     Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceAround,
@@ -146,36 +156,33 @@ class HardSkils extends StatelessWidget {
                                 ).paddingOnly(left: 8.0),
                               ),
                               SizedBox(width: context.width * 0.02),
-                              Expanded(
-                                flex: 1,
-                                child: Stack(
-                                  alignment: Alignment.center,
-                                  children: [
-                                    CustomProgressIndicator(
-                                      progress: skill['progress'],
-                                      gradientColors: [
-                                        skill['color'],
-                                        skill['color'].withOpacity(0.7),
-                                        skill['color'].withOpacity(0.5),
-                                      ],
-                                      size: context.height * 0.08,
-                                      showDoubleProgress: true,
-                                      secondaryProgress: skill['progress'],
-                                      strokeWidth: 4,
-                                      textStyle: TextStyle(
-                                        fontSize: context.height * 0.015,
-                                        fontWeight: FontWeight.w600,
-                                        color: skill['color'],
-                                      ),
-                                    ).paddingOnly(left: context.width * 0.06),
-                                  ],
-                                ),
+                              Stack(
+                                alignment: Alignment.center,
+                                children: [
+                                  CustomProgressIndicator(
+                                    progress: skill['progress'],
+                                    gradientColors: [
+                                      skill['color'],
+                                      skill['color'].withOpacity(0.7),
+                                      skill['color'].withOpacity(0.5),
+                                    ],
+                                    size: context.height * 0.08,
+                                    showDoubleProgress: true,
+                                    secondaryProgress: skill['progress'],
+                                    strokeWidth: 4,
+                                    textStyle: TextStyle(
+                                      fontSize: context.height * 0.015,
+                                      fontWeight: FontWeight.w600,
+                                      color: skill['color'],
+                                    ),
+                                  ).paddingOnly(left: context.width * 0),
+                                ],
                               ),
                             ],
                           ),
                         ),
                       ).marginOnly(
-                        bottom: context.height * 0.01,
+                        bottom: context.height * 0.013,
                         right: context.width * 0.04,
                         left: context.width * 0.04,
                       );
@@ -187,15 +194,15 @@ class HardSkils extends StatelessWidget {
           ),
           Obx(
             () => AnimatedPositioned(
-              duration: const Duration(milliseconds: 1000),
+              duration: const Duration(milliseconds: 1300),
               curve: Curves.easeInOutCubic,
               bottom: bottomNavController.isExpanded
                   ? bottomNavController.fabBottomPosition(context)
-                  : context.width * 0.04,
+                  : bottomNavController.bottomNavBarTop.value,
               right: context.height * 0.022,
               child: FloatingActionButton(
                 elevation: 0,
-                backgroundColor: AppThemeColors.editeFabColor,
+                backgroundColor: AppThemeColors.addFabColor,
                 shape: const StadiumBorder(),
                 onPressed: () {
                   navigationController.navToAddNewHardSkillsPage();
@@ -219,12 +226,8 @@ class HardSkils extends StatelessWidget {
         Text(
           label,
           style: Theme.of(context).brightness == Brightness.dark
-              ? TextStyleHelper.label10W400RegularOpenSansDark.copyWith(
-                  color: AppThemeColors.gray,
-                )
-              : TextStyleHelper.label10W400RegularOpenSans.copyWith(
-                  color: AppThemeColors.gray,
-                ),
+              ? TextStyleHelper.body10W400RegularOpenSansDark
+              : TextStyleHelper.body10W400RegularOpenSans,
         ),
         const SizedBox(width: 4),
         Text(

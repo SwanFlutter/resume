@@ -5,7 +5,7 @@ import 'package:resume/controller/academic_controller.dart';
 import 'package:resume/controller/experience_controller.dart';
 import 'package:resume/screen/resume_page.dart';
 import 'package:resume/widgets/global/appbar_widget.dart';
-import 'package:resume/widgets/global/card_box.dart';
+import 'package:resume/widgets/global/card_box_widget.dart';
 import 'package:resume/widgets/global/custom_dropdown_widget.dart';
 import 'package:resume/widgets/global/custom_fields_widget.dart';
 import 'package:resume/widgets/global/logo_widget.dart';
@@ -43,7 +43,7 @@ class AddJobExperience extends StatelessWidget {
                   child: ListView(
                     padding: EdgeInsets.only(bottom: 100),
                     children: [
-                      CardBox(
+                      CardBoxWidget(
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisSize: MainAxisSize.min,
@@ -160,7 +160,7 @@ class AddJobExperience extends StatelessWidget {
                         ).paddingAll(8.0),
                       ).paddingSymmetric(horizontal: 16.0),
                       SizedBox(height: context.height * 0.01),
-                      CardBox(
+                      CardBoxWidget(
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisSize: MainAxisSize.min,
@@ -250,7 +250,7 @@ class AddJobExperience extends StatelessWidget {
                               label: 'Description *',
                               hint: "Description",
                               width: context.width,
-                              height: context.height * 0.15,
+                              height: context.height * 0.10,
                               maxLines: 6,
                               hintAlignment: Alignment.topLeft,
                             ),
@@ -267,11 +267,11 @@ class AddJobExperience extends StatelessWidget {
           // Floating Action Button ثابت
           Obx(
             () => AnimatedPositioned(
-              duration: const Duration(milliseconds: 1000),
+              duration: const Duration(milliseconds: 1300),
               curve: Curves.easeInOutCubic,
               bottom: bottomNavController.isExpanded
                   ? bottomNavController.fabBottomPosition(context)
-                  : context.width * 0.04,
+                  : bottomNavController.bottomNavBarTop.value,
               right: context.height * 0.022,
               child: FloatingActionButton(
                 elevation: 0,

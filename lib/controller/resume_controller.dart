@@ -5,17 +5,39 @@ import 'package:intl/intl.dart';
 class ResumeController extends GetXController {
   static ResumeController get to => Get.smartFind<ResumeController>();
 
-  late TextEditingController text1, textSecndery, dateTime, text3, description;
+  late TextEditingController militaryStatus,
+      maritalStatus,
+      dateTime,
+      description,
+      firstname,
+      lastname,
+      nationalCode,
+      nationality,
+      workingCategory,
+      minimalSalary,
+      orgianizatiolonal,
+      country,
+      city,
+      addreses;
   String gender = "Edit Gender";
   List<String> genderList = ["Male", "Female", "Other"];
 
   @override
   void onInit() {
-    text1 = TextEditingController();
-    textSecndery = TextEditingController();
+    militaryStatus = TextEditingController();
+    maritalStatus = TextEditingController();
     dateTime = TextEditingController();
-    text3 = TextEditingController();
+    firstname = TextEditingController();
     description = TextEditingController();
+    lastname = TextEditingController();
+    nationalCode = TextEditingController();
+    nationality = TextEditingController();
+    workingCategory = TextEditingController();
+    minimalSalary = TextEditingController();
+    orgianizatiolonal = TextEditingController();
+    country = TextEditingController();
+    city = TextEditingController();
+    addreses = TextEditingController();
     super.onInit();
   }
 

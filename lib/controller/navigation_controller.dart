@@ -50,7 +50,6 @@ class NavigationController extends GetXController {
     // Skils
     SoftSkillsPage(), // 15
     AddNewHardSkillsPage(), // 16
-    
     // job experience
     AddJobExperience(), // 17
     // achivement
@@ -74,6 +73,9 @@ class NavigationController extends GetXController {
     "assets/bottomNavbar/personalcard.svg",
     "assets/bottomNavbar/briefcase.svg",
     "assets/bottomNavbar/more.svg",
+    "assets/bottomNavbar/global.svg",
+    "assets/bottomNavbar/timer.svg",
+    "assets/bottomNavbar/moon.svg",
   ];
 
   void changePage(int index) {
@@ -87,6 +89,8 @@ class NavigationController extends GetXController {
 
   void navToResume() {
     changePage(2);
+    // Maintain the selected state when returning to resume page
+    // The lastClickedIndex will be preserved automatically since it's an observable
   }
 
   void navToJobs() {

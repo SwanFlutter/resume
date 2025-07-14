@@ -6,10 +6,11 @@ import 'package:resume/controller/navigation_controller.dart';
 import 'package:resume/controller/resume_controller.dart';
 import 'package:resume/screen/resume_page.dart';
 import 'package:resume/widgets/global/appbar_widget.dart';
-import 'package:resume/widgets/global/card_box.dart';
+import 'package:resume/widgets/global/card_box_widget.dart';
 import 'package:resume/widgets/global/custom_dropdown_widget.dart';
 import 'package:resume/widgets/global/custom_fields_widget.dart';
 import 'package:resume/widgets/global/logo_widget.dart';
+import 'package:resume/widgets/global/title_card_box_widget.dart';
 import 'package:resume/widgets/resume/courses/date_text_field_cours_widget.dart';
 
 class ResumeEdite extends StatelessWidget {
@@ -53,7 +54,7 @@ class ResumeEdite extends StatelessWidget {
                               children: [
                                 Avatar.profile(
                                   text: "Sajjad",
-                                  radius: context.height * 0.035,
+                                  radius: context.height * 0.04,
                                   randomColor: false,
                                   randomGradient: true,
                                   backgroundColorCamera: const Color.fromRGBO(
@@ -70,23 +71,16 @@ class ResumeEdite extends StatelessWidget {
                             ),
                             SizedBox(height: context.height * 0.01),
                             // box Personal Information
-                            CardBox(
+                            CardBoxWidget(
                               width: context.width,
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
-                                  Text(
-                                    "Personal Information",
-                                    style:
-                                        context.theme.brightness ==
-                                            Brightness.dark
-                                        ? TextStyleHelper
-                                              .title14W600RegularOpenSansDark
-                                        : TextStyleHelper
-                                              .title14W600RegularOpenSans,
+                                  TitleCardBoxWidget(
+                                    title: "Personal Information",
                                   ),
-                                  const SizedBox(height: 10),
+                                  SizedBox(height: context.height * 0.02),
                                   GetBuilder<ResumeController>(
                                     builder: (controller) {
                                       return Column(
@@ -115,7 +109,7 @@ class ResumeEdite extends StatelessWidget {
                                                   label: 'Military Status *',
                                                   hint: 'Describe Text',
                                                   controllerInstance:
-                                                      controller.text1,
+                                                      controller.militaryStatus,
                                                 ),
                                               ),
                                             ],
@@ -136,7 +130,7 @@ class ResumeEdite extends StatelessWidget {
                                                   label: 'Marital Status *',
                                                   hint: 'Describe Text',
                                                   controllerInstance:
-                                                      controller.text1,
+                                                      controller.maritalStatus,
                                                 ),
                                               ),
                                             ],
@@ -144,11 +138,11 @@ class ResumeEdite extends StatelessWidget {
                                           const SizedBox(height: 10),
                                           CustomFieldsWidget(
                                             label: "Descriptions",
+                                            hintAlignment: Alignment.topLeft,
                                             controllerInstance:
                                                 controller.description,
                                             width: context.width,
-                                            hint:
-                                                "Write your description here...",
+                                            hint: " Description",
                                             height: context.height * 0.1,
                                             maxLines: 5,
                                           ),
@@ -162,23 +156,16 @@ class ResumeEdite extends StatelessWidget {
                             SizedBox(height: context.height * 0.01),
 
                             // box Contact Information
-                            CardBox(
+                            CardBoxWidget(
                               width: context.width,
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
-                                  Text(
-                                    "Contact Information",
-                                    style:
-                                        context.theme.brightness ==
-                                            Brightness.dark
-                                        ? TextStyleHelper
-                                              .title14W600RegularOpenSansDark
-                                        : TextStyleHelper
-                                              .title14W600RegularOpenSans,
+                                  TitleCardBoxWidget(
+                                    title: "Contact Information",
                                   ),
-                                  const SizedBox(height: 10),
+                                  SizedBox(height: context.height * 0.02),
                                   GetBuilder<ResumeController>(
                                     builder: (controller) {
                                       return Column(
@@ -193,7 +180,7 @@ class ResumeEdite extends StatelessWidget {
                                                   label: 'First Name *',
                                                   hint: 'Eva',
                                                   controllerInstance:
-                                                      controller.text1,
+                                                      controller.firstname,
                                                 ),
                                               ),
                                               const SizedBox(width: 10),
@@ -203,7 +190,7 @@ class ResumeEdite extends StatelessWidget {
                                                   label: 'Last Name *',
                                                   hint: 'Robbins',
                                                   controllerInstance:
-                                                      controller.text1,
+                                                      controller.lastname,
                                                 ),
                                               ),
                                             ],
@@ -217,7 +204,7 @@ class ResumeEdite extends StatelessWidget {
                                                   label: 'National Code *',
                                                   hint: '32563212565',
                                                   controllerInstance:
-                                                      controller.text1,
+                                                      controller.nationalCode,
                                                 ),
                                               ),
                                               const SizedBox(width: 10),
@@ -227,7 +214,7 @@ class ResumeEdite extends StatelessWidget {
                                                   label: 'Nationality *',
                                                   hint: 'Iranian',
                                                   controllerInstance:
-                                                      controller.text1,
+                                                      controller.nationality,
                                                 ),
                                               ),
                                             ],
@@ -241,23 +228,14 @@ class ResumeEdite extends StatelessWidget {
                             ),
                             SizedBox(height: context.height * 0.01),
                             // box Job Preferences
-                            CardBox(
+                            CardBoxWidget(
                               width: context.width,
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
-                                  Text(
-                                    "Job Preferences",
-                                    style:
-                                        context.theme.brightness ==
-                                            Brightness.dark
-                                        ? TextStyleHelper
-                                              .title14W600RegularOpenSansDark
-                                        : TextStyleHelper
-                                              .title14W600RegularOpenSans,
-                                  ),
-                                  const SizedBox(height: 10),
+                                  TitleCardBoxWidget(title: "Job Preferences"),
+                                  SizedBox(height: context.height * 0.02),
                                   GetBuilder<ResumeController>(
                                     builder: (controller) {
                                       return Column(
@@ -271,8 +249,8 @@ class ResumeEdite extends StatelessWidget {
                                                   width: context.width,
                                                   label: 'Working Category *',
                                                   hint: 'Manager',
-                                                  controllerInstance:
-                                                      controller.text1,
+                                                  controllerInstance: controller
+                                                      .workingCategory,
                                                 ),
                                               ),
                                               const SizedBox(width: 10),
@@ -282,7 +260,7 @@ class ResumeEdite extends StatelessWidget {
                                                   label: 'Minimal Salary *',
                                                   hint: '5000000',
                                                   controllerInstance:
-                                                      controller.text1,
+                                                      controller.minimalSalary,
                                                 ),
                                               ),
                                             ],
@@ -293,7 +271,7 @@ class ResumeEdite extends StatelessWidget {
                                             label: 'Orgianizatiolonal *',
                                             hint: 'Category',
                                             controllerInstance:
-                                                controller.text1,
+                                                controller.orgianizatiolonal,
                                           ),
                                         ],
                                       );
@@ -304,23 +282,14 @@ class ResumeEdite extends StatelessWidget {
                             ),
                             SizedBox(height: context.height * 0.01),
                             // box addreses
-                            CardBox(
+                            CardBoxWidget(
                               width: context.width,
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
-                                  Text(
-                                    "Addreses",
-                                    style:
-                                        context.theme.brightness ==
-                                            Brightness.dark
-                                        ? TextStyleHelper
-                                              .title14W600RegularOpenSansDark
-                                        : TextStyleHelper
-                                              .title14W600RegularOpenSans,
-                                  ),
-                                  const SizedBox(height: 10),
+                                  TitleCardBoxWidget(title: "Addreses"),
+                                  SizedBox(height: context.height * 0.02),
                                   GetBuilder<ResumeController>(
                                     builder: (controller) {
                                       return Column(
@@ -335,7 +304,7 @@ class ResumeEdite extends StatelessWidget {
                                                   label: 'Country *',
                                                   hint: 'Iran',
                                                   controllerInstance:
-                                                      controller.text1,
+                                                      controller.country,
                                                 ),
                                               ),
                                               const SizedBox(width: 10),
@@ -345,7 +314,7 @@ class ResumeEdite extends StatelessWidget {
                                                   label: 'City *',
                                                   hint: 'Qazvin',
                                                   controllerInstance:
-                                                      controller.text1,
+                                                      controller.city,
                                                 ),
                                               ),
                                             ],
@@ -356,8 +325,11 @@ class ResumeEdite extends StatelessWidget {
                                             label: 'Addreses *',
                                             hint: 'Address',
                                             controllerInstance:
-                                                controller.text1,
+                                                controller.addreses,
                                             height: context.height * 0.045,
+                                          ),
+                                          SizedBox(
+                                            height: context.height * 0.02,
                                           ),
                                         ],
                                       );
@@ -366,7 +338,7 @@ class ResumeEdite extends StatelessWidget {
                                 ],
                               ).paddingAll(8.0),
                             ),
-                            SizedBox(height: context.height * 0.2),
+                            SizedBox(height: context.height * 0.03),
                           ],
                         ),
                       ),
@@ -380,11 +352,11 @@ class ResumeEdite extends StatelessWidget {
           // Non-scrollable content
           Obx(
             () => AnimatedPositioned(
-              duration: const Duration(milliseconds: 1000),
+              duration: const Duration(milliseconds: 1300),
               curve: Curves.easeInOutCubic,
               bottom: bottomNavController.isExpanded
                   ? bottomNavController.fabBottomPosition(context)
-                  : context.width * 0.04,
+                  : bottomNavController.bottomNavBarTop.value,
               right: context.height * 0.022,
               child: FloatingActionButton(
                 onPressed: () {

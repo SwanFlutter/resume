@@ -154,8 +154,8 @@ class _CustomProgressIndicatorState extends State<CustomProgressIndicator>
               // پراگرس کوچک (ثانویه) - فقط اگر showDoubleProgress فعال باشد
               if (widget.showDoubleProgress)
                 SizedBox(
-                  width: widget.size * 0.65,
-                  height: widget.size * 0.65,
+                  width: widget.size * 0.70,
+                  height: widget.size * 0.70,
                   child: CustomPaint(
                     painter: GradientCircularProgressPainter(
                       progress: _secondaryProgressAnimation.value,
@@ -163,7 +163,7 @@ class _CustomProgressIndicatorState extends State<CustomProgressIndicator>
                         widget.gradientColors.last,
                         widget.gradientColors.first,
                       ],
-                      strokeWidth: widget.strokeWidth * 0.7,
+                      strokeWidth: widget.strokeWidth * 0.8,
                       backgroundColor: Colors.grey.withValues(alpha: 0.1),
                     ),
                   ),

@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get_x_master/get_x_master.dart';
 import 'package:resume/config/constant.dart';
+import 'package:resume/config/extentions/extension_on_flutter.dart';
 import 'package:resume/controller/courses_controller.dart';
-import 'package:resume/themes/theme.dart' hide backgroudColorFeild;
+import 'package:resume/themes/theme.dart'
+    hide backgroudColorFeild, resumeBoxShadowDark, resumeBoxShadow;
 
 class CustomDropdownWidget<T extends GetXController> extends StatelessWidget {
   final T controller;
@@ -47,22 +49,23 @@ class CustomDropdownWidget<T extends GetXController> extends StatelessWidget {
               label,
               style: context.theme.brightness == Brightness.dark
                   ? TextStyleHelper.label10W700BoldOpenSansDark.copyWith(
-                      fontWeight: FontWeight.w800,
+                      fontWeight: FontWeight.w700,
                     )
                   : TextStyleHelper.label10W700BoldOpenSans.copyWith(
-                      fontWeight: FontWeight.w800,
+                      fontWeight: FontWeight.w700,
                     ),
             ).paddingOnly(left: 5),
             SizedBox(height: 4),
             Container(
               width: width,
-              height: context.height * 0.045,
+              height: context.height * 0.047,
               decoration: BoxDecoration(
                 border: Border.all(
                   color: context.theme.brightness == Brightness.dark
                       ? feildBorderColorDark
                       : feildBorderColor,
                 ),
+
                 gradient: LinearGradient(
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
@@ -70,7 +73,7 @@ class CustomDropdownWidget<T extends GetXController> extends StatelessWidget {
                       ? [boxColorDark, boxColorDark]
                       : backgroudColorFeild,
                 ),
-                borderRadius: BorderRadius.circular(4.0),
+                borderRadius: BorderRadius.circular(8.0),
               ),
               child: DropdownButton<String>(
                 value: currentValue,
@@ -95,7 +98,7 @@ class CustomDropdownWidget<T extends GetXController> extends StatelessWidget {
                         child: Text(
                           e,
                           style: TextStyle(
-                            fontSize: 10.0,
+                            fontSize: 11.0.ssp,
                             color: Color.fromRGBO(107, 114, 128, 1),
                           ),
                         ).paddingOnly(left: 10.0),
@@ -126,20 +129,5 @@ class CustomDropdownWidget<T extends GetXController> extends StatelessWidget {
         );
       },
     );
-  }
-
-  double _getResponsiveHeight(BuildContext context) {
-    final screenHeight = MediaQuery.of(context).size.height;
-
-    if (height != null) return height!;
-
-    // تعریف ارتفاع بر اساس اندازه صفحه
-    if (screenHeight > 800) {
-      return screenHeight * 0.045; // صفحه‌های بزرگ
-    } else if (screenHeight > 600) {
-      return screenHeight * 0.05; // صفحه‌های متوسط
-    } else {
-      return screenHeight * 0.055; // صفحه‌های کوچک
-    }
   }
 }

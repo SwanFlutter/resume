@@ -3,10 +3,10 @@ import 'package:get_x_master/get_x_master.dart';
 import 'package:resume/config/constant.dart';
 import 'package:resume/controller/add_new_hard_skills_controller.dart';
 import 'package:resume/controller/bottom_navigation_controller.dart';
-import 'package:resume/widgets/resume/skil/custom_expanded_chip.dart';
 import 'package:resume/screen/resume_page.dart';
 import 'package:resume/widgets/global/appbar_widget.dart';
 import 'package:resume/widgets/global/logo_widget.dart';
+import 'package:resume/widgets/resume/skil/custom_expanded_chip.dart';
 
 class AddNewHardSkillsPage extends StatefulWidget {
   const AddNewHardSkillsPage({super.key});
@@ -106,21 +106,21 @@ class _AddNewHardSkillsPageState extends State<AddNewHardSkillsPage> {
                       // FloatingActionButton
                       Obx(
                         () => AnimatedPositioned(
-                          duration: const Duration(milliseconds: 1000),
+                          duration: const Duration(milliseconds: 1300),
                           curve: Curves.easeInOutCubic,
                           bottom: bottomNavController.isExpanded
                               ? bottomNavController.fabBottomPosition(context)
-                              : context.width * 0.04,
+                              : bottomNavController.bottomNavBarTop.value,
                           right: context.height * 0.022,
                           child: FloatingActionButton(
                             elevation: 0,
-                            backgroundColor: AppThemeColors.addFabColor,
+                            backgroundColor: AppThemeColors.editeFabColor,
                             shape: const StadiumBorder(),
                             onPressed: () {
                               // ذخیره اسکیل‌های انتخاب شده
                             },
                             child: Image.asset(
-                              "assets/isIconOnly.png",
+                              "assets/Vector.png",
                               width: 24,
                               height: 24,
                             ),
