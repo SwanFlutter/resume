@@ -93,7 +93,7 @@ class Achivement extends StatelessWidget {
                                           Brightness.dark
                                       ? Colors.white
                                       : const Color(0xFF064368),
-                                  fontSize: 10.ssp,
+                                  fontSize: ResponsiveFontSize(10).ssp,
                                   fontFamily: 'Open Sans',
                                   fontWeight: FontWeight.w600,
                                 ),

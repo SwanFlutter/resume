@@ -54,10 +54,10 @@ class CardAcadmicWidget extends StatelessWidget {
                 title,
                 style: context.theme.brightness == Brightness.dark
                     ? TextStyleHelper.title14W600RegularOpenSansDark.copyWith(
-                        fontSize: 12.ssp,
+                        fontSize: ResponsiveFontSize(12).ssp,
                       )
                     : TextStyleHelper.title14W600RegularOpenSans.copyWith(
-                        fontSize: 12.ssp,
+                        fontSize: ResponsiveFontSize(12).ssp,
                       ),
               ),
               const Spacer(),

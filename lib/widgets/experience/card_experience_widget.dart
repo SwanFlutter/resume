@@ -34,7 +34,7 @@ class CardExperienceWidget extends StatelessWidget {
               Offstage(
                 offstage: !isOnline,
                 child: Container(
-                  width:context.height * 0.01,
+                  width: context.height * 0.01,
                   height: context.height * 0.01,
                   margin: const EdgeInsets.only(left: 0.0, right: 3.0),
                   decoration: BoxDecoration(
@@ -48,10 +48,10 @@ class CardExperienceWidget extends StatelessWidget {
                 title,
                 style: context.theme.brightness == Brightness.dark
                     ? TextStyleHelper.title14W600RegularOpenSansDark.copyWith(
-                        fontSize: 12.0.ssp,
+                        fontSize: ResponsiveFontSize(12.0).ssp,
                       )
                     : TextStyleHelper.title14W600RegularOpenSans.copyWith(
-                        fontSize: 12.0.ssp,
+                        fontSize: ResponsiveFontSize(12.0).ssp,
                       ),
               ),
               Spacer(),
@@ -59,7 +59,7 @@ class CardExperienceWidget extends StatelessWidget {
                 subtitle,
                 style: context.theme.brightness == Brightness.dark
                     ? TextStyleHelper.title12W600RegularOpenSansDark
-                    : TextStyleHelper.title12W600RegularOpenSans
+                    : TextStyleHelper.title12W600RegularOpenSans,
               ),
             ],
           ),
@@ -96,15 +96,15 @@ class CardExperienceWidget extends StatelessWidget {
               Text(
                 country,
                 style: context.theme.brightness == Brightness.dark
-                      ? TextStyleHelper.label10W600SemiBoldOpenSansDark
-                      : TextStyleHelper.label10W600SemiBoldOpenSans,
+                    ? TextStyleHelper.label10W600SemiBoldOpenSansDark
+                    : TextStyleHelper.label10W600SemiBoldOpenSans,
               ),
               Spacer(),
               Text(
                 school.toUpperCase(),
                 style: context.theme.brightness == Brightness.dark
-                      ? TextStyleHelper.label10W600SemiBoldOpenSansDark
-                      : TextStyleHelper.label10W600SemiBoldOpenSans,
+                    ? TextStyleHelper.label10W600SemiBoldOpenSansDark
+                    : TextStyleHelper.label10W600SemiBoldOpenSans,
               ),
             ],
           ),

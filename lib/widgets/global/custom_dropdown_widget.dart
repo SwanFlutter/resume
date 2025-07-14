@@ -98,7 +98,7 @@ class CustomDropdownWidget<T extends GetXController> extends StatelessWidget {
                         child: Text(
                           e,
                           style: TextStyle(
-                            fontSize: 11.0.ssp,
+                            fontSize: ResponsiveFontSize(11.0).ssp,
                             color: Color.fromRGBO(107, 114, 128, 1),
                           ),
                         ).paddingOnly(left: 10.0),

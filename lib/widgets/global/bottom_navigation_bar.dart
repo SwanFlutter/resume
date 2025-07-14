@@ -289,7 +289,9 @@ class _BottomNavBarState extends State<BottomNavBar> {
                                       style: TextStyleHelper
                                           .label8W400RegularOpenSans
                                           .copyWith(
-                                            fontSize: 8.0.ssp,
+                                            fontSize: ResponsiveFontSize(
+                                              8.0,
+                                            ).ssp,
                                             color:
                                                 _navigationController
                                                         .currentIndex ==
@@ -344,7 +346,9 @@ class _BottomNavBarState extends State<BottomNavBar> {
                                       style: TextStyleHelper
                                           .label8W400RegularOpenSans
                                           .copyWith(
-                                            fontSize: 8.0.ssp,
+                                            fontSize: ResponsiveFontSize(
+                                              8.0,
+                                            ).ssp,
                                             color:
                                                 _navigationController
                                                         .currentIndex ==

@@ -244,7 +244,7 @@ class CustomFieldsWidget extends StatelessWidget {
           textAlignVertical: TextAlignVertical.center,
           decoration: InputDecoration(
             hintStyle: TextStyleHelper.label10W400RegularOpenSans.copyWith(
-              fontSize: 7.ssp,
+              fontSize: ResponsiveFontSize(7).ssp,
             ),
           ),
           iconColor: context.theme.brightness == Brightness.dark
