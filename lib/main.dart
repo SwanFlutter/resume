@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get_x_master/get_x_master.dart';
+import 'package:get_x_storage/get_x_storage.dart';
 import 'package:resume/bindings/bindings.dart';
 import 'package:resume/controller/theme_controller.dart';
 import 'package:resume/screen/main_navigation.dart';
@@ -10,6 +11,7 @@ void main() {
   // Initialize bindings first
   WidgetsFlutterBinding.ensureInitialized();
   MyBindings().dependencies();
+  GetXStorage.init();
 
   runApp(const MyApp());
 }
@@ -34,7 +36,7 @@ class MyApp extends StatelessWidget {
             theme: AppTheme.lightTheme.themeData,
             darkTheme: AppTheme.darkTheme.themeData,
             themeMode: themeController.themeMode,
-            home: MainNavigation(),
+            home: MainNavigation(), // fallback for direct run
           ),
         );
       },

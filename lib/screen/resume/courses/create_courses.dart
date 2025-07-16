@@ -72,7 +72,8 @@ class CreateCourses extends StatelessWidget {
                                 Expanded(
                                   child: CustomFieldsWidget(
                                     label: "Type *",
-                                    controllerInstance: TextEditingController(),
+                                    controllerInstance:
+                                        controller.typeController,
                                     hint: "Designer",
                                     width: getFieldWidth(),
                                   ),
@@ -99,7 +100,8 @@ class CreateCourses extends StatelessWidget {
                                 Expanded(
                                   child: CustomFieldsWidget(
                                     label: "Course duration (hour) *",
-                                    controllerInstance: TextEditingController(),
+                                    controllerInstance:
+                                        controller.durationController,
                                     hint: "20",
                                     width: getFieldWidth(),
                                   ),
@@ -126,7 +128,8 @@ class CreateCourses extends StatelessWidget {
                                 Expanded(
                                   child: CustomFieldsWidget(
                                     label: "Name of the institution *",
-                                    controllerInstance: TextEditingController(),
+                                    controllerInstance:
+                                        controller.nameIntlController,
                                     hint: "Content",
                                     width: getFieldWidth(),
                                   ),
@@ -135,7 +138,8 @@ class CreateCourses extends StatelessWidget {
                                 Expanded(
                                   child: CustomFieldsWidget(
                                     label: "Date *",
-                                    controllerInstance: TextEditingController(),
+                                    controllerInstance:
+                                        controller.dateController,
                                     hint: "YYYY/MM/DD",
                                     width: getFieldWidth(),
 
@@ -144,31 +148,6 @@ class CreateCourses extends StatelessWidget {
                                 ),
                               ],
                             ),
-                            SizedBox(height: context.height * 0.02),
-                            Row(
-                              children: [
-                                Expanded(
-                                  child: CustomFieldsWidget(
-                                    label: "Name of the institution *",
-                                    controllerInstance: TextEditingController(),
-                                    hint: "Content",
-                                    width: getFieldWidth(),
-                                  ),
-                                ),
-                                SizedBox(width: 8),
-                                Expanded(
-                                  child: CustomFieldsWidget(
-                                    label: "Date *",
-                                    controllerInstance: TextEditingController(),
-                                    hint: "YYYY/MM/DD",
-                                    width: getFieldWidth(),
-
-                                    prefixIcon: true,
-                                  ),
-                                ),
-                              ],
-                            ),
-
                             SizedBox(height: context.height * 0.02),
                             // چک باکس
                             Row(
@@ -187,8 +166,11 @@ class CreateCourses extends StatelessWidget {
                                         color: Colors.grey,
                                       ),
                                     ),
-                                    value: false,
-                                    onChanged: (value) {},
+                                    value: controller.checkBox1,
+                                    onChanged: (value) {
+                                      controller.checkBox1 = value ?? false;
+                                      controller.update();
+                                    },
                                   ),
                                 ),
                                 SizedBox(width: 8.0),
@@ -221,131 +203,147 @@ class CreateCourses extends StatelessWidget {
                   margin: EdgeInsets.symmetric(horizontal: 16.0),
                   child: CardBoxWidget(
                     width: getFullWidth(),
-                    child: Padding(
-                      padding: EdgeInsets.all(16.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          // فایل ویجت
-                          FileWidget(
-                            controllerInstance: TextEditingController(),
-                            height: context.height * 0.046,
-                          ),
-                          SizedBox(height: 16.0),
-
-                          // ردیف چک باکس‌ها
-                          SingleChildScrollView(
-                            scrollDirection: Axis.horizontal,
-                            child: Row(
-                              children: [
-                                Text(
-                                  "Upload portfolio *",
-                                  style:
-                                      context.theme.brightness ==
-                                          Brightness.dark
-                                      ? TextStyleHelper
-                                            .title10W700RegularOpenSansDark
-                                      : TextStyleHelper
-                                            .title10W700RegularOpenSans,
-                                ),
-                                SizedBox(width: 16),
-                                Row(
-                                  children: [
-                                    SizedBox(
-                                      width: 14,
-                                      height: 14,
-                                      child: Checkbox.adaptive(
-                                        checkColor: AppThemeColors.colorFF9999,
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.circular(
-                                            4.0,
-                                          ),
-                                        ),
-                                        side: WidgetStateBorderSide.resolveWith(
-                                          (states) => BorderSide(
-                                            width: 1.0,
-                                            color: Colors.grey,
-                                          ),
-                                        ),
-                                        value: false,
-                                        onChanged: (value) {},
-                                      ),
-                                    ),
-                                    SizedBox(width: 5),
-                                    Text(
-                                      "By Degree",
-                                      style:
-                                          context.theme.brightness ==
-                                              Brightness.dark
-                                          ? TextStyleHelper
-                                                .body10W400RegularOpenSansDark
-                                          : TextStyleHelper
-                                                .body10W400RegularOpenSans,
-                                    ),
-                                  ],
-                                ),
-                                SizedBox(width: 16),
-                                Row(
-                                  children: [
-                                    SizedBox(
-                                      width: 14,
-                                      height: 14,
-                                      child: Checkbox.adaptive(
-                                        checkColor: AppThemeColors.colorFF9999,
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.circular(
-                                            4.0,
-                                          ),
-                                        ),
-                                        side: WidgetStateBorderSide.resolveWith(
-                                          (states) => BorderSide(
-                                            width: 1.0,
-                                            color: Colors.grey,
-                                          ),
-                                        ),
-                                        value: false,
-                                        onChanged: (value) {},
-                                      ),
-                                    ),
-                                    SizedBox(width: 5),
-                                    Text(
-                                      "By Certificate",
-                                      style:
-                                          context.theme.brightness ==
-                                              Brightness.dark
-                                          ? TextStyleHelper
-                                                .body10W400RegularOpenSansDark
-                                          : TextStyleHelper
-                                                .body10W400RegularOpenSans,
-                                    ),
-                                  ],
-                                ),
-                              ],
+                    child: GetBuilder<CoursesController>(
+                      builder: (controller) => Padding(
+                        padding: EdgeInsets.all(16.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            // فایل ویجت
+                            FileWidget(
+                              controllerInstance: controller.contentController,
+                              height: context.height * 0.046,
                             ),
-                          ),
+                            SizedBox(height: 16.0),
 
-                          // فیلد محتوا
-                          CustomFieldsWidget(
-                            width: getFullWidth() - 32,
-                            label: "",
-                            controllerInstance: TextEditingController(),
-                            hint: "Add Content",
+                            // ردیف چک باکس‌ها
+                            SingleChildScrollView(
+                              scrollDirection: Axis.horizontal,
+                              child: Row(
+                                children: [
+                                  Text(
+                                    "Upload portfolio *",
+                                    style:
+                                        context.theme.brightness ==
+                                            Brightness.dark
+                                        ? TextStyleHelper
+                                              .title10W700RegularOpenSansDark
+                                        : TextStyleHelper
+                                              .title10W700RegularOpenSans,
+                                  ),
+                                  SizedBox(width: 16),
+                                  Row(
+                                    children: [
+                                      SizedBox(
+                                        width: 14,
+                                        height: 14,
+                                        child: Checkbox.adaptive(
+                                          checkColor:
+                                              AppThemeColors.colorFF9999,
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius: BorderRadius.circular(
+                                              4.0,
+                                            ),
+                                          ),
+                                          side:
+                                              WidgetStateBorderSide.resolveWith(
+                                                (states) => BorderSide(
+                                                  width: 1.0,
+                                                  color: Colors.grey,
+                                                ),
+                                              ),
+                                          value: controller.byDegree,
+                                          onChanged: (value) {
+                                            controller.byDegree =
+                                                value ?? false;
+                                            controller.update();
+                                          },
+                                        ),
+                                      ),
+                                      SizedBox(width: 5),
+                                      Text(
+                                        "By Degree",
+                                        style:
+                                            context.theme.brightness ==
+                                                Brightness.dark
+                                            ? TextStyleHelper
+                                                  .body10W400RegularOpenSansDark
+                                            : TextStyleHelper
+                                                  .body10W400RegularOpenSans,
+                                      ),
+                                    ],
+                                  ),
+                                  SizedBox(width: 16),
+                                  Row(
+                                    children: [
+                                      SizedBox(
+                                        width: 14,
+                                        height: 14,
+                                        child: Checkbox.adaptive(
+                                          checkColor:
+                                              AppThemeColors.colorFF9999,
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius: BorderRadius.circular(
+                                              4.0,
+                                            ),
+                                          ),
+                                          side:
+                                              WidgetStateBorderSide.resolveWith(
+                                                (states) => BorderSide(
+                                                  width: 1.0,
+                                                  color: Colors.grey,
+                                                ),
+                                              ),
+                                          value: controller.byCartificate,
+                                          onChanged: (value) {
+                                            controller.byCartificate =
+                                                value ?? false;
+                                            controller.update();
+                                          },
+                                        ),
+                                      ),
+                                      SizedBox(width: 5),
+                                      Text(
+                                        "By Certificate",
+                                        style:
+                                            context.theme.brightness ==
+                                                Brightness.dark
+                                            ? TextStyleHelper
+                                                  .body10W400RegularOpenSansDark
+                                            : TextStyleHelper
+                                                  .body10W400RegularOpenSans,
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
 
-                            prefixIcon: false,
-                          ),
-                          SizedBox(height: 16.0),
+                            // فیلد محتوا
+                            CustomFieldsWidget(
+                              controllerInstance: controller.contentController,
+                              label: 'تصویر',
 
-                          // فیلد توضیحات
-                          CustomFieldsWidget(
-                            controllerInstance: TextEditingController(),
-                            label: 'Description *',
-                            hint: "Description",
-                            width: getFullWidth() - 32,
-                            maxLines: 6,
-                            height: context.height * 0.096,
-                            hintAlignment: Alignment.topLeft,
-                          ),
-                        ],
+                              isImagePicker: true,
+                              onImagePicked: (file) {
+                                CoursesController.to.setPickedFile(file);
+                              },
+                            ),
+                            SizedBox(height: 16.0),
+
+                            // فیلد توضیحات
+                            CustomFieldsWidget(
+                              controllerInstance:
+                                  controller.descriptionController,
+                              label: 'Description *',
+                              hint: "Description",
+                              width: getFullWidth() - 32,
+                              maxLines: 6,
+                              height: context.height * 0.096,
+                              hintAlignment: Alignment.topLeft,
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ),
@@ -366,7 +364,7 @@ class CreateCourses extends StatelessWidget {
                 backgroundColor: AppThemeColors.addFabColor,
                 shape: StadiumBorder(),
                 onPressed: () {
-                  navigationController.navToEditCreateCourses();
+                  CoursesController.to.addPost();
                 },
                 child: Image.asset(
                   "assets/isIconOnly.png",

@@ -35,20 +35,21 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.8
   sizer: ^3.0.5
-  get: ^4.6.6
-  get_x_storage: ^0.0.5
   avatar_better_pro: ^0.0.8
   intl: ^0.20.2
   percent_indicator: ^4.2.3 # For circular progress indicators
   flutter_svg: ^2.1.0
   get_x_master: ^0.0.13
+  get_x_storage: ^0.0.6
   anim_search_bar: ^2.0.3
   date_cupertino_bottom_sheet_picker: ^0.1.0
   theme_master:
-    path: G:\Android\Pakege\theme_master
+    git: 
+      url: https://github.com/SwanFlutter/theme_master.git
   gradient_textfield:
     git:
       url: https://github.com/SwanFlutter/gradient_textfield.git
+  image_picker: ^1.1.2
   
 
 dev_dependencies:

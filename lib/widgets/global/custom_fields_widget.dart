@@ -1,7 +1,10 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get_x_master/get_x_master.dart';
 import 'package:gradient_textfield/gradient_textfield.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:resume/config/constant.dart' hide resumeBoxShadow;
 import 'package:resume/config/extentions/extension_on_flutter.dart';
 import 'package:resume/themes/theme.dart'
@@ -190,7 +193,7 @@ class CustomFieldsWidget1 extends StatelessWidget {
   }
 }
 
-class CustomFieldsWidget extends StatelessWidget {
+class CustomFieldsWidget extends StatefulWidget {
   final String label;
   final TextEditingController controllerInstance;
   final String hint;
@@ -203,6 +206,9 @@ class CustomFieldsWidget extends StatelessWidget {
   final double? prefixIconSize;
   final double vertical;
   final AlignmentGeometry hintAlignment;
+  final bool isImagePicker;
+  final void Function(File?)? onImagePicked;
+
   const CustomFieldsWidget({
     super.key,
     required this.label,
@@ -217,7 +223,30 @@ class CustomFieldsWidget extends StatelessWidget {
     this.prefixIconColor,
     this.prefixIconSize,
     this.hintAlignment = Alignment.centerLeft,
+    this.isImagePicker = false,
+    this.onImagePicked,
   });
+
+  @override
+  State<CustomFieldsWidget> createState() => _CustomFieldsWidgetState();
+}
+
+class _CustomFieldsWidgetState extends State<CustomFieldsWidget> {
+  File? _pickedImage;
+
+  Future<void> _pickImage() async {
+    final picker = ImagePicker();
+    final pickedFile = await picker.pickImage(source: ImageSource.gallery);
+    if (pickedFile != null) {
+      setState(() {
+        _pickedImage = File(pickedFile.path);
+      });
+      if (widget.onImagePicked != null) {
+        widget.onImagePicked!(_pickedImage);
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -226,20 +255,39 @@ class CustomFieldsWidget extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: [
         Text(
-          label,
+          widget.label,
           style: context.theme.brightness == Brightness.dark
               ? TextStyleHelper.label10W700BoldOpenSansDark
               : TextStyleHelper.label10W700BoldOpenSans,
         ).paddingOnly(left: context.width > 600 ? 4.0 : 3.0),
         SizedBox(height: context.width > 600 ? 6.0 : 4.0),
+        if (widget.isImagePicker)
+          Row(
+            children: [
+              ElevatedButton.icon(
+                onPressed: _pickImage,
+                icon: Icon(Icons.image),
+                label: Text('انتخاب تصویر'),
+              ),
+              SizedBox(width: 12),
+              _pickedImage != null
+                  ? Image.file(
+                      _pickedImage!,
+                      width: 60,
+                      height: 60,
+                      fit: BoxFit.cover,
+                    )
+                  : Text('تصویری انتخاب نشده'),
+            ],
+          ),
         GradientTextField(
           maxWidth: 1.0,
-          height: height ?? context.height * 0.049,
-          controller: controllerInstance,
-          hint: hint,
-          hintAlignment: hintAlignment,
+          height: widget.height ?? context.height * 0.049,
+          controller: widget.controllerInstance,
+          hint: widget.hint,
+          hintAlignment: widget.hintAlignment,
           enableAnimations: false,
-          prefixIconAsset: prefixIcon ? "assets/calendar-2.svg" : null,
+          prefixIconAsset: widget.prefixIcon ? "assets/calendar-2.svg" : null,
           textAlign: TextAlign.start,
           textAlignVertical: TextAlignVertical.center,
           decoration: InputDecoration(
@@ -250,7 +298,7 @@ class CustomFieldsWidget extends StatelessWidget {
           iconColor: context.theme.brightness == Brightness.dark
               ? Colors.white
               : AppThemeColors.colorFF0407,
-          iconSize: 14.0, // Fix: Reduced from 35.0 to reasonable size
+          iconSize: 14.0,
           iconPadding: const EdgeInsets.only(right: 8.0),
           style: TextStyle(fontSize: 14, color: AppThemeColors.colorFF0407),
           shadowConfiguration: ShadowConfiguration.disabled(),
