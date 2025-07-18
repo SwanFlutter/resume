@@ -61,18 +61,44 @@ class Courses extends StatelessWidget {
                             itemCount: courses.length,
                             itemBuilder: (context, index) {
                               final course = courses[index];
+
+                              // بهتر کردن نمایش داده‌ها با بررسی null و empty
+                              String getDisplayValue(
+                                String? value,
+                                String defaultValue,
+                              ) {
+                                if (value == null ||
+                                    value.isEmpty ||
+                                    value.trim().isEmpty) {
+                                  return defaultValue;
+                                }
+                                return value;
+                              }
+
                               return CardCoursesWidget(
-                                title: course.type ?? 'Unknown Course',
-                                subtitle:
-                                    course.courseLevelField ??
-                                    'Unknown Level', // استفاده از courseLevelField
-                                isOnline: course.checkBox1 == 1 ? true : false,
-                                stateSchool:
-                                    course.nameIntl ??
-                                    'Unknown Institution', // استفاده از nameIntl
-                                timeSchool:
-                                    course.duration ?? 'Unknown Duration',
-                                school: course.description ?? 'Nahira.ir',
+                                title: getDisplayValue(
+                                  course.type,
+                                  'نوع دوره نامشخص',
+                                ),
+                                subtitle: getDisplayValue(
+                                  course.courseLevelField,
+                                  'سطح نامشخص',
+                                ),
+                                isOnline:
+                                    course.checkBox1 ==
+                                    true, // اصلاح شده برای boolean
+                                stateSchool: getDisplayValue(
+                                  course.nameIntl,
+                                  'موسسه نامشخص',
+                                ),
+                                timeSchool: getDisplayValue(
+                                  course.duration,
+                                  'مدت زمان نامشخص',
+                                ),
+                                school: getDisplayValue(
+                                  course.description,
+                                  'Nahira.ir',
+                                ),
                               ).marginOnly(
                                 bottom: context.height * 0.013,
                                 left: 16.0,
