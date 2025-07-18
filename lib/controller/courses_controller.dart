@@ -1,18 +1,19 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:get_x_master/get_x_master.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:resume/controller/login_controller.dart';
+import 'package:resume/controller/navigation_controller.dart';
 import 'package:resume/model/coures_model.dart';
 
 class CoursesController extends GetXController {
   static CoursesController get to => Get.find<CoursesController>();
 
   late TextEditingController typeController;
-  late TextEditingController stateController;
   late TextEditingController durationController;
-  late TextEditingController courseLevelFieldController;
   late TextEditingController nameIntlController;
   late TextEditingController dateController;
   late TextEditingController contentController;
@@ -36,19 +37,29 @@ class CoursesController extends GetXController {
 
   File? pickedFile;
 
+  late String? courseLevelFieldController;
+
+  Future<void> pickImage() async {
+    final picker = ImagePicker();
+    final picked = await picker.pickImage(source: ImageSource.gallery);
+    if (picked != null) {
+      pickedFile = File(picked.path);
+      // If you need to call a callback or update UI, do it here
+      update();
+    }
+  }
+
   @override
   void onInit() {
     super.onInit();
-    typeController = TextEditingController(text: 'Course');
-    stateController = TextEditingController(text: 'Ux Research');
-    durationController = TextEditingController(text: '3 months');
-    courseLevelFieldController = TextEditingController(text: 'Hard');
-    nameIntlController = TextEditingController(text: 'International Course');
+    typeController = TextEditingController();
+    durationController = TextEditingController();
+    nameIntlController = TextEditingController();
     dateController = TextEditingController(
       text: DateFormat("yyyy-MM-dd").format(DateTime.now()),
     );
-    contentController = TextEditingController(text: 'Course Content');
-    descriptionController = TextEditingController(text: 'Course Description');
+    contentController = TextEditingController();
+    descriptionController = TextEditingController();
     dateTime = TextEditingController(
       text: DateFormat("yyyy-MM-dd").format(DateTime.now()),
     );
@@ -56,6 +67,45 @@ class CoursesController extends GetXController {
     typeCourse = "Course";
     title = "Ux Research";
     courseLevel = "Hard";
+    courseLevelFieldController = '';
+  }
+
+  late Future<List<CouresModel>> future;
+
+  // Add this import for jsonDecode
+
+  Future<List<CouresModel>> fetchCourses() async {
+    GetConnect connect = GetConnect(
+      timeout: const Duration(seconds: 10),
+      maxRedirects: 5,
+      followRedirects: true,
+    );
+    final response = await connect.get(
+      'http://192.168.1.106/resume/get_courses.php',
+      headers: {
+        'Content-Type': 'application/json',
+        'Cookie': LoginController.to.setCookie,
+      },
+    );
+    print("Response status: ${response.statusCode}");
+    print("Response body: ${response.body}");
+
+    if (response.isOk) {
+      // Decode response.body if it's a String
+      final Map<String, dynamic> responseData;
+      if (response.body is String) {
+        responseData = jsonDecode(response.body);
+      } else {
+        responseData = response.body as Map<String, dynamic>;
+      }
+
+      if (responseData['success'] == true && responseData['courses'] is List) {
+        return (responseData['courses'] as List)
+            .map((json) => CouresModel.fromMap(json))
+            .toList();
+      }
+    }
+    return [];
   }
 
   void setPickedFile(File? file) {
@@ -86,6 +136,11 @@ class CoursesController extends GetXController {
 
   void updateDropdownValue(String dropdownId, String value) {
     dropdownValues[dropdownId] = value;
+    if (dropdownId == "course_level") {
+      courseLevel = value;
+    } else if (dropdownId == "course_title") {
+      title = value;
+    }
     update();
   }
 
@@ -93,24 +148,31 @@ class CoursesController extends GetXController {
     return dropdownValues[dropdownId];
   }
 
+  // اگر CustomDropdownWidget تغییر کند، این متد را اضافه کنید:
+  // اگر CustomDropdownWidget تغییر کند، این متد را اضافه کنید:
+  void updateCourseLevel(String newLevel) {
+    courseLevel = newLevel;
+    courseLevelFieldController = newLevel; // هم‌زمان به‌روزرسانی
+    update();
+  }
+
   void addPost() {
     print(typeController.text);
-    print(stateController.text);
     print(durationController.text);
-    print(courseLevelFieldController.text);
+    print(courseLevel); // از courseLevel استفاده کنید
     print(nameIntlController.text);
     print(dateController.text);
-    print(contentController.text);
     print(descriptionController.text);
+    print("title $title");
     if (typeController.text.isEmpty ||
-        stateController.text.isEmpty ||
         durationController.text.isEmpty ||
-        courseLevelFieldController.text.isEmpty ||
+        title.isEmpty || // بررسی title
+        courseLevel.isEmpty || // تغییر داده شد
         nameIntlController.text.isEmpty ||
         dateController.text.isEmpty ||
-        contentController.text.isEmpty ||
         descriptionController.text.isEmpty) {
       Get.snackbar("Error", "Please fill all fields");
+      debugPrint("Please fill all fields");
     } else if (dateTime.text.isEmpty) {
       Get.snackbar("Error", "Please select a date");
     } else {
@@ -130,14 +192,14 @@ class CoursesController extends GetXController {
 
     CouresModel body = CouresModel(
       type: typeController.text,
-      state: stateController.text,
+      state: title,
       duration: durationController.text,
-      courseLevelField: courseLevelFieldController.text,
-      nameIntl: nameIntlController.text,
-      date: dateController.text,
-      content: contentController.text,
+      courseLevelField: courseLevel, // تغییر داده شد
       description: descriptionController.text,
       dateTime: DateTime.parse(dateTime.text),
+      nameIntl: nameIntlController.text,
+      content: contentController.text,
+      date: dateController.text,
       checkBox1: checkBox1,
       byDegree: byDegree,
       byCartificate: byCartificate,
@@ -146,17 +208,19 @@ class CoursesController extends GetXController {
     print(body);
 
     final response = await connect.post(
-      'https://hrlink.hrbox.me:50443/DesktopModules/Freelancer/api/Course/Add',
+      'http://192.168.1.106/resume/create_course.php',
       body.toJson(),
       headers: {
         'Content-Type': 'application/json',
-        "set-cookie": LoginController.to.setCookie,
+        "Cookie": LoginController.to.setCookie,
       },
     );
 
-    if (response.isOk) {
+    if (response.isOk && response.body != null && response.statusCode == 200) {
       Get.snackbar("Success", "Course added successfully");
+      future = fetchCourses();
       clearFields();
+      NavigationController.to.navToCoursesPage();
     } else {
       Get.snackbar("Error", "Failed to add course: ${response.statusText}");
     }
@@ -164,9 +228,7 @@ class CoursesController extends GetXController {
 
   void clearFields() {
     typeController.clear();
-    stateController.clear();
     durationController.clear();
-    courseLevelFieldController.clear();
     nameIntlController.clear();
     dateController.clear();
     contentController.clear();

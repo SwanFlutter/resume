@@ -213,6 +213,15 @@ class CreateCourses extends StatelessWidget {
                             FileWidget(
                               controllerInstance: controller.contentController,
                               height: context.height * 0.046,
+                              onImagePicked: () {
+                                controller.pickImage();
+                                if (controller.pickedFile != null) {
+                                  controller.update();
+                                  print(
+                                    "imagepath: ${controller.pickedFile!.path}",
+                                  );
+                                }
+                              },
                             ),
                             SizedBox(height: 16.0),
 
@@ -320,7 +329,7 @@ class CreateCourses extends StatelessWidget {
                             ),
 
                             // فیلد محتوا
-                            CustomFieldsWidget(
+                            /*   CustomFieldsWidget(
                               controllerInstance: controller.contentController,
                               label: 'تصویر',
 
@@ -328,7 +337,7 @@ class CreateCourses extends StatelessWidget {
                               onImagePicked: (file) {
                                 CoursesController.to.setPickedFile(file);
                               },
-                            ),
+                            ),*/
                             SizedBox(height: 16.0),
 
                             // فیلد توضیحات

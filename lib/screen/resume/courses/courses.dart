@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get_x_master/get_x_master.dart';
 import 'package:resume/config/constant.dart';
 import 'package:resume/controller/bottom_navigation_controller.dart';
+import 'package:resume/controller/courses_controller.dart';
+import 'package:resume/model/coures_model.dart';
 import 'package:resume/screen/resume_page.dart';
 import 'package:resume/widgets/global/appbar_widget.dart';
 import 'package:resume/widgets/global/background_colors_widget.dart';
@@ -14,7 +16,6 @@ class Courses extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final bottomNavController = BottomNavigationController.to;
-
     return SafeArea(
       child: Stack(
         children: [
@@ -34,28 +35,54 @@ class Courses extends StatelessWidget {
                         navigationController
                             .navToResume(); // برگشت به Resume Page
                       } else {
-                        // در غیر این صورت از Get.back استفاده کن
                         Get.back();
                       }
                     },
                   ),
                   Expanded(
-                    child: ListView.builder(
-                      padding: const EdgeInsets.only(bottom: 100),
-                      itemCount: 10, // Replace with actual item count
-                      itemBuilder: (context, index) {
-                        return CardCoursesWidget(
-                          title: "Flutter Development",
-                          subtitle: "Online Course",
-                          isOnline: true,
-                          stateSchool: "Online Course",
-                          timeSchool: "Feb 2024",
-                          school: "Nahira.ir",
-                        ).marginOnly(
-                          bottom: context.height * 0.013,
-                          left: 16.0,
-                          right: 16.0,
-                        );
+                    child: FutureBuilder<List<CouresModel>>(
+                      future: CoursesController.to.fetchCourses(),
+                      builder: (context, asyncSnapshot) {
+                        if (asyncSnapshot.connectionState ==
+                            ConnectionState.waiting) {
+                          return Center(child: CircularProgressIndicator());
+                        } else if (asyncSnapshot.hasError) {
+                          return Center(
+                            child: Text('Error: ${asyncSnapshot.error}'),
+                          );
+                        } else if (asyncSnapshot.hasData) {
+                          final courses = asyncSnapshot.data;
+                          if (courses == null || courses.isEmpty) {
+                            return Center(child: Text('No courses available'));
+                          }
+
+                          return ListView.builder(
+                            padding: const EdgeInsets.only(bottom: 100),
+                            itemCount: courses.length,
+                            itemBuilder: (context, index) {
+                              final course = courses[index];
+                              return CardCoursesWidget(
+                                title: course.type ?? 'Unknown Course',
+                                subtitle:
+                                    course.courseLevelField ??
+                                    'Unknown Level', // استفاده از courseLevelField
+                                isOnline: course.checkBox1 == 1 ? true : false,
+                                stateSchool:
+                                    course.nameIntl ??
+                                    'Unknown Institution', // استفاده از nameIntl
+                                timeSchool:
+                                    course.duration ?? 'Unknown Duration',
+                                school: course.description ?? 'Nahira.ir',
+                              ).marginOnly(
+                                bottom: context.height * 0.013,
+                                left: 16.0,
+                                right: 16.0,
+                              );
+                            },
+                          );
+                        } else {
+                          return Center(child: Text('No courses available'));
+                        }
                       },
                     ),
                   ),
@@ -63,8 +90,6 @@ class Courses extends StatelessWidget {
               ),
             ),
           ),
-
-          // Floating Action Button که با navigation bar جابجا می‌شود
           Obx(
             () => AnimatedPositioned(
               duration: const Duration(milliseconds: 1300),

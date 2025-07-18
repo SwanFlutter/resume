@@ -14,16 +14,17 @@ class _CheckAuthPageState extends State<CheckAuthPage> {
   @override
   void initState() {
     super.initState();
-
     checkLoginStatus();
+    print('Is user logged in? ${LoginController.to.islogin}');
   }
 
   void checkLoginStatus() {
     LoginController.to.loadCookie();
+    LoginController.to.update();
   }
 
   @override
   Widget build(BuildContext context) {
-    return LoginController.to.islogin ? LoginPage() : MainNavigation();
+    return LoginController.to.islogin ? MainNavigation() : LoginPage();
   }
 }

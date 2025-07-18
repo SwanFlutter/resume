@@ -3,7 +3,7 @@ import 'package:get_x_master/get_x_master.dart';
 import 'package:get_x_storage/get_x_storage.dart';
 import 'package:resume/bindings/bindings.dart';
 import 'package:resume/controller/theme_controller.dart';
-import 'package:resume/screen/main_navigation.dart';
+import 'package:resume/safe_page.dart';
 import 'package:resume/themes/theme.dart';
 import 'package:theme_master/theme_master.dart';
 
@@ -36,7 +36,7 @@ class MyApp extends StatelessWidget {
             theme: AppTheme.lightTheme.themeData,
             darkTheme: AppTheme.darkTheme.themeData,
             themeMode: themeController.themeMode,
-            home: MainNavigation(), // fallback for direct run
+            home: CheckAuthPage(), // fallback for direct run
           ),
         );
       },

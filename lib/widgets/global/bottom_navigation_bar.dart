@@ -4,6 +4,7 @@ import 'package:get_x_master/get_x_master.dart';
 import 'package:resume/config/constant.dart';
 import 'package:resume/config/extentions/extension_on_flutter.dart';
 import 'package:resume/controller/bottom_navigation_controller.dart';
+import 'package:resume/controller/login_controller.dart';
 import 'package:resume/controller/navigation_controller.dart';
 import 'package:resume/controller/theme_controller.dart';
 import 'package:resume/screen/resume_page.dart';
@@ -222,7 +223,8 @@ class _BottomNavBarState extends State<BottomNavBar> {
                           SizedBox(width: context.width * 0.032),
                           InkResponse(
                             onTap: () {
-                              // Add logout functionality
+                              LoginController.to.logout();
+                              LoginController.to.update();
                             },
                             borderRadius: BorderRadius.circular(8.0),
                             child: Container(

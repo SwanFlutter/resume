@@ -23,7 +23,7 @@ class CardCoursesWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CardBoxWidget(
-      height: context.height * 0.10,
+      height: context.height * 0.12,
       isBorder: true,
       child: Column(
         children: [

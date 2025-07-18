@@ -57,8 +57,8 @@ class AppBarWidget extends StatelessWidget {
                   imageIcon!.endsWith('.svg')
                       ? SvgPicture.asset(
                           imageIcon!,
-                          width: context.height * 0.017,
-                          height: context.height * 0.017,
+                          width: ResponsiveHelper.imgSize(24),
+                          height: ResponsiveHelper.imgSize(24),
                           colorFilter: ColorFilter.mode(
                             Theme.of(context).brightness == Brightness.dark
                                 ? Colors.white
@@ -68,8 +68,8 @@ class AppBarWidget extends StatelessWidget {
                         )
                       : Image.asset(
                           imageIcon!,
-                          width: context.height * 0.017,
-                          height: context.height * 0.017,
+                          width: ResponsiveHelper.imgSize(24),
+                          height: ResponsiveHelper.imgSize(24),
                           color: Theme.of(context).brightness == Brightness.dark
                               ? Colors.white
                               : AppThemeColors.titleFieldTextcolor,

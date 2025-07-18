@@ -12,7 +12,8 @@ class FileWidget extends StatelessWidget {
   final String titel;
   final double width;
   final double height;
-  final void Function()? onPressed;
+  final void Function()? onImagePicked;
+
   const FileWidget({
     super.key,
     this.label = "Add Content",
@@ -20,7 +21,7 @@ class FileWidget extends StatelessWidget {
     this.titel = 'Upload portfolio *',
     this.width = 134,
     this.height = 36,
-    this.onPressed,
+    this.onImagePicked,
   });
   @override
   Widget build(BuildContext context) {
@@ -57,7 +58,7 @@ class FileWidget extends StatelessWidget {
             children: [
               Text(label, style: TextStyleHelper.label10W400RegularOpenSans),
               InkResponse(
-                onTap: () {},
+                onTap: onImagePicked,
                 child: SvgPicture.asset(
                   "assets/paperclip-2.svg",
                   width: 14.0,
