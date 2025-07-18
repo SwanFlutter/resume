@@ -75,35 +75,66 @@ class CoursesController extends GetXController {
   // Add this import for jsonDecode
 
   Future<List<CouresModel>> fetchCourses() async {
-    GetConnect connect = GetConnect(
-      timeout: const Duration(seconds: 10),
-      maxRedirects: 5,
-      followRedirects: true,
-    );
-    final response = await connect.get(
-      'http://192.168.1.106/resume/get_courses.php',
-      headers: {
-        'Content-Type': 'application/json',
-        'Cookie': LoginController.to.setCookie,
-      },
-    );
-    print("Response status: ${response.statusCode}");
-    print("Response body: ${response.body}");
+    try {
+      GetConnect connect = GetConnect(
+        timeout: const Duration(seconds: 10),
+        maxRedirects: 5,
+        followRedirects: true,
+      );
+      final response = await connect.get(
+        'http://192.168.1.106/resume/get_courses.php',
+        headers: {
+          'Content-Type': 'application/json',
+          'Cookie': LoginController.to.setCookie,
+        },
+      );
+      print("Response status: ${response.statusCode}");
+      print("Response body: ${response.body}");
 
-    if (response.isOk) {
-      // Decode response.body if it's a String
-      final Map<String, dynamic> responseData;
-      if (response.body is String) {
-        responseData = jsonDecode(response.body);
+      if (response.isOk) {
+        // Decode response.body if it's a String
+        final Map<String, dynamic> responseData;
+        if (response.body is String) {
+          responseData = jsonDecode(response.body);
+        } else {
+          responseData = response.body as Map<String, dynamic>;
+        }
+
+        print("Parsed response data: $responseData");
+
+        if (responseData['success'] == true &&
+            responseData['courses'] is List) {
+          final coursesList = responseData['courses'] as List;
+          print("Number of courses received: ${coursesList.length}");
+
+          // Debug: Print first course data if available
+          if (coursesList.isNotEmpty) {
+            print("First course raw data: ${coursesList[0]}");
+          }
+
+          final courses = coursesList.map((json) {
+            try {
+              final course = CouresModel.fromMap(json);
+              print("Mapped course: $course");
+              return course;
+            } catch (e) {
+              print("Error mapping course: $e");
+              print("Raw course data: $json");
+              rethrow;
+            }
+          }).toList();
+
+          return courses;
+        } else {
+          print(
+            "Response format error: success=${responseData['success']}, courses type=${responseData['courses'].runtimeType}",
+          );
+        }
       } else {
-        responseData = response.body as Map<String, dynamic>;
+        print("HTTP Error: ${response.statusCode} - ${response.statusText}");
       }
-
-      if (responseData['success'] == true && responseData['courses'] is List) {
-        return (responseData['courses'] as List)
-            .map((json) => CouresModel.fromMap(json))
-            .toList();
-      }
+    } catch (e) {
+      print("Exception in fetchCourses: $e");
     }
     return [];
   }

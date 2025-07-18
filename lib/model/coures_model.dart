@@ -79,26 +79,68 @@ class CouresModel {
 
   factory CouresModel.fromMap(Map<String, dynamic> map) {
     return CouresModel(
-      type: map['type'] != null ? map['type'] as String : null,
-      state: map['state'] != null ? map['state'] as String : null,
-      duration: map['duration'] != null ? map['duration'] as String : null,
+      type: map['type']?.toString(),
+      state: map['state']?.toString(),
+      duration: map['duration']?.toString(),
       courseLevelField: map['courseLevelField'] != null
-          ? map['courseLevelField'] as String
-          : null,
-      nameIntl: map['nameIntl'] != null ? map['nameIntl'] as String : null,
-      date: map['date'] != null ? map['date'] as String : null,
-      content: map['content'] != null ? map['content'] as String : null,
-      description: map['description'] != null
-          ? map['description'] as String
-          : null,
+          ? map['courseLevelField'].toString()
+          : (map['course_level_field']?.toString()),
+      nameIntl: map['nameIntl'] != null
+          ? map['nameIntl'].toString()
+          : (map['name_intl']?.toString()),
+      date: map['date']?.toString(),
+      content: map['content']?.toString(),
+      description: map['description']?.toString(),
       dateTime: map['dateTime'] != null
-          ? DateTime.fromMillisecondsSinceEpoch(map['dateTime'] as int)
-          : null,
-      checkBox1: map['checkBox1'] != null ? map['checkBox1'] as bool : null,
-      byDegree: map['byDegree'] != null ? map['byDegree'] as bool : null,
+          ? (map['dateTime'] is String
+                ? DateTime.tryParse(map['dateTime'])
+                : DateTime.fromMillisecondsSinceEpoch(map['dateTime'] as int))
+          : (map['date_time'] != null
+                ? (map['date_time'] is String
+                      ? DateTime.tryParse(map['date_time'])
+                      : DateTime.fromMillisecondsSinceEpoch(
+                          map['date_time'] as int,
+                        ))
+                : null),
+      checkBox1: map['checkBox1'] != null
+          ? (map['checkBox1'] is bool
+                ? map['checkBox1'] as bool
+                : (map['checkBox1'] == 1 ||
+                      map['checkBox1'] == '1' ||
+                      map['checkBox1'] == true))
+          : (map['check_box1'] != null
+                ? (map['check_box1'] is bool
+                      ? map['check_box1'] as bool
+                      : (map['check_box1'] == 1 ||
+                            map['check_box1'] == '1' ||
+                            map['check_box1'] == true))
+                : null),
+      byDegree: map['byDegree'] != null
+          ? (map['byDegree'] is bool
+                ? map['byDegree'] as bool
+                : (map['byDegree'] == 1 ||
+                      map['byDegree'] == '1' ||
+                      map['byDegree'] == true))
+          : (map['by_degree'] != null
+                ? (map['by_degree'] is bool
+                      ? map['by_degree'] as bool
+                      : (map['by_degree'] == 1 ||
+                            map['by_degree'] == '1' ||
+                            map['by_degree'] == true))
+                : null),
       byCartificate: map['byCartificate'] != null
-          ? map['byCartificate'] as bool
-          : null,
+          ? (map['byCartificate'] is bool
+                ? map['byCartificate'] as bool
+                : (map['byCartificate'] == 1 ||
+                      map['byCartificate'] == '1' ||
+                      map['byCartificate'] == true))
+          : (map['by_cartificate'] != null
+                ? (map['by_cartificate'] is bool
+                      ? map['by_cartificate'] as bool
+                      : (map['by_cartificate'] == 1 ||
+                            map['by_cartificate'] == '1' ||
+                            map['by_cartificate'] == true))
+                : null),
     );
   }
 
